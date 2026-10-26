@@ -218,7 +218,7 @@
   .whotable table { border-collapse: separate; border-spacing: 0; min-width: 880px; font-size: 13px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); }
   .whotable th, .whotable td { padding: 12px 14px; text-align: left; vertical-align: top; line-height: 1.7; border-bottom: 1px solid var(--panel-edge); }
   .whotable thead th { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; white-space: nowrap; background: var(--accent-soft); }
-  .whotable tbody th { font-weight: 700; white-space: nowrap; position: sticky; left: 0; background: var(--panel); box-shadow: 1px 0 0 var(--panel-edge); }
+  .whotable tbody th { font-weight: 700; white-space: nowrap; position: sticky; left: 0; z-index: 1; background: var(--panel); box-shadow: 1px 0 0 var(--panel-edge); }
   .whotable tbody tr:last-child th, .whotable tbody tr:last-child td { border-bottom: none; }
   .whotable .ppl { display: block; font-size: 11px; font-weight: 400; color: var(--sub); }
   .whotable td.na { color: var(--sub); }
@@ -226,13 +226,14 @@
   .daytable table { min-width: 1738px; }
   .daytable th, .daytable td { padding: 10px 11px; }
   .daytable tbody th, .daytable th.corner { min-width: 86px; width: 86px; }
-  .daytable th.corner { background: var(--accent-soft); position: sticky; left: 0; z-index: 2; }
+  .daytable th.corner { background: var(--accent-soft); position: sticky; left: 0; z-index: 3; box-shadow: 1px 0 0 var(--panel-edge); }
   .daytable thead th.dhead { text-align: center; font-size: 12px; border-left: 2px solid var(--panel-edge); }
   .daytable thead tr:last-child th { font-size: 10px; color: var(--sub); letter-spacing: 0.1em; background: var(--accent-soft); }
   .daytable th.dstart, .daytable td.dstart { border-left: 2px solid var(--panel-edge); }
   .daytable td { min-width: 118px; width: 118px; font-size: 12px; }
   .daytable td.dstart { scroll-snap-align: start; }
   .daytable tbody tr.all th, .daytable tbody tr.all td { background: var(--accent-soft); font-weight: 600; color: var(--ink); }
+  .daytable tbody th { white-space: normal; }
   .daytable tbody tr.all td.na { color: var(--sub); font-weight: 400; }
 
   @media (max-width: 480px) {
@@ -1153,8 +1154,8 @@
     <div class="whotable daytable">
       <table>
         <thead>
-          <tr><th class="corner" rowspan="2">組</th><th colspan="2" class="dhead">1/6（水）</th><th colspan="2" class="dhead">1/7（木）</th><th colspan="2" class="dhead">1/8（金）</th><th colspan="2" class="dhead">1/9（土）</th><th colspan="2" class="dhead">1/10（日）</th><th colspan="2" class="dhead">1/11（月）</th><th colspan="2" class="dhead">1/12（火）</th></tr>
-          <tr><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th></tr>
+          <tr><th class="corner">組</th><th colspan="2" class="dhead">1/6（水）</th><th colspan="2" class="dhead">1/7（木）</th><th colspan="2" class="dhead">1/8（金）</th><th colspan="2" class="dhead">1/9（土）</th><th colspan="2" class="dhead">1/10（日）</th><th colspan="2" class="dhead">1/11（月）</th><th colspan="2" class="dhead">1/12（火）</th></tr>
+          <tr><th class="corner"></th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th></tr>
         </thead>
         <tbody>
           <tr class="all"><th>全員同じ<span class="ppl">変わりません</span></th><td id="d-kyotsu-0" class="dstart">ロサンゼルス着</td><td id="d-kyotsu-1" class="na">—</td><td id="d-kyotsu-2" class="dstart na">—</td><td id="d-kyotsu-3" class="na">—</td><td id="d-kyotsu-4" class="dstart">ラスベガスへ移動</td><td id="d-kyotsu-5" class="na">—</td><td id="d-kyotsu-6" class="dstart na">—</td><td id="d-kyotsu-7" class="na">—</td><td id="d-kyotsu-8" class="dstart">セドナへ移動</td><td id="d-kyotsu-9" class="na">—</td><td id="d-kyotsu-10" class="dstart na">—</td><td id="d-kyotsu-11">ロサンゼルスへ戻る</td><td id="d-kyotsu-12" class="dstart">帰国（組ごと）</td><td id="d-kyotsu-13" class="na">—</td></tr>
