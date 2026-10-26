@@ -214,7 +214,7 @@
 
   /* ---- みんなの予定の表 ---- */
   .scroll-hint { font-size: 12px; color: var(--sub); margin: 0 0 10px; }
-  .whotable { margin: 0 -24px 24px; padding: 0 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .whotable { margin: 0 -24px 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .whotable table { border-collapse: separate; border-spacing: 0; min-width: 880px; font-size: 13px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); }
   .whotable th, .whotable td { padding: 12px 14px; text-align: left; vertical-align: top; line-height: 1.7; border-bottom: 1px solid var(--panel-edge); }
   .whotable thead th { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; white-space: nowrap; background: var(--accent-soft); }
@@ -353,6 +353,17 @@
       <li><b>セドナは夜が暗い。</b>街灯が少なく（星空を守るため）、夜の運転は慣れが必要です。<b>日が暗くなる前に宿に入る日程</b>にしておくと安心です。</li>
     </ul>
 
+    <h3 class="sub">みんなでごはん（希望）</h3>
+    <div class="alert" style="border-left-color: var(--forest)">
+      <b style="color: var(--forest)">着いた日（1/6 水）の夜と、ラスベガス（1/8 金）の夜は、みんなで食事ができたらと思っています。</b>決まりではないので、行ける人だけで大丈夫です。日とお店が決まったら、ここと「日ごとの動き」の表に出します。
+    </div>
+    <ul class="tip-list">
+      <li><b>11人だと予約が要ります。</b>米国のお店は6人以上から予約を受けるところが多く、当日に11人で入れるお店はほとんどありません。<b>行くと決めたら12月のうちに予約</b>を取ります。</li>
+      <li><b>ラスベガスの夜はとくに混みます。</b>1/8・1/9 はCESの会期中で、有名店は予約で埋まります。<b>ホテルのビュッフェ</b>なら大人数でも入りやすく、時間もずらせます。</li>
+      <li><b>支払いは1人ずつ分けられます。</b>席に着いたときに「Can we split the check?（お会計を分けられますか）」と伝えておくと、店の端末で人数分に分けてくれます。</li>
+      <li><b>大人数だとチップが先に入っています。</b>6人以上は18〜20%の「gratuity」が伝票に最初から足されていることが多いので、<b>二重に払わないよう伝票を確かめてください</b>。</li>
+    </ul>
+
     <div data-group="all">
       <h3 class="sub">やること</h3>
       <p class="section-note">チェックはこの端末に保存されます（他の人には見えません）。<b class="cd-prog">—</b></p>
@@ -374,6 +385,7 @@
 
       <div class="cat">12月中</div>
       <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="g-meshi" data-k="g-meshi"><em class="due">12月上旬</em><span><b>みんなでごはん</b>（1/6 の夜・1/8 の夜）に出るかどうか、LINEのグループで返事する。<b>人数が決まらないとお店が予約できません</b></span></label>
       <label><input type="checkbox" id="g-line" data-k="g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
       <label><input type="checkbox" id="g-sim" data-k="g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
       <label><input type="checkbox" id="g-card" data-k="g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
@@ -1158,7 +1170,7 @@
           <tr><th class="corner"></th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th><th class="dstart">午前</th><th>午後</th></tr>
         </thead>
         <tbody>
-          <tr class="all"><th>全員同じ<span class="ppl">変わりません</span></th><td id="d-kyotsu-0" class="dstart">ロサンゼルス着</td><td id="d-kyotsu-1" class="na">—</td><td id="d-kyotsu-2" class="dstart na">—</td><td id="d-kyotsu-3" class="na">—</td><td id="d-kyotsu-4" class="dstart">ラスベガスへ移動</td><td id="d-kyotsu-5" class="na">—</td><td id="d-kyotsu-6" class="dstart na">—</td><td id="d-kyotsu-7" class="na">—</td><td id="d-kyotsu-8" class="dstart">セドナへ移動</td><td id="d-kyotsu-9" class="na">—</td><td id="d-kyotsu-10" class="dstart na">—</td><td id="d-kyotsu-11">ロサンゼルスへ戻る</td><td id="d-kyotsu-12" class="dstart">帰国（組ごと）</td><td id="d-kyotsu-13" class="na">—</td></tr>
+          <tr class="all"><th>全員同じ<span class="ppl">変わりません</span></th><td id="d-kyotsu-0" class="dstart">ロサンゼルス着</td><td id="d-kyotsu-1">夜 みんなでごはん（希望・調整中）</td><td id="d-kyotsu-2" class="dstart na">—</td><td id="d-kyotsu-3" class="na">—</td><td id="d-kyotsu-4" class="dstart">ラスベガスへ移動</td><td id="d-kyotsu-5">夜 みんなでごはん（希望・調整中）</td><td id="d-kyotsu-6" class="dstart na">—</td><td id="d-kyotsu-7" class="na">—</td><td id="d-kyotsu-8" class="dstart">セドナへ移動</td><td id="d-kyotsu-9" class="na">—</td><td id="d-kyotsu-10" class="dstart na">—</td><td id="d-kyotsu-11">ロサンゼルスへ戻る</td><td id="d-kyotsu-12" class="dstart">帰国（組ごと）</td><td id="d-kyotsu-13" class="na">—</td></tr>
           <tr><th>岩田さん<span class="ppl">2名</span></th><td id="d-iwata-0" class="dstart na">未定</td><td id="d-iwata-1" class="na">未定</td><td id="d-iwata-2" class="dstart na">未定</td><td id="d-iwata-3" class="na">未定</td><td id="d-iwata-4" class="dstart na">未定</td><td id="d-iwata-5" class="na">未定</td><td id="d-iwata-6" class="dstart na">未定</td><td id="d-iwata-7" class="na">未定</td><td id="d-iwata-8" class="dstart na">未定</td><td id="d-iwata-9" class="na">未定</td><td id="d-iwata-10" class="dstart na">未定</td><td id="d-iwata-11" class="na">未定</td><td id="d-iwata-12" class="dstart na">未定</td><td id="d-iwata-13" class="na">未定</td></tr>
           <tr><th>田邊家<span class="ppl">4名</span></th><td id="d-tanabe-0" class="dstart na">未定</td><td id="d-tanabe-1" class="na">未定</td><td id="d-tanabe-2" class="dstart na">未定</td><td id="d-tanabe-3" class="na">未定</td><td id="d-tanabe-4" class="dstart na">未定</td><td id="d-tanabe-5" class="na">未定</td><td id="d-tanabe-6" class="dstart na">未定</td><td id="d-tanabe-7" class="na">未定</td><td id="d-tanabe-8" class="dstart na">未定</td><td id="d-tanabe-9" class="na">未定</td><td id="d-tanabe-10" class="dstart na">未定</td><td id="d-tanabe-11" class="na">未定</td><td id="d-tanabe-12" class="dstart na">未定</td><td id="d-tanabe-13" class="na">未定</td></tr>
           <tr><th>石原さん<span class="ppl">2名</span></th><td id="d-ishihara-0" class="dstart na">未定</td><td id="d-ishihara-1" class="na">未定</td><td id="d-ishihara-2" class="dstart na">未定</td><td id="d-ishihara-3" class="na">未定</td><td id="d-ishihara-4" class="dstart na">未定</td><td id="d-ishihara-5" class="na">未定</td><td id="d-ishihara-6" class="dstart na">未定</td><td id="d-ishihara-7" class="na">未定</td><td id="d-ishihara-8" class="dstart na">未定</td><td id="d-ishihara-9" class="na">未定</td><td id="d-ishihara-10" class="dstart na">未定</td><td id="d-ishihara-11" class="na">未定</td><td id="d-ishihara-12" class="dstart na">未定</td><td id="d-ishihara-13" class="na">未定</td></tr>
