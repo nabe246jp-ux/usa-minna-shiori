@@ -222,12 +222,16 @@
   .whotable tbody tr:last-child th, .whotable tbody tr:last-child td { border-bottom: none; }
   .whotable .ppl { display: block; font-size: 11px; font-weight: 400; color: var(--sub); }
   .whotable td.na { color: var(--sub); }
-  .daytable table { min-width: 1480px; }
+  .daytable { scroll-snap-type: x proximity; }
+  .daytable table { min-width: 1738px; }
+  .daytable th, .daytable td { padding: 10px 11px; }
+  .daytable tbody th, .daytable th.corner { min-width: 86px; width: 86px; }
   .daytable th.corner { background: var(--accent-soft); position: sticky; left: 0; z-index: 2; }
   .daytable thead th.dhead { text-align: center; font-size: 12px; border-left: 2px solid var(--panel-edge); }
   .daytable thead tr:last-child th { font-size: 10px; color: var(--sub); letter-spacing: 0.1em; background: var(--accent-soft); }
   .daytable th.dstart, .daytable td.dstart { border-left: 2px solid var(--panel-edge); }
-  .daytable td { min-width: 96px; max-width: 150px; font-size: 12px; }
+  .daytable td { min-width: 118px; width: 118px; font-size: 12px; }
+  .daytable td.dstart { scroll-snap-align: start; }
   .daytable tbody tr.all th, .daytable tbody tr.all td { background: var(--accent-soft); font-weight: 600; color: var(--ink); }
   .daytable tbody tr.all td.na { color: var(--sub); font-weight: 400; }
 
