@@ -235,10 +235,13 @@
 
   <nav class="top-tabs" role="tablist" aria-label="しおりのセクション">
     <button role="tab" id="nav-members" aria-selected="true" aria-controls="members">みんなのこと</button>
-    <button role="tab" id="nav-todo" aria-selected="false" aria-controls="todo">やること</button>
+    <button role="tab" id="nav-p-iwata" aria-selected="false" aria-controls="p-iwata">岩田さん</button>
+    <button role="tab" id="nav-p-tanabe" aria-selected="false" aria-controls="p-tanabe">田邊家</button>
+    <button role="tab" id="nav-p-ishihara" aria-selected="false" aria-controls="p-ishihara">石原さん</button>
+    <button role="tab" id="nav-p-kawano" aria-selected="false" aria-controls="p-kawano">川野さん</button>
+    <button role="tab" id="nav-p-takuhei" aria-selected="false" aria-controls="p-takuhei">たくへいさん</button>
     <button role="tab" id="nav-route" aria-selected="false" aria-controls="route">道順</button>
     <button role="tab" id="nav-hotel" aria-selected="false" aria-controls="hotel">泊まるところ</button>
-    <button role="tab" id="nav-plan" aria-selected="false" aria-controls="plan">みんなの予定</button>
     <button role="tab" id="nav-spots" aria-selected="false" aria-controls="spots">見どころ</button>
     <button role="tab" id="nav-ces" aria-selected="false" aria-controls="ces">CESに行く人へ</button>
     <button role="tab" id="nav-info" aria-selected="false" aria-controls="info">現地情報・持ち物</button>
@@ -247,7 +250,7 @@
   <!-- ================= みんなのこと ================= -->
   <section id="members" role="tabpanel" aria-labelledby="nav-members">
     <h2>みんなのこと</h2>
-    <p class="section-note">2027年1月に、ロサンゼルス → ラスベガス → セドナ を同じ時期に回る5組・合わせて11人のためのしおりです。</p>
+    <p class="section-note">2027年1月に、ロサンゼルス → ラスベガス → セドナ を同じ時期に回る5組・合わせて11人のためのしおりです。<b>上のタブから自分の組を開くと、その組の予定とやることが出ます。</b></p>
 
     <div class="alert">
       便・宿・どこを見るかは、組ごとに決めます。決まったことと「この日ここに行くつもり」を<b>みんなの予定の表</b>に書いておくと、お互いの動きが分かります（表のリンクはLINEのグループに貼ってあります）。
@@ -304,54 +307,309 @@
       <li><b>子どもの体力に合わせる。</b>ディズニーもセドナも1日1万歩を超えます。1日に大きな予定を2つ入れると、だいたい後半がつぶれます。</li>
       <li><b>写真はあとでまとめて共有。</b>帰国後にアルバムを1つ作って、各組が入れる形に（旅行中は各自好きに撮る）。</li>
     </ul>
-  </section>
-
-  <!-- ================= やること ================= -->
-  <section id="todo" role="tabpanel" aria-labelledby="nav-todo" hidden>
-    <h2>やること</h2>
-    <p class="section-note">チェックはこの端末に保存されます（他の人には見えません）。<b>組ごとにやること</b>です。自分の組の分だけ見てください。</p>
 
     <div class="countdown">
       <div><span class="days" id="cd-days">—</span><span class="unit">日</span></div>
-      <div class="cd-note">1月6日（ロサンゼルス集合の日）まで<br><span id="cd-prog">—</span></div>
+      <div class="cd-note">1月6日（ロサンゼルス集合の日）まで</div>
     </div>
 
     <div class="alert">
       <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガスの全市が満室になります。<b>値段も通常の3〜5倍</b>（1泊$500〜1,000超）。ここだけは、ほかより先に押さえてください。
     </div>
 
-    <div class="checklist" style="margin-top:20px">
+    <h3 class="sub">書き込む表</h3>
+    <div class="booking">
+      <span>共有の表</span>
+      <span class="code">Googleスプレッドシート</span>
+      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
+    </div>
+    <div style="height:16px"></div>
+
+    <div class="alert">
+      <b>表のリンクはLINEのグループに貼ってあります。</b>このしおりは誰でも見られるページなので、表のリンクはここには載せていません（リンクがそのまま出ていると、知らない人にも書き込めてしまうため）。見つからないときは幹事に聞いてください。
+    </div>
+
+    <h3 class="sub">2つのタブがあります</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">みんなの予定</div>
+        <div class="value">便・宿・連絡先</div>
+        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
+      </div>
+      <div class="info-card">
+        <div class="label">この日ここに行く</div>
+        <div class="value">日ごとの行き先</div>
+        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行書きます</div>
+      </div>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
+      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
+      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
+      <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
+      <li><b>毎晩、翌日の行き先を1行。</b>決まっていない日は空けたままで構いません。</li>
+    </ul>
+  </section>
+
+  <!-- ================= 岩田さん ================= -->
+  <section id="p-iwata" role="tabpanel" aria-labelledby="nav-p-iwata" data-group="iwata" hidden>
+    <h2>岩田さん</h2>
+    <p class="section-note">2名（親子で）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
+
+    <h3 class="sub">予定</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-iwata-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
+      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-iwata-la">未定</div><div class="note">1/6・1/7</div></div>
+      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-iwata-lv">未定</div><div class="note">1/8・1/9</div></div>
+      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-iwata-sedona">未定</div><div class="note">1/10・1/11</div></div>
+      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-iwata-back">未定</div><div class="note">1/12 以降</div></div>
+      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-iwata-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
+      <div class="info-card"><div class="label">CES</div><div class="value" id="v-iwata-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
+      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-iwata-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
+    </div>
+
+    <h3 class="sub">やること</h3>
+    <p class="section-note"><b class="cd-prog">—</b></p>
+    <div class="checklist">
       <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="g-hotel-lv" data-k="g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="g-hotel-sedona" data-k="g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="g-air" data-k="g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="g-hotel-la" data-k="g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="g-air-dom" data-k="g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+      <label><input type="checkbox" id="iwata-g-hotel-lv" data-k="iwata-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="iwata-g-hotel-sedona" data-k="iwata-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="iwata-g-air" data-k="iwata-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="iwata-g-hotel-la" data-k="iwata-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="iwata-g-air-dom" data-k="iwata-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
 
       <div class="cat">11月中</div>
-      <label><input type="checkbox" id="g-esta" data-k="g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="g-passport" data-k="g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="g-hoken" data-k="g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="g-car" data-k="g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="g-license" data-k="g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="g-ces" data-k="g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+      <label><input type="checkbox" id="iwata-g-esta" data-k="iwata-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="iwata-g-passport" data-k="iwata-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="iwata-g-hoken" data-k="iwata-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="iwata-g-car" data-k="iwata-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="iwata-g-license" data-k="iwata-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="iwata-g-ces" data-k="iwata-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
 
       <div class="cat">12月中</div>
-      <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="g-line" data-k="g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="g-sim" data-k="g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="g-card" data-k="g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="g-clothes" data-k="g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+      <label><input type="checkbox" id="iwata-g-sheet" data-k="iwata-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="iwata-g-line" data-k="iwata-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="iwata-g-sim" data-k="iwata-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="iwata-g-card" data-k="iwata-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="iwata-g-clothes" data-k="iwata-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
 
       <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="g-vjw" data-k="g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="g-pack" data-k="g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="g-copy" data-k="g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+      <label><input type="checkbox" id="iwata-g-vjw" data-k="iwata-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="iwata-g-pack" data-k="iwata-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="iwata-g-copy" data-k="iwata-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
 
       <div class="cat">現地で</div>
-      <label><input type="checkbox" id="g-arrive" data-k="g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="g-plan-daily" data-k="g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>
+      <label><input type="checkbox" id="iwata-g-arrive" data-k="iwata-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="iwata-g-plan-daily" data-k="iwata-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
+  </section>
+
+  <!-- ================= 田邊家 ================= -->
+  <section id="p-tanabe" role="tabpanel" aria-labelledby="nav-p-tanabe" data-group="tanabe" hidden>
+    <h2>田邊家</h2>
+    <p class="section-note">4名（1/8・1/9 は田邊さんがCESへ）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
+
+    <h3 class="sub">予定</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-tanabe-air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
+      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-tanabe-la">アナハイム（1/6・1/7）</div><div class="note">1/6・1/7</div></div>
+      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-tanabe-lv">1/8・1/9</div><div class="note">1/8・1/9</div></div>
+      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-tanabe-sedona">1/10・1/11</div><div class="note">1/10・1/11</div></div>
+      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-tanabe-back">1/12 09:40 ロス発 → 1/13 14:25 成田着</div><div class="note">1/12 以降</div></div>
+      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-tanabe-car">セドナで（PHXで借りてPHXで返す）</div><div class="note">セドナは車がないと動けません</div></div>
+      <div class="info-card"><div class="label">CES</div><div class="value" id="v-tanabe-ces">田邊さんのみ 1/8・1/9</div><div class="note">18歳未満は入場できません</div></div>
+      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-tanabe-free">ディズニー2日 → CES2日 → セドナ2日</div><div class="note">やりたいこと・困っていること</div></div>
     </div>
+
+    <h3 class="sub">やること</h3>
+    <p class="section-note"><b class="cd-prog">—</b></p>
+    <div class="checklist">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="tanabe-g-hotel-lv" data-k="tanabe-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="tanabe-g-hotel-sedona" data-k="tanabe-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="tanabe-g-air" data-k="tanabe-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="tanabe-g-hotel-la" data-k="tanabe-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="tanabe-g-air-dom" data-k="tanabe-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="tanabe-g-esta" data-k="tanabe-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="tanabe-g-passport" data-k="tanabe-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="tanabe-g-hoken" data-k="tanabe-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="tanabe-g-car" data-k="tanabe-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="tanabe-g-license" data-k="tanabe-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="tanabe-g-ces" data-k="tanabe-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="tanabe-g-sheet" data-k="tanabe-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="tanabe-g-line" data-k="tanabe-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="tanabe-g-sim" data-k="tanabe-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="tanabe-g-card" data-k="tanabe-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="tanabe-g-clothes" data-k="tanabe-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="tanabe-g-vjw" data-k="tanabe-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="tanabe-g-pack" data-k="tanabe-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="tanabe-g-copy" data-k="tanabe-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="tanabe-g-arrive" data-k="tanabe-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="tanabe-g-plan-daily" data-k="tanabe-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
+  </section>
+
+  <!-- ================= 石原さん ================= -->
+  <section id="p-ishihara" role="tabpanel" aria-labelledby="nav-p-ishihara" data-group="ishihara" hidden>
+    <h2>石原さん</h2>
+    <p class="section-note">2名（親子で）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
+
+    <h3 class="sub">予定</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-ishihara-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
+      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-ishihara-la">未定</div><div class="note">1/6・1/7</div></div>
+      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-ishihara-lv">未定</div><div class="note">1/8・1/9</div></div>
+      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-ishihara-sedona">未定</div><div class="note">1/10・1/11</div></div>
+      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-ishihara-back">未定</div><div class="note">1/12 以降</div></div>
+      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-ishihara-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
+      <div class="info-card"><div class="label">CES</div><div class="value" id="v-ishihara-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
+      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-ishihara-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
+    </div>
+
+    <h3 class="sub">やること</h3>
+    <p class="section-note"><b class="cd-prog">—</b></p>
+    <div class="checklist">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="ishihara-g-hotel-lv" data-k="ishihara-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="ishihara-g-hotel-sedona" data-k="ishihara-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="ishihara-g-air" data-k="ishihara-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="ishihara-g-hotel-la" data-k="ishihara-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="ishihara-g-air-dom" data-k="ishihara-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="ishihara-g-esta" data-k="ishihara-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="ishihara-g-passport" data-k="ishihara-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="ishihara-g-hoken" data-k="ishihara-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="ishihara-g-car" data-k="ishihara-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="ishihara-g-license" data-k="ishihara-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="ishihara-g-ces" data-k="ishihara-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="ishihara-g-sheet" data-k="ishihara-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="ishihara-g-line" data-k="ishihara-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="ishihara-g-sim" data-k="ishihara-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="ishihara-g-card" data-k="ishihara-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="ishihara-g-clothes" data-k="ishihara-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="ishihara-g-vjw" data-k="ishihara-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="ishihara-g-pack" data-k="ishihara-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="ishihara-g-copy" data-k="ishihara-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="ishihara-g-arrive" data-k="ishihara-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="ishihara-g-plan-daily" data-k="ishihara-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
+  </section>
+
+  <!-- ================= 川野さん ================= -->
+  <section id="p-kawano" role="tabpanel" aria-labelledby="nav-p-kawano" data-group="kawano" hidden>
+    <h2>川野さん</h2>
+    <p class="section-note">2名（社員の方と）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
+
+    <h3 class="sub">予定</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-kawano-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
+      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-kawano-la">未定</div><div class="note">1/6・1/7</div></div>
+      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-kawano-lv">未定</div><div class="note">1/8・1/9</div></div>
+      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-kawano-sedona">未定</div><div class="note">1/10・1/11</div></div>
+      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-kawano-back">未定</div><div class="note">1/12 以降</div></div>
+      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-kawano-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
+      <div class="info-card"><div class="label">CES</div><div class="value" id="v-kawano-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
+      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-kawano-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
+    </div>
+
+    <h3 class="sub">やること</h3>
+    <p class="section-note"><b class="cd-prog">—</b></p>
+    <div class="checklist">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="kawano-g-hotel-lv" data-k="kawano-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="kawano-g-hotel-sedona" data-k="kawano-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="kawano-g-air" data-k="kawano-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="kawano-g-hotel-la" data-k="kawano-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="kawano-g-air-dom" data-k="kawano-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="kawano-g-esta" data-k="kawano-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="kawano-g-passport" data-k="kawano-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="kawano-g-hoken" data-k="kawano-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="kawano-g-car" data-k="kawano-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="kawano-g-license" data-k="kawano-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="kawano-g-ces" data-k="kawano-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="kawano-g-sheet" data-k="kawano-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="kawano-g-line" data-k="kawano-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="kawano-g-sim" data-k="kawano-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="kawano-g-card" data-k="kawano-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="kawano-g-clothes" data-k="kawano-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="kawano-g-vjw" data-k="kawano-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="kawano-g-pack" data-k="kawano-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="kawano-g-copy" data-k="kawano-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="kawano-g-arrive" data-k="kawano-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="kawano-g-plan-daily" data-k="kawano-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
+  </section>
+
+  <!-- ================= たくへいさん ================= -->
+  <section id="p-takuhei" role="tabpanel" aria-labelledby="nav-p-takuhei" data-group="takuhei" hidden>
+    <h2>たくへいさん</h2>
+    <p class="section-note">1名（—）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
+
+    <h3 class="sub">予定</h3>
+    <div class="info-grid">
+      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-takuhei-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
+      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-takuhei-la">未定</div><div class="note">1/6・1/7</div></div>
+      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-takuhei-lv">未定</div><div class="note">1/8・1/9</div></div>
+      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-takuhei-sedona">未定</div><div class="note">1/10・1/11</div></div>
+      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-takuhei-back">未定</div><div class="note">1/12 以降</div></div>
+      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-takuhei-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
+      <div class="info-card"><div class="label">CES</div><div class="value" id="v-takuhei-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
+      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-takuhei-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
+    </div>
+
+    <h3 class="sub">やること</h3>
+    <p class="section-note"><b class="cd-prog">—</b></p>
+    <div class="checklist">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="takuhei-g-hotel-lv" data-k="takuhei-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="takuhei-g-hotel-sedona" data-k="takuhei-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="takuhei-g-air" data-k="takuhei-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="takuhei-g-hotel-la" data-k="takuhei-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="takuhei-g-air-dom" data-k="takuhei-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="takuhei-g-esta" data-k="takuhei-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="takuhei-g-passport" data-k="takuhei-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="takuhei-g-hoken" data-k="takuhei-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="takuhei-g-car" data-k="takuhei-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="takuhei-g-license" data-k="takuhei-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="takuhei-g-ces" data-k="takuhei-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="takuhei-g-sheet" data-k="takuhei-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="takuhei-g-line" data-k="takuhei-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="takuhei-g-sim" data-k="takuhei-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="takuhei-g-card" data-k="takuhei-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="takuhei-g-clothes" data-k="takuhei-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="takuhei-g-vjw" data-k="takuhei-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="takuhei-g-pack" data-k="takuhei-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="takuhei-g-copy" data-k="takuhei-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="takuhei-g-arrive" data-k="takuhei-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="takuhei-g-plan-daily" data-k="takuhei-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
   </section>
 
   <!-- ================= 道順 ================= -->
@@ -584,127 +842,6 @@
       <li><b>リゾートフィーとデポジットに注意。</b>ラスベガスは宿泊料のほかに1泊$40〜60のリゾートフィーがかかり、チェックイン時にカードで$50〜100／日のデポジットを押さえられます（使わなければ数日で戻ります）。</li>
       <li><b>無料キャンセル可で押さえておく。</b>人数や日程が未定でも、キャンセル無料の条件なら先に部屋を確保できます。CES週のラスベガスは<b>待つほど高くなります</b>。</li>
       <li><b>セドナは夜が暗い。</b>街灯が少なく（星空を守るため）、夜の運転は慣れが必要です。<b>日が暗くなる前に宿に入る日程</b>にしておくと安心です。</li>
-    </ul>
-  </section>
-
-  <!-- ================= みんなの予定 ================= -->
-  <section id="plan" role="tabpanel" aria-labelledby="nav-plan" hidden>
-    <h2>みんなの予定</h2>
-    <p class="section-note"><b>誰がいつどこにいるかを1か所に集めておく表</b>です。<b>全員が見られて、それぞれが書き込めます</b>（スマホのGoogleスプレッドシートのアプリでも、ブラウザでも開けます）。</p>
-
-    <h3 class="sub">組ごとの予定</h3>
-    <p class="section-note">自分の組のタブを見てください。<b>下の表に書いた内容が、そのままここに出ます</b>（書いてから出るまで数分かかります）。まだのところは「未定」のままです。</p>
-
-    <div class="tabs" role="tablist" aria-label="組ごとの予定">
-      <button role="tab" id="tab-iwata" aria-selected="true" aria-controls="panel-iwata">岩田さん</button>
-      <button role="tab" id="tab-tanabe" aria-selected="false" aria-controls="panel-tanabe">田邊家</button>
-      <button role="tab" id="tab-ishihara" aria-selected="false" aria-controls="panel-ishihara">石原さん</button>
-      <button role="tab" id="tab-kawano" aria-selected="false" aria-controls="panel-kawano">川野さん</button>
-      <button role="tab" id="tab-takuhei" aria-selected="false" aria-controls="panel-takuhei">たくへいさん</button>
-    </div>
-
-    <div class="tabpanel" id="panel-iwata" role="tabpanel" aria-labelledby="tab-iwata">
-      <div class="info-grid">
-        <div class="info-card"><div class="label">人数</div><div class="value">2名</div><div class="note">親子で</div></div>
-        <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-iwata-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-        <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-iwata-la">未定</div><div class="note">1/6・1/7</div></div>
-        <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-iwata-lv">未定</div><div class="note">1/8・1/9</div></div>
-        <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-iwata-sedona">未定</div><div class="note">1/10・1/11</div></div>
-        <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-iwata-back">未定</div><div class="note">1/12 以降</div></div>
-        <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-iwata-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-        <div class="info-card"><div class="label">CES</div><div class="value" id="v-iwata-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-        <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-iwata-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="panel-tanabe" role="tabpanel" aria-labelledby="tab-tanabe" hidden>
-      <div class="info-grid">
-        <div class="info-card"><div class="label">人数</div><div class="value">4名</div><div class="note">1/8・1/9 は田邊さんがCESへ</div></div>
-        <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-tanabe-air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-        <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-tanabe-la">アナハイム（1/6・1/7）</div><div class="note">1/6・1/7</div></div>
-        <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-tanabe-lv">1/8・1/9</div><div class="note">1/8・1/9</div></div>
-        <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-tanabe-sedona">1/10・1/11</div><div class="note">1/10・1/11</div></div>
-        <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-tanabe-back">1/12 09:40 ロス発 → 1/13 14:25 成田着</div><div class="note">1/12 以降</div></div>
-        <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-tanabe-car">セドナで（PHXで借りてPHXで返す）</div><div class="note">セドナは車がないと動けません</div></div>
-        <div class="info-card"><div class="label">CES</div><div class="value" id="v-tanabe-ces">田邊さんのみ 1/8・1/9</div><div class="note">18歳未満は入場できません</div></div>
-        <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-tanabe-free">ディズニー2日 → CES2日 → セドナ2日</div><div class="note">やりたいこと・困っていること</div></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="panel-ishihara" role="tabpanel" aria-labelledby="tab-ishihara" hidden>
-      <div class="info-grid">
-        <div class="info-card"><div class="label">人数</div><div class="value">2名</div><div class="note">親子で</div></div>
-        <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-ishihara-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-        <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-ishihara-la">未定</div><div class="note">1/6・1/7</div></div>
-        <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-ishihara-lv">未定</div><div class="note">1/8・1/9</div></div>
-        <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-ishihara-sedona">未定</div><div class="note">1/10・1/11</div></div>
-        <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-ishihara-back">未定</div><div class="note">1/12 以降</div></div>
-        <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-ishihara-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-        <div class="info-card"><div class="label">CES</div><div class="value" id="v-ishihara-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-        <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-ishihara-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="panel-kawano" role="tabpanel" aria-labelledby="tab-kawano" hidden>
-      <div class="info-grid">
-        <div class="info-card"><div class="label">人数</div><div class="value">2名</div><div class="note">社員の方と</div></div>
-        <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-kawano-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-        <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-kawano-la">未定</div><div class="note">1/6・1/7</div></div>
-        <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-kawano-lv">未定</div><div class="note">1/8・1/9</div></div>
-        <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-kawano-sedona">未定</div><div class="note">1/10・1/11</div></div>
-        <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-kawano-back">未定</div><div class="note">1/12 以降</div></div>
-        <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-kawano-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-        <div class="info-card"><div class="label">CES</div><div class="value" id="v-kawano-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-        <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-kawano-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-      </div>
-    </div>
-
-    <div class="tabpanel" id="panel-takuhei" role="tabpanel" aria-labelledby="tab-takuhei" hidden>
-      <div class="info-grid">
-        <div class="info-card"><div class="label">人数</div><div class="value">1名</div><div class="note">—</div></div>
-        <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-takuhei-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-        <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-takuhei-la">未定</div><div class="note">1/6・1/7</div></div>
-        <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-takuhei-lv">未定</div><div class="note">1/8・1/9</div></div>
-        <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-takuhei-sedona">未定</div><div class="note">1/10・1/11</div></div>
-        <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-takuhei-back">未定</div><div class="note">1/12 以降</div></div>
-        <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-takuhei-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-        <div class="info-card"><div class="label">CES</div><div class="value" id="v-takuhei-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-        <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-takuhei-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-      </div>
-    </div>
-
-    <h3 class="sub">書き込む表</h3>
-    <div class="booking">
-      <span>共有の表</span>
-      <span class="code">Googleスプレッドシート</span>
-      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
-    </div>
-    <div style="height:16px"></div>
-
-    <div class="alert">
-      <b>表のリンクはLINEのグループに貼ってあります。</b>このしおりは誰でも見られるページなので、表のリンクはここには載せていません（リンクがそのまま出ていると、知らない人にも書き込めてしまうため）。見つからないときは幹事に聞いてください。
-    </div>
-
-    <h3 class="sub">2つのタブがあります</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">みんなの予定</div>
-        <div class="value">便・宿・連絡先</div>
-        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
-      </div>
-      <div class="info-card">
-        <div class="label">この日ここに行く</div>
-        <div class="value">日ごとの行き先</div>
-        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行書きます</div>
-      </div>
-    </div>
-
-    <ul class="tip-list">
-      <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
-      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
-      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
-      <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
-      <li><b>毎晩、翌日の行き先を1行。</b>決まっていない日は空けたままで構いません。</li>
     </ul>
   </section>
 
@@ -1244,13 +1381,16 @@
     var saved = {};
     try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
     var boxes = document.querySelectorAll(".checklist input[type=checkbox]");
-    var todoBoxes = document.querySelectorAll("#todo .checklist input[type=checkbox]");
-    var prog = document.getElementById("cd-prog");
+    var groups = document.querySelectorAll("[data-group]");
     function updateProgress() {
-      if (!prog) return;
-      var done = 0;
-      todoBoxes.forEach(function (b) { if (b.checked) done++; });
-      prog.textContent = "やること " + done + " / " + todoBoxes.length + " 件 完了";
+      groups.forEach(function (sec) {
+        var prog = sec.querySelector(".cd-prog");
+        if (!prog) return;
+        var gb = sec.querySelectorAll(".checklist input[type=checkbox]");
+        var done = 0;
+        gb.forEach(function (b) { if (b.checked) done++; });
+        prog.textContent = "やること " + done + " / " + gb.length + " 件 完了";
+      });
     }
     boxes.forEach(function (box) {
       if (saved[box.dataset.k]) box.checked = true;
