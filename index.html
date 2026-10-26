@@ -234,6 +234,40 @@
   .daytable td.dstart { scroll-snap-align: start; }
   .daytable tbody tr.all th, .daytable tbody tr.all td { background: var(--accent-soft); font-weight: 600; color: var(--ink); }
   .daytable tbody th { white-space: normal; }
+
+  /* ---- 自分の組 ---- */
+  .whoami { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 16px 20px; margin-bottom: 20px; }
+  .whoami .wa-label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); }
+  .whoami select { font: inherit; font-size: 15px; padding: 7px 12px; border: 1px solid var(--panel-edge); border-radius: 4px; background: #fff; color: var(--ink); }
+  .whoami .wa-note { font-size: 12px; color: var(--sub); flex: 1 1 100%; line-height: 1.8; }
+
+  /* ---- 直せる表 ---- */
+  .whotable tbody tr.mine th { background: #E8F0EA; }
+  .whotable tbody tr.mine td { background: #F4F9F5; }
+  .whotable td[data-t] { cursor: pointer; }
+  .whotable td[data-t]:hover { box-shadow: inset 0 0 0 1px var(--accent); }
+  .whotable td.saving { opacity: 0.45; }
+  .whotable td input { font: inherit; font-size: 12px; width: 100%; border: 1px solid var(--accent); border-radius: 3px; padding: 4px 6px; background: #fff; color: var(--ink); }
+
+  /* ---- 準備の進み具合 ---- */
+  .preptable table { min-width: 900px; }
+  .preptable td.chk { text-align: center; font-size: 17px; color: var(--forest); font-weight: 700; }
+  .preptable td.chk.off { color: #D8D2C8; font-weight: 400; }
+  .preptable td.cnt { text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--sub); white-space: nowrap; }
+
+  /* ---- 下から出る操作バー ---- */
+  .actbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; background: var(--panel); border-top: 1px solid var(--panel-edge); box-shadow: 0 -2px 10px rgba(43,38,32,0.1); padding: 16px 22px calc(16px + env(safe-area-inset-bottom, 0px)); display: none; }
+  .actbar.on { display: block; }
+  .actbar .ab-what { font-size: 11px; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 6px; }
+  .actbar .ab-val { font-size: 14px; font-weight: 600; margin-bottom: 14px; line-height: 1.7; }
+  .actbar .ab-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  .actbar button { font: inherit; font-size: 14px; padding: 9px 20px; border-radius: 999px; border: 1px solid var(--accent); background: var(--accent); color: #fff; cursor: pointer; }
+  .actbar button.ghost { background: none; color: var(--accent); }
+  .actbar button.plain { background: none; color: var(--sub); border-color: var(--panel-edge); }
+
+  .savenote { position: fixed; left: 50%; transform: translateX(-50%); bottom: 26px; z-index: 60; background: var(--ink); color: #fff; font-size: 13px; padding: 9px 20px; border-radius: 999px; opacity: 0; transition: opacity 0.25s; pointer-events: none; max-width: 86vw; text-align: center; }
+  .savenote.on { opacity: 1; }
+  .savenote.ng { background: var(--coral); }
   .daytable tbody tr.all td.na { color: var(--sub); font-weight: 400; }
 
   @media (max-width: 480px) {
@@ -1160,9 +1194,32 @@
   <!-- ================= みんなの予定 ================= -->
   <section id="plan" role="tabpanel" aria-labelledby="nav-plan" hidden>
     <h2>みんなの予定</h2>
-    <p class="section-note">5組がいつどこにいるかを1枚にまとめた表です。<b>共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。同じ宿の組がいれば朝ごはんを一緒に、同じ午前に同じ所へ行くなら現地で、というように<b>合わせたいときだけ合わせられます</b>。</p>
+    <p class="section-note">5組がいつどこにいるかを1枚にまとめた表です。<b>マスを押すと、このページでそのまま書けます</b>（書いたものは全員に見えます）。同じ宿の組がいれば朝ごはんを一緒に、同じ午前に同じ所へ行くなら現地で、というように<b>合わせたいときだけ合わせられます</b>。</p>
+    <div class="whoami">
+      <span class="wa-label">あなたの組</span>
+      <select id="whoami"><option value="">選んでください</option><option value="iwata">岩田さん</option><option value="tanabe">田邊家</option><option value="ishihara">石原さん</option><option value="kawano">川野さん</option><option value="takuhei">たくへいさん</option></select>
+      <span class="wa-note">選ぶと自分の行に色が付きます。ほかの組のマスを押すと<b>「自分の欄へコピー」</b>が出ます。この端末だけに覚えます。</span>
+    </div>
+
+    <h3 class="sub">準備の進み具合</h3>
+    <p class="scroll-hint">便と宿が取れたらマスを押してください。<b>ほかの組の残りも見えます</b>（押すと全員に見えます）。横にスクロールできます。</p>
+    <div class="whotable preptable">
+      <table>
+        <thead>
+          <tr><th>組</th><th>行きの便</th><th>帰りの便</th><th>米国内の便</th><th>ロスの宿</th><th>ラスベガスの宿</th><th>セドナの宿</th><th>レンタカー</th><th>ESTA</th><th>保険</th><th>CES登録</th><th>進み</th></tr>
+        </thead>
+        <tbody>
+          <tr data-row="iwata"><th>岩田さん<span class="ppl">2名</span></th><td class="chk off" id="p-iwata-air" data-t="prep" data-g="iwata" data-f="air" data-label="行きの便">・</td><td class="chk off" id="p-iwata-back" data-t="prep" data-g="iwata" data-f="back" data-label="帰りの便">・</td><td class="chk off" id="p-iwata-dom" data-t="prep" data-g="iwata" data-f="dom" data-label="米国内の便">・</td><td class="chk off" id="p-iwata-hla" data-t="prep" data-g="iwata" data-f="hla" data-label="ロスの宿">・</td><td class="chk off" id="p-iwata-hlv" data-t="prep" data-g="iwata" data-f="hlv" data-label="ラスベガスの宿">・</td><td class="chk off" id="p-iwata-hsd" data-t="prep" data-g="iwata" data-f="hsd" data-label="セドナの宿">・</td><td class="chk off" id="p-iwata-car" data-t="prep" data-g="iwata" data-f="car" data-label="レンタカー">・</td><td class="chk off" id="p-iwata-esta" data-t="prep" data-g="iwata" data-f="esta" data-label="ESTA">・</td><td class="chk off" id="p-iwata-hoken" data-t="prep" data-g="iwata" data-f="hoken" data-label="保険">・</td><td class="chk off" id="p-iwata-ces" data-t="prep" data-g="iwata" data-f="ces" data-label="CES登録">・</td><td class="cnt" id="pc-iwata">0 / 10</td></tr>
+          <tr data-row="tanabe"><th>田邊家<span class="ppl">4名</span></th><td class="chk off" id="p-tanabe-air" data-t="prep" data-g="tanabe" data-f="air" data-label="行きの便">・</td><td class="chk off" id="p-tanabe-back" data-t="prep" data-g="tanabe" data-f="back" data-label="帰りの便">・</td><td class="chk off" id="p-tanabe-dom" data-t="prep" data-g="tanabe" data-f="dom" data-label="米国内の便">・</td><td class="chk off" id="p-tanabe-hla" data-t="prep" data-g="tanabe" data-f="hla" data-label="ロスの宿">・</td><td class="chk off" id="p-tanabe-hlv" data-t="prep" data-g="tanabe" data-f="hlv" data-label="ラスベガスの宿">・</td><td class="chk off" id="p-tanabe-hsd" data-t="prep" data-g="tanabe" data-f="hsd" data-label="セドナの宿">・</td><td class="chk off" id="p-tanabe-car" data-t="prep" data-g="tanabe" data-f="car" data-label="レンタカー">・</td><td class="chk off" id="p-tanabe-esta" data-t="prep" data-g="tanabe" data-f="esta" data-label="ESTA">・</td><td class="chk off" id="p-tanabe-hoken" data-t="prep" data-g="tanabe" data-f="hoken" data-label="保険">・</td><td class="chk off" id="p-tanabe-ces" data-t="prep" data-g="tanabe" data-f="ces" data-label="CES登録">・</td><td class="cnt" id="pc-tanabe">0 / 10</td></tr>
+          <tr data-row="ishihara"><th>石原さん<span class="ppl">2名</span></th><td class="chk off" id="p-ishihara-air" data-t="prep" data-g="ishihara" data-f="air" data-label="行きの便">・</td><td class="chk off" id="p-ishihara-back" data-t="prep" data-g="ishihara" data-f="back" data-label="帰りの便">・</td><td class="chk off" id="p-ishihara-dom" data-t="prep" data-g="ishihara" data-f="dom" data-label="米国内の便">・</td><td class="chk off" id="p-ishihara-hla" data-t="prep" data-g="ishihara" data-f="hla" data-label="ロスの宿">・</td><td class="chk off" id="p-ishihara-hlv" data-t="prep" data-g="ishihara" data-f="hlv" data-label="ラスベガスの宿">・</td><td class="chk off" id="p-ishihara-hsd" data-t="prep" data-g="ishihara" data-f="hsd" data-label="セドナの宿">・</td><td class="chk off" id="p-ishihara-car" data-t="prep" data-g="ishihara" data-f="car" data-label="レンタカー">・</td><td class="chk off" id="p-ishihara-esta" data-t="prep" data-g="ishihara" data-f="esta" data-label="ESTA">・</td><td class="chk off" id="p-ishihara-hoken" data-t="prep" data-g="ishihara" data-f="hoken" data-label="保険">・</td><td class="chk off" id="p-ishihara-ces" data-t="prep" data-g="ishihara" data-f="ces" data-label="CES登録">・</td><td class="cnt" id="pc-ishihara">0 / 10</td></tr>
+          <tr data-row="kawano"><th>川野さん<span class="ppl">2名</span></th><td class="chk off" id="p-kawano-air" data-t="prep" data-g="kawano" data-f="air" data-label="行きの便">・</td><td class="chk off" id="p-kawano-back" data-t="prep" data-g="kawano" data-f="back" data-label="帰りの便">・</td><td class="chk off" id="p-kawano-dom" data-t="prep" data-g="kawano" data-f="dom" data-label="米国内の便">・</td><td class="chk off" id="p-kawano-hla" data-t="prep" data-g="kawano" data-f="hla" data-label="ロスの宿">・</td><td class="chk off" id="p-kawano-hlv" data-t="prep" data-g="kawano" data-f="hlv" data-label="ラスベガスの宿">・</td><td class="chk off" id="p-kawano-hsd" data-t="prep" data-g="kawano" data-f="hsd" data-label="セドナの宿">・</td><td class="chk off" id="p-kawano-car" data-t="prep" data-g="kawano" data-f="car" data-label="レンタカー">・</td><td class="chk off" id="p-kawano-esta" data-t="prep" data-g="kawano" data-f="esta" data-label="ESTA">・</td><td class="chk off" id="p-kawano-hoken" data-t="prep" data-g="kawano" data-f="hoken" data-label="保険">・</td><td class="chk off" id="p-kawano-ces" data-t="prep" data-g="kawano" data-f="ces" data-label="CES登録">・</td><td class="cnt" id="pc-kawano">0 / 10</td></tr>
+          <tr data-row="takuhei"><th>たくへいさん<span class="ppl">1名</span></th><td class="chk off" id="p-takuhei-air" data-t="prep" data-g="takuhei" data-f="air" data-label="行きの便">・</td><td class="chk off" id="p-takuhei-back" data-t="prep" data-g="takuhei" data-f="back" data-label="帰りの便">・</td><td class="chk off" id="p-takuhei-dom" data-t="prep" data-g="takuhei" data-f="dom" data-label="米国内の便">・</td><td class="chk off" id="p-takuhei-hla" data-t="prep" data-g="takuhei" data-f="hla" data-label="ロスの宿">・</td><td class="chk off" id="p-takuhei-hlv" data-t="prep" data-g="takuhei" data-f="hlv" data-label="ラスベガスの宿">・</td><td class="chk off" id="p-takuhei-hsd" data-t="prep" data-g="takuhei" data-f="hsd" data-label="セドナの宿">・</td><td class="chk off" id="p-takuhei-car" data-t="prep" data-g="takuhei" data-f="car" data-label="レンタカー">・</td><td class="chk off" id="p-takuhei-esta" data-t="prep" data-g="takuhei" data-f="esta" data-label="ESTA">・</td><td class="chk off" id="p-takuhei-hoken" data-t="prep" data-g="takuhei" data-f="hoken" data-label="保険">・</td><td class="chk off" id="p-takuhei-ces" data-t="prep" data-g="takuhei" data-f="ces" data-label="CES登録">・</td><td class="cnt" id="pc-takuhei">0 / 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <h3 class="sub">日ごとの動き（午前・午後）</h3>
-    <p class="scroll-hint">表は<b>横にスクロール</b>できます（左端の組の名前は動きません）。いちばん上の「全員同じ」の行が、みんなで合わせる動きです。</p>
+    <p class="scroll-hint">マスを押すと書けます。表は<b>横にスクロール</b>でき、1日ずつ止まります（左端の組の名前は動きません）。いちばん上の「全員同じ」の行は、みんなで合わせる動きなので直せません。</p>
     <div class="whotable daytable">
       <table>
         <thead>
@@ -1171,33 +1228,33 @@
         </thead>
         <tbody>
           <tr class="all"><th>全員同じ<span class="ppl">変わりません</span></th><td id="d-kyotsu-0" class="dstart">ロサンゼルス着</td><td id="d-kyotsu-1">夜 みんなでごはん（希望・調整中）</td><td id="d-kyotsu-2" class="dstart na">—</td><td id="d-kyotsu-3" class="na">—</td><td id="d-kyotsu-4" class="dstart">ラスベガスへ移動</td><td id="d-kyotsu-5">夜 みんなでごはん（希望・調整中）</td><td id="d-kyotsu-6" class="dstart na">—</td><td id="d-kyotsu-7" class="na">—</td><td id="d-kyotsu-8" class="dstart">セドナへ移動</td><td id="d-kyotsu-9" class="na">—</td><td id="d-kyotsu-10" class="dstart na">—</td><td id="d-kyotsu-11">ロサンゼルスへ戻る</td><td id="d-kyotsu-12" class="dstart">帰国（組ごと）</td><td id="d-kyotsu-13" class="na">—</td></tr>
-          <tr><th>岩田さん<span class="ppl">2名</span></th><td id="d-iwata-0" class="dstart na">未定</td><td id="d-iwata-1" class="na">未定</td><td id="d-iwata-2" class="dstart na">未定</td><td id="d-iwata-3" class="na">未定</td><td id="d-iwata-4" class="dstart na">未定</td><td id="d-iwata-5" class="na">未定</td><td id="d-iwata-6" class="dstart na">未定</td><td id="d-iwata-7" class="na">未定</td><td id="d-iwata-8" class="dstart na">未定</td><td id="d-iwata-9" class="na">未定</td><td id="d-iwata-10" class="dstart na">未定</td><td id="d-iwata-11" class="na">未定</td><td id="d-iwata-12" class="dstart na">未定</td><td id="d-iwata-13" class="na">未定</td></tr>
-          <tr><th>田邊家<span class="ppl">4名</span></th><td id="d-tanabe-0" class="dstart na">未定</td><td id="d-tanabe-1" class="na">未定</td><td id="d-tanabe-2" class="dstart na">未定</td><td id="d-tanabe-3" class="na">未定</td><td id="d-tanabe-4" class="dstart na">未定</td><td id="d-tanabe-5" class="na">未定</td><td id="d-tanabe-6" class="dstart na">未定</td><td id="d-tanabe-7" class="na">未定</td><td id="d-tanabe-8" class="dstart na">未定</td><td id="d-tanabe-9" class="na">未定</td><td id="d-tanabe-10" class="dstart na">未定</td><td id="d-tanabe-11" class="na">未定</td><td id="d-tanabe-12" class="dstart na">未定</td><td id="d-tanabe-13" class="na">未定</td></tr>
-          <tr><th>石原さん<span class="ppl">2名</span></th><td id="d-ishihara-0" class="dstart na">未定</td><td id="d-ishihara-1" class="na">未定</td><td id="d-ishihara-2" class="dstart na">未定</td><td id="d-ishihara-3" class="na">未定</td><td id="d-ishihara-4" class="dstart na">未定</td><td id="d-ishihara-5" class="na">未定</td><td id="d-ishihara-6" class="dstart na">未定</td><td id="d-ishihara-7" class="na">未定</td><td id="d-ishihara-8" class="dstart na">未定</td><td id="d-ishihara-9" class="na">未定</td><td id="d-ishihara-10" class="dstart na">未定</td><td id="d-ishihara-11" class="na">未定</td><td id="d-ishihara-12" class="dstart na">未定</td><td id="d-ishihara-13" class="na">未定</td></tr>
-          <tr><th>川野さん<span class="ppl">2名</span></th><td id="d-kawano-0" class="dstart na">未定</td><td id="d-kawano-1" class="na">未定</td><td id="d-kawano-2" class="dstart na">未定</td><td id="d-kawano-3" class="na">未定</td><td id="d-kawano-4" class="dstart na">未定</td><td id="d-kawano-5" class="na">未定</td><td id="d-kawano-6" class="dstart na">未定</td><td id="d-kawano-7" class="na">未定</td><td id="d-kawano-8" class="dstart na">未定</td><td id="d-kawano-9" class="na">未定</td><td id="d-kawano-10" class="dstart na">未定</td><td id="d-kawano-11" class="na">未定</td><td id="d-kawano-12" class="dstart na">未定</td><td id="d-kawano-13" class="na">未定</td></tr>
-          <tr><th>たくへいさん<span class="ppl">1名</span></th><td id="d-takuhei-0" class="dstart na">未定</td><td id="d-takuhei-1" class="na">未定</td><td id="d-takuhei-2" class="dstart na">未定</td><td id="d-takuhei-3" class="na">未定</td><td id="d-takuhei-4" class="dstart na">未定</td><td id="d-takuhei-5" class="na">未定</td><td id="d-takuhei-6" class="dstart na">未定</td><td id="d-takuhei-7" class="na">未定</td><td id="d-takuhei-8" class="dstart na">未定</td><td id="d-takuhei-9" class="na">未定</td><td id="d-takuhei-10" class="dstart na">未定</td><td id="d-takuhei-11" class="na">未定</td><td id="d-takuhei-12" class="dstart na">未定</td><td id="d-takuhei-13" class="na">未定</td></tr>
+          <tr data-row="iwata"><th>岩田さん<span class="ppl">2名</span></th><td id="d-iwata-0" data-t="day" data-g="iwata" data-i="0" class="dstart na">未定</td><td id="d-iwata-1" data-t="day" data-g="iwata" data-i="1" class="na">未定</td><td id="d-iwata-2" data-t="day" data-g="iwata" data-i="2" class="dstart na">未定</td><td id="d-iwata-3" data-t="day" data-g="iwata" data-i="3" class="na">未定</td><td id="d-iwata-4" data-t="day" data-g="iwata" data-i="4" class="dstart na">未定</td><td id="d-iwata-5" data-t="day" data-g="iwata" data-i="5" class="na">未定</td><td id="d-iwata-6" data-t="day" data-g="iwata" data-i="6" class="dstart na">未定</td><td id="d-iwata-7" data-t="day" data-g="iwata" data-i="7" class="na">未定</td><td id="d-iwata-8" data-t="day" data-g="iwata" data-i="8" class="dstart na">未定</td><td id="d-iwata-9" data-t="day" data-g="iwata" data-i="9" class="na">未定</td><td id="d-iwata-10" data-t="day" data-g="iwata" data-i="10" class="dstart na">未定</td><td id="d-iwata-11" data-t="day" data-g="iwata" data-i="11" class="na">未定</td><td id="d-iwata-12" data-t="day" data-g="iwata" data-i="12" class="dstart na">未定</td><td id="d-iwata-13" data-t="day" data-g="iwata" data-i="13" class="na">未定</td></tr>
+          <tr data-row="tanabe"><th>田邊家<span class="ppl">4名</span></th><td id="d-tanabe-0" data-t="day" data-g="tanabe" data-i="0" class="dstart na">未定</td><td id="d-tanabe-1" data-t="day" data-g="tanabe" data-i="1" class="na">未定</td><td id="d-tanabe-2" data-t="day" data-g="tanabe" data-i="2" class="dstart na">未定</td><td id="d-tanabe-3" data-t="day" data-g="tanabe" data-i="3" class="na">未定</td><td id="d-tanabe-4" data-t="day" data-g="tanabe" data-i="4" class="dstart na">未定</td><td id="d-tanabe-5" data-t="day" data-g="tanabe" data-i="5" class="na">未定</td><td id="d-tanabe-6" data-t="day" data-g="tanabe" data-i="6" class="dstart na">未定</td><td id="d-tanabe-7" data-t="day" data-g="tanabe" data-i="7" class="na">未定</td><td id="d-tanabe-8" data-t="day" data-g="tanabe" data-i="8" class="dstart na">未定</td><td id="d-tanabe-9" data-t="day" data-g="tanabe" data-i="9" class="na">未定</td><td id="d-tanabe-10" data-t="day" data-g="tanabe" data-i="10" class="dstart na">未定</td><td id="d-tanabe-11" data-t="day" data-g="tanabe" data-i="11" class="na">未定</td><td id="d-tanabe-12" data-t="day" data-g="tanabe" data-i="12" class="dstart na">未定</td><td id="d-tanabe-13" data-t="day" data-g="tanabe" data-i="13" class="na">未定</td></tr>
+          <tr data-row="ishihara"><th>石原さん<span class="ppl">2名</span></th><td id="d-ishihara-0" data-t="day" data-g="ishihara" data-i="0" class="dstart na">未定</td><td id="d-ishihara-1" data-t="day" data-g="ishihara" data-i="1" class="na">未定</td><td id="d-ishihara-2" data-t="day" data-g="ishihara" data-i="2" class="dstart na">未定</td><td id="d-ishihara-3" data-t="day" data-g="ishihara" data-i="3" class="na">未定</td><td id="d-ishihara-4" data-t="day" data-g="ishihara" data-i="4" class="dstart na">未定</td><td id="d-ishihara-5" data-t="day" data-g="ishihara" data-i="5" class="na">未定</td><td id="d-ishihara-6" data-t="day" data-g="ishihara" data-i="6" class="dstart na">未定</td><td id="d-ishihara-7" data-t="day" data-g="ishihara" data-i="7" class="na">未定</td><td id="d-ishihara-8" data-t="day" data-g="ishihara" data-i="8" class="dstart na">未定</td><td id="d-ishihara-9" data-t="day" data-g="ishihara" data-i="9" class="na">未定</td><td id="d-ishihara-10" data-t="day" data-g="ishihara" data-i="10" class="dstart na">未定</td><td id="d-ishihara-11" data-t="day" data-g="ishihara" data-i="11" class="na">未定</td><td id="d-ishihara-12" data-t="day" data-g="ishihara" data-i="12" class="dstart na">未定</td><td id="d-ishihara-13" data-t="day" data-g="ishihara" data-i="13" class="na">未定</td></tr>
+          <tr data-row="kawano"><th>川野さん<span class="ppl">2名</span></th><td id="d-kawano-0" data-t="day" data-g="kawano" data-i="0" class="dstart na">未定</td><td id="d-kawano-1" data-t="day" data-g="kawano" data-i="1" class="na">未定</td><td id="d-kawano-2" data-t="day" data-g="kawano" data-i="2" class="dstart na">未定</td><td id="d-kawano-3" data-t="day" data-g="kawano" data-i="3" class="na">未定</td><td id="d-kawano-4" data-t="day" data-g="kawano" data-i="4" class="dstart na">未定</td><td id="d-kawano-5" data-t="day" data-g="kawano" data-i="5" class="na">未定</td><td id="d-kawano-6" data-t="day" data-g="kawano" data-i="6" class="dstart na">未定</td><td id="d-kawano-7" data-t="day" data-g="kawano" data-i="7" class="na">未定</td><td id="d-kawano-8" data-t="day" data-g="kawano" data-i="8" class="dstart na">未定</td><td id="d-kawano-9" data-t="day" data-g="kawano" data-i="9" class="na">未定</td><td id="d-kawano-10" data-t="day" data-g="kawano" data-i="10" class="dstart na">未定</td><td id="d-kawano-11" data-t="day" data-g="kawano" data-i="11" class="na">未定</td><td id="d-kawano-12" data-t="day" data-g="kawano" data-i="12" class="dstart na">未定</td><td id="d-kawano-13" data-t="day" data-g="kawano" data-i="13" class="na">未定</td></tr>
+          <tr data-row="takuhei"><th>たくへいさん<span class="ppl">1名</span></th><td id="d-takuhei-0" data-t="day" data-g="takuhei" data-i="0" class="dstart na">未定</td><td id="d-takuhei-1" data-t="day" data-g="takuhei" data-i="1" class="na">未定</td><td id="d-takuhei-2" data-t="day" data-g="takuhei" data-i="2" class="dstart na">未定</td><td id="d-takuhei-3" data-t="day" data-g="takuhei" data-i="3" class="na">未定</td><td id="d-takuhei-4" data-t="day" data-g="takuhei" data-i="4" class="dstart na">未定</td><td id="d-takuhei-5" data-t="day" data-g="takuhei" data-i="5" class="na">未定</td><td id="d-takuhei-6" data-t="day" data-g="takuhei" data-i="6" class="dstart na">未定</td><td id="d-takuhei-7" data-t="day" data-g="takuhei" data-i="7" class="na">未定</td><td id="d-takuhei-8" data-t="day" data-g="takuhei" data-i="8" class="dstart na">未定</td><td id="d-takuhei-9" data-t="day" data-g="takuhei" data-i="9" class="na">未定</td><td id="d-takuhei-10" data-t="day" data-g="takuhei" data-i="10" class="dstart na">未定</td><td id="d-takuhei-11" data-t="day" data-g="takuhei" data-i="11" class="na">未定</td><td id="d-takuhei-12" data-t="day" data-g="takuhei" data-i="12" class="dstart na">未定</td><td id="d-takuhei-13" data-t="day" data-g="takuhei" data-i="13" class="na">未定</td></tr>
         </tbody>
       </table>
     </div>
 
     <h3 class="sub">便・宿・レンタカー</h3>
-    <p class="scroll-hint">こちらも横にスクロールできます。</p>
+    <p class="scroll-hint">こちらもマスを押すと書けます。横にスクロールできます。</p>
     <div class="whotable">
       <table>
         <thead>
           <tr><th>組</th><th>行きの便</th><th>ロスの宿</th><th>ラスベガスの宿</th><th>セドナの宿</th><th>帰りの便</th><th>レンタカー</th><th>CES</th><th>ひとこと</th></tr>
         </thead>
         <tbody>
-          <tr><th>岩田さん<span class="ppl">2名</span></th><td id="v-iwata-air" class="na">未定</td><td id="v-iwata-la" class="na">未定</td><td id="v-iwata-lv" class="na">未定</td><td id="v-iwata-sedona" class="na">未定</td><td id="v-iwata-back" class="na">未定</td><td id="v-iwata-car" class="na">未定</td><td id="v-iwata-ces" class="na">未定</td><td id="v-iwata-free" class="na">未定</td></tr>
-          <tr><th>田邊家<span class="ppl">4名</span></th><td id="v-tanabe-air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</td><td id="v-tanabe-la">アナハイム</td><td id="v-tanabe-lv" class="na">未定</td><td id="v-tanabe-sedona" class="na">未定</td><td id="v-tanabe-back">1/12 09:40 ロス発 → 1/13 14:25 成田着</td><td id="v-tanabe-car">セドナで（PHXで借りてPHXで返す）</td><td id="v-tanabe-ces">田邊さんのみ 1/8・1/9</td><td id="v-tanabe-free">ディズニー2日 → CES2日 → セドナ2日</td></tr>
-          <tr><th>石原さん<span class="ppl">2名</span></th><td id="v-ishihara-air" class="na">未定</td><td id="v-ishihara-la" class="na">未定</td><td id="v-ishihara-lv" class="na">未定</td><td id="v-ishihara-sedona" class="na">未定</td><td id="v-ishihara-back" class="na">未定</td><td id="v-ishihara-car" class="na">未定</td><td id="v-ishihara-ces" class="na">未定</td><td id="v-ishihara-free" class="na">未定</td></tr>
-          <tr><th>川野さん<span class="ppl">2名</span></th><td id="v-kawano-air" class="na">未定</td><td id="v-kawano-la" class="na">未定</td><td id="v-kawano-lv" class="na">未定</td><td id="v-kawano-sedona" class="na">未定</td><td id="v-kawano-back" class="na">未定</td><td id="v-kawano-car" class="na">未定</td><td id="v-kawano-ces" class="na">未定</td><td id="v-kawano-free" class="na">未定</td></tr>
-          <tr><th>たくへいさん<span class="ppl">1名</span></th><td id="v-takuhei-air" class="na">未定</td><td id="v-takuhei-la" class="na">未定</td><td id="v-takuhei-lv" class="na">未定</td><td id="v-takuhei-sedona" class="na">未定</td><td id="v-takuhei-back" class="na">未定</td><td id="v-takuhei-car" class="na">未定</td><td id="v-takuhei-ces" class="na">未定</td><td id="v-takuhei-free" class="na">未定</td></tr>
+          <tr data-row="iwata"><th>岩田さん<span class="ppl">2名</span></th><td id="v-iwata-air" data-t="plan" data-g="iwata" data-f="air" class="na">未定</td><td id="v-iwata-la" data-t="plan" data-g="iwata" data-f="la" class="na">未定</td><td id="v-iwata-lv" data-t="plan" data-g="iwata" data-f="lv" class="na">未定</td><td id="v-iwata-sedona" data-t="plan" data-g="iwata" data-f="sedona" class="na">未定</td><td id="v-iwata-back" data-t="plan" data-g="iwata" data-f="back" class="na">未定</td><td id="v-iwata-car" data-t="plan" data-g="iwata" data-f="car" class="na">未定</td><td id="v-iwata-ces" data-t="plan" data-g="iwata" data-f="ces" class="na">未定</td><td id="v-iwata-free" data-t="plan" data-g="iwata" data-f="free" class="na">未定</td></tr>
+          <tr data-row="tanabe"><th>田邊家<span class="ppl">4名</span></th><td id="v-tanabe-air" data-t="plan" data-g="tanabe" data-f="air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</td><td id="v-tanabe-la" data-t="plan" data-g="tanabe" data-f="la">アナハイム</td><td id="v-tanabe-lv" data-t="plan" data-g="tanabe" data-f="lv" class="na">未定</td><td id="v-tanabe-sedona" data-t="plan" data-g="tanabe" data-f="sedona" class="na">未定</td><td id="v-tanabe-back" data-t="plan" data-g="tanabe" data-f="back">1/12 09:40 ロス発 → 1/13 14:25 成田着</td><td id="v-tanabe-car" data-t="plan" data-g="tanabe" data-f="car">セドナで（PHXで借りてPHXで返す）</td><td id="v-tanabe-ces" data-t="plan" data-g="tanabe" data-f="ces">田邊さんのみ 1/8・1/9</td><td id="v-tanabe-free" data-t="plan" data-g="tanabe" data-f="free">ディズニー2日 → CES2日 → セドナ2日</td></tr>
+          <tr data-row="ishihara"><th>石原さん<span class="ppl">2名</span></th><td id="v-ishihara-air" data-t="plan" data-g="ishihara" data-f="air" class="na">未定</td><td id="v-ishihara-la" data-t="plan" data-g="ishihara" data-f="la" class="na">未定</td><td id="v-ishihara-lv" data-t="plan" data-g="ishihara" data-f="lv" class="na">未定</td><td id="v-ishihara-sedona" data-t="plan" data-g="ishihara" data-f="sedona" class="na">未定</td><td id="v-ishihara-back" data-t="plan" data-g="ishihara" data-f="back" class="na">未定</td><td id="v-ishihara-car" data-t="plan" data-g="ishihara" data-f="car" class="na">未定</td><td id="v-ishihara-ces" data-t="plan" data-g="ishihara" data-f="ces" class="na">未定</td><td id="v-ishihara-free" data-t="plan" data-g="ishihara" data-f="free" class="na">未定</td></tr>
+          <tr data-row="kawano"><th>川野さん<span class="ppl">2名</span></th><td id="v-kawano-air" data-t="plan" data-g="kawano" data-f="air" class="na">未定</td><td id="v-kawano-la" data-t="plan" data-g="kawano" data-f="la" class="na">未定</td><td id="v-kawano-lv" data-t="plan" data-g="kawano" data-f="lv" class="na">未定</td><td id="v-kawano-sedona" data-t="plan" data-g="kawano" data-f="sedona" class="na">未定</td><td id="v-kawano-back" data-t="plan" data-g="kawano" data-f="back" class="na">未定</td><td id="v-kawano-car" data-t="plan" data-g="kawano" data-f="car" class="na">未定</td><td id="v-kawano-ces" data-t="plan" data-g="kawano" data-f="ces" class="na">未定</td><td id="v-kawano-free" data-t="plan" data-g="kawano" data-f="free" class="na">未定</td></tr>
+          <tr data-row="takuhei"><th>たくへいさん<span class="ppl">1名</span></th><td id="v-takuhei-air" data-t="plan" data-g="takuhei" data-f="air" class="na">未定</td><td id="v-takuhei-la" data-t="plan" data-g="takuhei" data-f="la" class="na">未定</td><td id="v-takuhei-lv" data-t="plan" data-g="takuhei" data-f="lv" class="na">未定</td><td id="v-takuhei-sedona" data-t="plan" data-g="takuhei" data-f="sedona" class="na">未定</td><td id="v-takuhei-back" data-t="plan" data-g="takuhei" data-f="back" class="na">未定</td><td id="v-takuhei-car" data-t="plan" data-g="takuhei" data-f="car" class="na">未定</td><td id="v-takuhei-ces" data-t="plan" data-g="takuhei" data-f="ces" class="na">未定</td><td id="v-takuhei-free" data-t="plan" data-g="takuhei" data-f="free" class="na">未定</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3 class="sub">書き込む表</h3>
+    <h3 class="sub">パソコンでまとめて書きたいとき</h3>
     <div class="booking">
       <span>共有の表</span>
       <span class="code">Googleスプレッドシート</span>
@@ -1381,6 +1438,13 @@
 
   </section>
 </main>
+
+<div class="actbar" id="actbar">
+  <div class="ab-what" id="ab-what">—</div>
+  <div class="ab-val" id="ab-val">—</div>
+  <div class="ab-btns" id="ab-btns"></div>
+</div>
+<div class="savenote" id="savenote">保存しました</div>
 <script>
   (function () {
     var KEY = "usa-group-2027-checklist";
@@ -1444,8 +1508,64 @@
 
 <script>
   (function () {
+    var API = "https://script.google.com/macros/s/AKfycbxVzvjL1RN03WSN0jLoslx-I3YX45n-dCb-PBbsquLw_CEKDxmHui3qyL7VNRUfg5Pj5w/exec";
     var CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT2DDo9Vljk618gJ8dET3eUNWV7lyueqURErp1qQ5_1n2Q35tCSGjIXPQ9U2TBk9IypffGZi0l_7ffd/pub?gid=94882623&single=true&output=csv";
-    if (!CSV_URL) return;
+    var WHO_KEY = "usa-group-2027-who";
+    var KEYS = { "岩田さん": "iwata", "田邊家": "tanabe", "石原さん": "ishihara", "川野さん": "kawano", "たくへいさん": "takuhei" };
+    var DKEYS = { "全員同じ": "kyotsu", "岩田さん": "iwata", "田邊家": "tanabe", "石原さん": "ishihara", "川野さん": "kawano", "たくへいさん": "takuhei" };
+    var NAMES = { kyotsu: "全員同じ", iwata: "岩田さん", tanabe: "田邊家", ishihara: "石原さん", kawano: "川野さん", takuhei: "たくへいさん" };
+    var COLS = ["air", "la", "lv", "sedona", "back", "car", "ces", "free"];
+    var PLAN_LABEL = { air: "行きの便", la: "ロスの宿", lv: "ラスベガスの宿", sedona: "セドナの宿", back: "帰りの便", car: "レンタカー", ces: "CES", free: "ひとこと" };
+    var PREP = ["air", "back", "dom", "hla", "hlv", "hsd", "car", "esta", "hoken", "ces"];
+    var DAYLABEL = [];
+    (function () {
+      var ds = ["1/6（水）", "1/7（木）", "1/8（金）", "1/9（土）", "1/10（日）", "1/11（月）", "1/12（火）"];
+      ds.forEach(function (d) { DAYLABEL.push(d + " 午前"); DAYLABEL.push(d + " 午後"); });
+    })();
+
+    // ---------- 画面に出す ----------
+    function put(id, val, blankIsEmpty) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (val) { el.textContent = val; el.classList.remove("na"); }
+      else if (blankIsEmpty) { el.textContent = el.dataset.t === "day" ? "未定" : "未定"; el.classList.add("na"); }
+    }
+    function setPrep(g, f, on) {
+      var el = document.getElementById("p-" + g + "-" + f);
+      if (!el) return;
+      el.textContent = on ? "✓" : "・";
+      el.classList.toggle("off", !on);
+      countPrep(g);
+    }
+    function countPrep(g) {
+      var n = 0;
+      PREP.forEach(function (f) {
+        var el = document.getElementById("p-" + g + "-" + f);
+        if (el && !el.classList.contains("off")) n++;
+      });
+      var c = document.getElementById("pc-" + g);
+      if (c) c.textContent = n + " / " + PREP.length;
+    }
+
+    function applyAll(d) {
+      if (!d) return;
+      Object.keys(d.day || {}).forEach(function (g) {
+        (d.day[g] || []).forEach(function (v, n) { put("d-" + g + "-" + n, v); });
+      });
+      Object.keys(d.plan || {}).forEach(function (g) {
+        COLS.forEach(function (f) { put("v-" + g + "-" + f, (d.plan[g] || {})[f]); });
+      });
+      Object.keys(d.prep || {}).forEach(function (g) {
+        (d.prep[g] || []).forEach(function (v, n) { setPrep(g, PREP[n], !!String(v || "").trim()); });
+      });
+    }
+
+    // ---------- 読む（まずGAS、だめならCSV） ----------
+    function loadGas() {
+      return fetch(API + "?r=" + Date.now(), { cache: "no-store" })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { if (!j || !j.ok) throw new Error("ng"); applyAll(j.data); return true; });
+    }
     function parseCSV(text) {
       var rows = [], row = [], cell = "", q = false, i;
       for (i = 0; i < text.length; i++) {
@@ -1462,28 +1582,189 @@
       if (cell !== "" || row.length) { row.push(cell); rows.push(row); }
       return rows;
     }
-    var KEYS = { "岩田さん": "iwata", "田邊家": "tanabe", "石原さん": "ishihara", "川野さん": "kawano", "たくへいさん": "takuhei" };
-    var DKEYS = { "全員同じ": "kyotsu", "岩田さん": "iwata", "田邊家": "tanabe", "石原さん": "ishihara", "川野さん": "kawano", "たくへいさん": "takuhei" };
-    var COLS = ["air", "la", "lv", "sedona", "back", "car", "ces", "free"];
-    function put(id, val) {
-      var el = document.getElementById(id);
-      if (el && val) { el.textContent = val; el.classList.remove("na"); }
-    }
-    fetch(CSV_URL, { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (t) {
-      var mode = "plan";
-      parseCSV(t).forEach(function (row) {
-        var first = (row[0] || "").trim();
-        if (first.charAt(0) === "#") { mode = first === "#日ごと" ? "day" : "plan"; return; }
-        if (mode === "day") {
-          var dk = DKEYS[first];
-          if (!dk) return;
-          for (var n = 0; n < 14; n++) put("d-" + dk + "-" + n, (row[n + 1] || "").trim());
-          return;
-        }
-        var key = KEYS[first];
-        if (!key) return;
-        COLS.forEach(function (c, n) { put("v-" + key + "-" + c, (row[n + 1] || "").trim()); });
+    function loadCsv() {
+      return fetch(CSV_URL, { cache: "no-store" }).then(function (r) { return r.text(); }).then(function (t) {
+        var mode = "plan";
+        parseCSV(t).forEach(function (row) {
+          var first = (row[0] || "").trim();
+          if (first.charAt(0) === "#") { mode = first === "#日ごと" ? "day" : (first === "#準備" ? "prep" : "plan"); return; }
+          if (mode === "day") {
+            var dk = DKEYS[first]; if (!dk) return;
+            for (var n = 0; n < 14; n++) put("d-" + dk + "-" + n, (row[n + 1] || "").trim());
+            return;
+          }
+          if (mode === "prep") {
+            var pk = KEYS[first]; if (!pk) return;
+            PREP.forEach(function (f, n) { setPrep(pk, f, !!String(row[n + 1] || "").trim()); });
+            return;
+          }
+          var key = KEYS[first]; if (!key) return;
+          COLS.forEach(function (c, n) { put("v-" + key + "-" + c, (row[n + 1] || "").trim()); });
+        });
       });
-    }).catch(function () {});
+    }
+    loadGas().catch(function () { return loadCsv(); }).catch(function () {});
+
+    // ---------- 書く ----------
+    var canWrite = true;
+    function toast(msg, ng) {
+      var t = document.getElementById("savenote");
+      t.textContent = msg;
+      t.classList.toggle("ng", !!ng);
+      t.classList.add("on");
+      clearTimeout(t._t);
+      t._t = setTimeout(function () { t.classList.remove("on"); }, ng ? 4200 : 1600);
+    }
+    function send(payload, cell, done) {
+      cell.classList.add("saving");
+      fetch(API, { method: "POST", body: JSON.stringify(payload) })
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          cell.classList.remove("saving");
+          if (j && j.ok) { done(j.value); toast("保存しました"); }
+          else { toast("保存できませんでした（" + ((j && j.error) || "不明") + "）", true); }
+        })
+        .catch(function () {
+          cell.classList.remove("saving");
+          canWrite = false;
+          toast("いまは書き込めません。共有の表から書いてください", true);
+        });
+    }
+
+    // ---------- 自分の組 ----------
+    var who = "";
+    try { who = localStorage.getItem(WHO_KEY) || ""; } catch (e) {}
+    var sel = document.getElementById("whoami");
+    function markMine() {
+      document.querySelectorAll("[data-row]").forEach(function (tr) {
+        tr.classList.toggle("mine", !!who && tr.dataset.row === who);
+      });
+    }
+    if (sel) {
+      sel.value = who;
+      sel.addEventListener("change", function () {
+        who = sel.value;
+        try { localStorage.setItem(WHO_KEY, who); } catch (e) {}
+        markMine();
+        hideBar();
+      });
+    }
+    markMine();
+
+    // ---------- マスを押したとき ----------
+    var bar = document.getElementById("actbar");
+    var barWhat = document.getElementById("ab-what");
+    var barVal = document.getElementById("ab-val");
+    var barBtns = document.getElementById("ab-btns");
+    function hideBar() { bar.classList.remove("on"); }
+    function labelOf(cell) {
+      var g = NAMES[cell.dataset.g] || "";
+      if (cell.dataset.t === "day") return g + " ／ " + DAYLABEL[Number(cell.dataset.i)];
+      if (cell.dataset.t === "plan") return g + " ／ " + PLAN_LABEL[cell.dataset.f];
+      return g + " ／ " + (cell.dataset.label || "");
+    }
+    function textOf(cell) {
+      var v = cell.textContent.trim();
+      return (v === "未定" || v === "・" || v === "✓" || v === "—") ? "" : v;
+    }
+
+    function edit(cell) {
+      if (cell.querySelector("input")) return;
+      var old = textOf(cell);
+      var inp = document.createElement("input");
+      inp.type = "text";
+      inp.value = old;
+      inp.maxLength = 300;
+      cell.textContent = "";
+      cell.appendChild(inp);
+      inp.focus();
+      inp.select();
+      var finished = false;
+      function finish(ok) {
+        if (finished) return;
+        finished = true;
+        var v = ok ? inp.value.trim() : old;
+        cell.textContent = v || "未定";
+        cell.classList.toggle("na", !v);
+        if (!ok || v === old) return;
+        var p = { t: cell.dataset.t, g: cell.dataset.g, v: v };
+        if (cell.dataset.t === "day") p.i = Number(cell.dataset.i); else p.f = cell.dataset.f;
+        send(p, cell, function (val) { cell.textContent = val || "未定"; cell.classList.toggle("na", !val); });
+      }
+      inp.addEventListener("blur", function () { finish(true); });
+      inp.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); inp.blur(); }
+        if (e.key === "Escape") { finish(false); }
+      });
+      hideBar();
+    }
+
+    function togglePrep(cell) {
+      var on = cell.classList.contains("off"); // いまオフなら、オンにする
+      send({ t: "prep", g: cell.dataset.g, f: cell.dataset.f, v: on ? "済" : "" }, cell, function (val) {
+        setPrep(cell.dataset.g, cell.dataset.f, !!String(val || "").trim());
+      });
+      hideBar();
+    }
+
+    function copyToMine(cell) {
+      var v = textOf(cell);
+      var mine;
+      if (cell.dataset.t === "day") mine = document.getElementById("d-" + who + "-" + cell.dataset.i);
+      else if (cell.dataset.t === "plan") mine = document.getElementById("v-" + who + "-" + cell.dataset.f);
+      if (!mine) return;
+      var p = { t: cell.dataset.t, g: who, v: v };
+      if (cell.dataset.t === "day") p.i = Number(cell.dataset.i); else p.f = cell.dataset.f;
+      send(p, mine, function (val) { mine.textContent = val || "未定"; mine.classList.toggle("na", !val); });
+      mine.scrollIntoView({ block: "nearest", inline: "nearest" });
+      hideBar();
+    }
+
+    function showBar(cell) {
+      barWhat.textContent = labelOf(cell);
+      barVal.textContent = textOf(cell) || "（まだ書かれていません）";
+      barBtns.innerHTML = "";
+      function btn(text, cls, fn) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = text;
+        if (cls) b.className = cls;
+        b.addEventListener("click", fn);
+        barBtns.appendChild(b);
+      }
+      if (who && who !== cell.dataset.g && cell.dataset.t !== "prep") {
+        btn("自分の欄へコピー", "", function () { copyToMine(cell); });
+      }
+      if (cell.dataset.t === "prep") {
+        btn(cell.classList.contains("off") ? "済にする" : "済を取り消す", "ghost", function () { togglePrep(cell); });
+      } else {
+        btn("この欄を直す", "ghost", function () { edit(cell); });
+      }
+      btn("閉じる", "plain", hideBar);
+      if (!who) {
+        var p = document.createElement("div");
+        p.className = "ab-what";
+        p.style.marginTop = "10px";
+        p.style.letterSpacing = "0";
+        p.style.color = "var(--sub)";
+        p.textContent = "上の「あなたの組」を選ぶと、ここから自分の欄へコピーできます。";
+        barBtns.appendChild(p);
+      }
+      bar.classList.add("on");
+    }
+
+    document.addEventListener("click", function (e) {
+      var cell = e.target.closest ? e.target.closest("td[data-t]") : null;
+      if (!cell) {
+        if (!e.target.closest || !e.target.closest(".actbar")) hideBar();
+        return;
+      }
+      if (cell.querySelector("input")) return;
+      if (who && cell.dataset.g === who) {
+        if (cell.dataset.t === "prep") togglePrep(cell); else edit(cell);
+      } else {
+        showBar(cell);
+      }
+    });
   })();
 </script>
