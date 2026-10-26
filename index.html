@@ -1,0 +1,992 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ロサンゼルス・ラスベガス・セドナ 旅のしおり 2027（みんな用）</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #F7F5F1;
+    --panel: #FFFFFF;
+    --panel-edge: #E7E1D8;
+    --ink: #2B2620;
+    --sub: #7A7166;
+    --accent: #B2532E;
+    --accent-soft: #F6EAE2;
+    --forest: #3D6B4F;
+    --coral: #B23A3A;
+    --shadow: 0 1px 2px rgba(43, 38, 32, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    font-size: 15px;
+  }
+  .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 0 24px 104px; }
+
+  /* ---- 表紙 ---- */
+  header.cover { text-align: center; padding: 96px 20px 64px; position: relative; }
+  .cover .eyebrow { letter-spacing: 0.5em; text-indent: 0.5em; font-size: 11px; color: var(--sub); margin-bottom: 28px; }
+  .cover h1 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: clamp(30px, 6.5vw, 48px);
+    font-weight: 500; margin: 0 0 18px; letter-spacing: 0.12em; text-wrap: balance; line-height: 1.5;
+  }
+  .cover .dates { font-size: 14px; letter-spacing: 0.16em; color: var(--sub); font-variant-numeric: tabular-nums; margin-bottom: 20px; }
+  .cover .concept { font-size: 14px; color: var(--forest); letter-spacing: 0.1em; margin-bottom: 36px; }
+  .cover .wave { display: block; margin: 0 auto 36px; opacity: 0.7; }
+  .cover .party { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .cover .party span { border: 1px solid var(--panel-edge); color: var(--sub); border-radius: 999px; padding: 4px 18px; font-size: 13px; letter-spacing: 0.06em; }
+
+  /* ---- 上部タブナビ ---- */
+  nav.top-tabs {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--bg); border-bottom: 1px solid var(--panel-edge);
+    margin: 0 -24px; padding: 0 12px; display: flex; gap: 2px; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  nav.top-tabs::-webkit-scrollbar { display: none; }
+  nav.top-tabs button {
+    appearance: none; background: none; border: none; border-bottom: 2px solid transparent;
+    padding: 12px 13px; font: inherit; font-size: 14px; font-weight: 600; color: var(--sub);
+    cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  }
+  nav.top-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  nav.top-tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+  /* ---- セクション見出し ---- */
+  section { margin-top: 56px; }
+  section[hidden] { display: none; }
+  h2 {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 26px; font-weight: 500; letter-spacing: 0.16em; margin: 0 0 10px;
+    display: flex; align-items: baseline; gap: 16px;
+  }
+  h2::after { content: ""; flex: 1; border-bottom: 1px solid var(--panel-edge); transform: translateY(-8px); }
+  h3.sub { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; margin: 32px 0 12px; color: var(--accent); }
+  .section-note { color: var(--sub); font-size: 13px; margin: 0 0 32px; }
+
+  section a, .day a { color: var(--accent); text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  section a:hover { text-decoration-style: solid; }
+
+  /* ---- 写真 ---- */
+  figure.photo { margin: 0 0 20px; }
+  figure.photo img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--accent-soft); }
+  figure.photo figcaption { font-size: 11px; color: var(--sub); margin-top: 8px; letter-spacing: 0.04em; }
+  .dayplan figure.photo { margin: 18px 0 6px; }
+  .dayplan figure.photo img { max-height: 230px; object-fit: cover; }
+  .photo-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0 6px; }
+  .photo-pair figure.photo { margin: 0; }
+  .photo-pair figure.photo img { max-height: 170px; object-fit: cover; }
+  @media (max-width: 480px) { .photo-pair { grid-template-columns: 1fr; } }
+
+  /* ---- フライトカード ---- */
+  .flight { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 28px 32px; margin-bottom: 20px; }
+  .flight-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 20px; }
+  .flight-no { font-weight: 700; font-size: 17px; color: var(--accent); letter-spacing: 0.03em; }
+  .flight-head .meta { color: var(--sub); font-size: 13px; }
+  .route { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: center; }
+  .route .pt .time { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .route .pt .city { font-size: 15px; font-weight: 600; }
+  .route .pt .detail { font-size: 12px; color: var(--sub); }
+  .route .pt.arr { text-align: right; }
+  .route .mid { text-align: center; color: var(--sub); font-size: 12px; min-width: 90px; }
+  .route .mid .line { border-top: 1px dashed var(--sub); position: relative; margin: 6px 0; }
+  .route .mid .line::after { content: "✈"; position: absolute; top: -0.85em; left: 50%; transform: translateX(-50%); background: var(--panel); padding: 0 6px; color: var(--accent); }
+  .route .mid .line.car::after { content: "🚗"; }
+  .overnight { color: var(--coral); font-size: 12px; font-weight: 600; }
+  .seats { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--panel-edge); display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 13px; color: var(--sub); }
+  .seats b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .booking { background: var(--accent-soft); border-radius: 6px; padding: 18px 26px; display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: baseline; font-size: 14px; }
+  .booking .code { font-size: 22px; font-weight: 700; letter-spacing: 0.15em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .booking .code.todo { color: var(--coral); letter-spacing: 0.08em; }
+  .status { display: inline-block; font-size: 11px; border-radius: 3px; padding: 0 8px; letter-spacing: 0.08em; border: 1px solid var(--forest); color: var(--forest); vertical-align: 2px; }
+  .status.todo { border-color: var(--coral); color: var(--coral); }
+
+  /* ---- 日別プラン ---- */
+  .dayplan { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 26px 30px; margin-bottom: 22px; }
+  .dp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; border-bottom: 1px solid var(--panel-edge); padding-bottom: 12px; }
+  .dp-num { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 13px; letter-spacing: 0.25em; color: var(--sub); }
+  .dp-date { font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .dp-theme { font-size: 14px; color: var(--forest); font-weight: 600; letter-spacing: 0.06em; }
+  .timeline { list-style: none; margin: 18px 0 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 52px 1fr; gap: 14px; padding: 5px 0; font-size: 14px; }
+  .timeline .t { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 13px; text-align: right; padding-top: 2px; }
+  .timeline li > div { border-left: 1px dashed var(--panel-edge); padding-left: 14px; }
+  .timeline .opt-t { color: var(--sub); font-weight: 600; font-size: 12px; text-align: right; padding-top: 3px; }
+  .timeline .who { display: inline-block; font-size: 11px; border-radius: 3px; padding: 0 6px; margin-right: 6px; background: var(--accent-soft); color: var(--accent); letter-spacing: 0.06em; }
+  .timeline .who.fam { background: #E8F0EA; color: var(--forest); }
+  .daymeta { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--panel-edge); display: grid; gap: 7px; font-size: 13px; color: var(--sub); }
+  .daymeta b { color: var(--ink); font-weight: 600; }
+  .mi { margin-right: 7px; }
+  .maplinks { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 8px; font-size: 12px; }
+  .maplinks a { border: 1px solid var(--panel-edge); border-radius: 999px; padding: 3px 12px; text-decoration: none; color: var(--accent); white-space: nowrap; }
+  .maplinks a::before { content: "📍"; margin-right: 4px; }
+  .maplinks a:hover { background: var(--accent-soft); }
+
+  /* ---- マップ ---- */
+  .mapbox { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 20px 22px 14px; margin-bottom: 24px; }
+  .mapbox svg { display: block; width: 100%; height: auto; }
+  .mapbox .cap { font-size: 11px; color: var(--sub); margin-top: 6px; }
+  .drive-times { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 12px 0 0; font-size: 12px; }
+  .drive-times span { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 3px 12px; font-variant-numeric: tabular-nums; }
+
+  /* ---- グルメ ---- */
+  .resto { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 16px 20px; margin-bottom: 10px; }
+  .resto .r-name { font-weight: 700; font-size: 14px; }
+  .resto .r-name .r-book { font-size: 11px; color: var(--coral); border: 1px solid var(--coral); border-radius: 3px; padding: 0 7px; margin-left: 8px; vertical-align: 1px; }
+  .resto p { margin: 3px 0 0; font-size: 13px; color: var(--sub); }
+
+  /* ---- 現地情報 ---- */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .info-card { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 18px 22px; }
+  .info-card .label { font-size: 10px; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px; }
+  .info-card .value { font-size: 15px; font-weight: 600; }
+  .info-card .note { font-size: 12px; color: var(--sub); margin-top: 2px; }
+  .alert { margin-top: 20px; border-left: 3px solid var(--coral); background: var(--panel); border-radius: 0 6px 6px 0; box-shadow: var(--shadow); padding: 16px 22px; font-size: 14px; }
+  .alert b { color: var(--coral); }
+
+  /* ---- チェックリスト ---- */
+  .checklist { display: grid; gap: 6px; }
+  .checklist label { display: flex; align-items: center; gap: 14px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; padding: 11px 16px; cursor: pointer; font-size: 14px; transition: opacity 0.15s; }
+  .checklist input { accent-color: var(--accent); width: 17px; height: 17px; flex-shrink: 0; }
+  .checklist input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .checklist label:has(input:checked) { opacity: 0.45; }
+  .checklist label:has(input:checked) span { text-decoration: line-through; }
+  .checklist .cat { font-size: 11px; letter-spacing: 0.25em; color: var(--accent); margin: 20px 0 6px; }
+  .checklist .cat:first-child { margin-top: 0; }
+  .checklist label .due {
+    font-size: 11px; font-style: normal; border: 1px solid var(--sub); color: var(--sub);
+    border-radius: 3px; padding: 1px 8px; white-space: nowrap; flex-shrink: 0;
+    font-variant-numeric: tabular-nums; min-width: 84px; text-align: center;
+  }
+  .checklist label .due.urgent { border-color: var(--coral); color: var(--coral); font-weight: 700; }
+  .checklist label .due.key { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+  @media (max-width: 480px) {
+    .checklist label { flex-wrap: wrap; gap: 8px 12px; }
+    .checklist label .due { min-width: 0; }
+    .checklist label span { flex: 1 1 100%; }
+  }
+
+  /* ---- カウントダウン ---- */
+  .countdown {
+    display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px;
+    box-shadow: var(--shadow); padding: 20px 26px; margin-bottom: 20px;
+  }
+  .countdown .days {
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: 46px; font-weight: 500; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1;
+  }
+  .countdown .unit { font-size: 15px; color: var(--sub); margin-left: 6px; }
+  .countdown .cd-note { font-size: 13px; color: var(--sub); line-height: 1.8; }
+  .countdown .cd-note #cd-prog { color: var(--ink); font-weight: 600; }
+
+  /* ---- タブ（セクション内） ---- */
+  .tabs { display: flex; gap: 6px; margin-bottom: 16px; border-bottom: 1px solid var(--panel-edge); }
+  .tabs button { appearance: none; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; padding: 8px 14px 10px; font: inherit; font-size: 14px; font-weight: 600; color: var(--sub); cursor: pointer; }
+  .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .tabpanel[hidden] { display: none; }
+  .tip-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .tip-list li { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; padding: 13px 18px; font-size: 14px; line-height: 1.8; }
+  .tip-list li b { color: var(--accent); }
+
+  footer { margin-top: 64px; text-align: center; color: var(--sub); font-size: 11px; line-height: 2; }
+  footer a { color: inherit; }
+
+  @media (max-width: 480px) {
+    .route .pt .time { font-size: 24px; }
+    .dayplan { padding: 20px 18px; }
+    .flight { padding: 22px 20px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    nav.top-tabs, .tabs { display: none; }
+    section, section[hidden], .tabpanel[hidden] { display: block !important; }
+    section { margin-top: 28px; }
+    header.cover { padding: 32px 0 20px; }
+    .dayplan, .flight, .info-card, .resto, .tip-list li { box-shadow: none; break-inside: avoid; }
+    figure.photo img { max-height: 200px; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    .maplinks a::before { content: ""; }
+  }
+</style>
+
+<main>
+  <header class="cover">
+    <div class="eyebrow">LOS ANGELES / LAS VEGAS / SEDONA 2027</div>
+    <h1><span style="white-space:nowrap">ロサンゼルス</span><br><span style="white-space:nowrap">ラスベガス</span><br><span style="white-space:nowrap">セドナ</span></h1>
+    <div class="dates serif">2027年1月6日（水）— 1月12日（火）／ 5組 11人</div>
+    <div class="concept serif">— 同じ道を、それぞれのペースで —</div>
+    <svg class="wave" width="120" height="16" viewBox="0 0 120 16" aria-hidden="true">
+      <path d="M0 8 Q15 0 30 8 T60 8 T90 8 T120 8" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+    </svg>
+    <div class="party">
+      <span>団体行動なし</span><span>同じところへ行くのは大歓迎</span>
+    </div>
+  </header>
+
+  <nav class="top-tabs" role="tablist" aria-label="しおりのセクション">
+    <button role="tab" id="nav-members" aria-selected="true" aria-controls="members">みんなのこと</button>
+    <button role="tab" id="nav-todo" aria-selected="false" aria-controls="todo">やること</button>
+    <button role="tab" id="nav-route" aria-selected="false" aria-controls="route">道順</button>
+    <button role="tab" id="nav-hotel" aria-selected="false" aria-controls="hotel">泊まるところ</button>
+    <button role="tab" id="nav-plan" aria-selected="false" aria-controls="plan">みんなの予定</button>
+    <button role="tab" id="nav-spots" aria-selected="false" aria-controls="spots">見どころ</button>
+    <button role="tab" id="nav-ces" aria-selected="false" aria-controls="ces">CESに行く人へ</button>
+    <button role="tab" id="nav-info" aria-selected="false" aria-controls="info">現地情報・持ち物</button>
+  </nav>
+
+  <!-- ================= みんなのこと ================= -->
+  <section id="members" role="tabpanel" aria-labelledby="nav-members">
+    <h2>みんなのこと</h2>
+    <p class="section-note">2027年1月に、ロサンゼルス → ラスベガス → セドナ を同じ時期に回る5組・合わせて11人のためのしおりです。<b>田邊家のしおりは別にあります</b>（このしおりには田邊家の予約番号などは入っていません）。</p>
+
+    <div class="alert">
+      <b>基本は団体行動を予定していません。</b>宿も便も、どこを見るかも、組ごとに自由です。<b>ただし「同じところに行く」のは大歓迎</b>なので、「この日ここに行くつもり」だけ<a href="https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit" target="_blank" rel="noopener">みんなの予定の表</a>に書いておくと、会いたい人が合流できます。
+    </div>
+
+    <h3 class="sub">参加する5組</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">岩田さん</div>
+        <div class="value">2名</div>
+        <div class="note">親子で</div>
+      </div>
+      <div class="info-card">
+        <div class="label">田邊家</div>
+        <div class="value">4名</div>
+        <div class="note">1/8・1/9 は克重さんがCESへ</div>
+      </div>
+      <div class="info-card">
+        <div class="label">石原さん</div>
+        <div class="value">2名</div>
+        <div class="note">親子で</div>
+      </div>
+      <div class="info-card">
+        <div class="label">川野さん</div>
+        <div class="value">2名</div>
+        <div class="note">社員の方と</div>
+      </div>
+      <div class="info-card">
+        <div class="label">たくへいさん</div>
+        <div class="value">1名</div>
+        <div class="note">—</div>
+      </div>
+      <div class="info-card">
+        <div class="label">合わせて</div>
+        <div class="value">11名</div>
+        <div class="note">大人7名・お子さん4名（推測です。違ったら直します）</div>
+      </div>
+    </div>
+
+    <h3 class="sub">一緒に動くのはこの区間</h3>
+    <div class="drive-times">
+      <span>1/6 ロサンゼルス</span>
+      <span>1/8 ラスベガス</span>
+      <span>1/10 セドナ</span>
+      <span>1/11 夕方 ロスへ戻る</span>
+      <span>1/12 以降は各組で</span>
+    </div>
+    <p class="section-note">ロス・ラスベガス・セドナの3か所は、田邊家の日程に合わせるとこの並びになります。<b>この区間を同じ日にそろえておけば、会いたいときに会えて、別々に動きたいときは別々に動けます。</b>便と宿は組ごとに取るので、完全に同じでなくても大丈夫です。</p>
+
+    <h3 class="sub">決めておきたい約束</h3>
+    <ul class="tip-list">
+      <li><b>集合と自由行動の線引きは「書いておくだけ」。</b>誘い合わせはするけれど、来ない日があっても気にしない。これを最初に全員で確認しておくと、あとが楽です。</li>
+      <li><b>連絡はLINEのグループ1つ。</b>会社が違う人・ご家族がいるので、社内のチャットは使いません。グループを1つ作って、米国で使う電話番号もそこに。</li>
+      <li><b>お金は組ごとに別会計。</b>便・宿・レンタカーは各組が自分で予約して自分で払う形が、いちばんもめません。食事は店の端末で1人ずつに分けて払えます（「Can we split the check?」）。</li>
+      <li><b>子どもの体力に合わせる。</b>ディズニーもセドナも1日1万歩を超えます。無理に全員でそろえず、早く帰る組があって当たり前という前提で。</li>
+      <li><b>写真はあとでまとめて共有。</b>帰国後にアルバムを1つ作って、各組が入れる形に（旅行中は各自好きに撮る）。</li>
+    </ul>
+  </section>
+
+  <!-- ================= やること ================= -->
+  <section id="todo" role="tabpanel" aria-labelledby="nav-todo" hidden>
+    <h2>やること</h2>
+    <p class="section-note">チェックはこの端末に保存されます（他の人には見えません）。<b>組ごとにやること</b>です。自分の組の分だけ見てください。</p>
+
+    <div class="countdown">
+      <div><span class="days" id="cd-days">—</span><span class="unit">日</span></div>
+      <div class="cd-note">1月6日（ロサンゼルス集合の日）まで<br><span id="cd-prog">—</span></div>
+    </div>
+
+    <div class="alert">
+      <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガスの全市が満室になります。<b>値段も通常の3〜5倍</b>（1泊$500〜1,000超）。ここだけは、ほかより先に押さえてください。
+    </div>
+
+    <div class="checklist" style="margin-top:20px">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="g-hotel-lv" data-k="g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="g-hotel-sedona" data-k="g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="g-air" data-k="g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="g-hotel-la" data-k="g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="g-air-dom" data-k="g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="g-esta" data-k="g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="g-passport" data-k="g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="g-hoken" data-k="g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="g-car" data-k="g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="g-license" data-k="g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="g-ces" data-k="g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><a href="https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit" target="_blank" rel="noopener">みんなの予定の表</a>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="g-line" data-k="g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="g-sim" data-k="g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="g-card" data-k="g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="g-clothes" data-k="g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="g-vjw" data-k="g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="g-pack" data-k="g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="g-copy" data-k="g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="g-arrive" data-k="g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<a href="https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit" target="_blank" rel="noopener">表</a>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="g-plan-daily" data-k="g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行。<b>同じところに行く組がいたら、その場で誘い合わせる</b></span></label>
+    </div>
+  </section>
+
+  <!-- ================= 道順 ================= -->
+  <section id="route" role="tabpanel" aria-labelledby="nav-route" hidden>
+    <h2>道順</h2>
+    <p class="section-note">一緒に動くのはロス・ラスベガス・セドナの3か所です。<b>便と宿は組ごとに取る</b>ので、下の日付に合わせておけば、同じ町にいる日が自然にそろいます。</p>
+
+    <div class="drive-times">
+      <span>ロス→ラスベガス 飛行機1h10m（車なら4h）</span>
+      <span>ラスベガス→フェニックス 飛行機1h05m</span>
+      <span>フェニックス→セドナ 車2h（185km）</span>
+      <span>セドナ→グランドキャニオン 車2h</span>
+      <span>フェニックス→ロス 飛行機1h25m</span>
+    </div>
+
+    <h3 class="sub">① 日本 → ロサンゼルス（1/6・各組で）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">国際線</span>
+        <span class="meta">1/6（水）／ 約10時間 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">昼〜夕</div>
+          <div class="city">東京（成田・羽田）</div>
+          <div class="detail">カウンターは出発3時間前から</div>
+        </div>
+        <div class="mid"><div>約10h</div><div class="line"></div><div class="overnight">日付をまたがない</div></div>
+        <div class="pt arr">
+          <div class="time">同じ日の朝</div>
+          <div class="city">ロサンゼルス（LAX）</div>
+          <div class="detail">入国審査に1〜2時間</div>
+        </div>
+      </div>
+      <div class="seats"><span><b>時差は−17時間。</b>日本の夕方に出ると、同じ日の朝にロスに着きます。到着日が1日まるごと使えるので、午後から動けます。田邊家はZIPAIR（成田14:45発 → ロス07:40着）</span></div>
+    </div>
+
+    <h3 class="sub">② ロサンゼルス → ラスベガス（1/8）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ①</span>
+        <span class="meta">1/8（金）朝 ／ 約1時間10分 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">朝</div>
+          <div class="city">ロサンゼルス（LAX／SNA）</div>
+          <div class="detail">アナハイムに泊まるならSNA（車20分）が近い</div>
+        </div>
+        <div class="mid"><div>1h10m</div><div class="line"></div><div>&nbsp;</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">ラスベガス（LAS）</div>
+          <div class="detail">空港からストリップまで車15分</div>
+        </div>
+      </div>
+      <div class="seats"><span>直行便：Southwest ／ Spirit ／ Frontier ／ Delta など。<b>車で行くと約4時間</b>（砂漠の一本道。景色は良いが、CES週は渋滞する）</span></div>
+    </div>
+
+    <h3 class="sub">③ ラスベガス → セドナ（1/10）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ②</span>
+        <span class="meta">1/10（日）朝 ／ 飛行機1h05m ＋ 車2h ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">朝</div>
+          <div class="city">ラスベガス（LAS）</div>
+          <div class="detail">9時前後の便だとセドナに昼過ぎ着</div>
+        </div>
+        <div class="mid"><div>1h05m</div><div class="line"></div><div class="overnight">着いたら時計 +1時間</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">フェニックス（PHX）</div>
+          <div class="detail">空港でレンタカー → セドナまで車2時間</div>
+        </div>
+      </div>
+      <div class="seats"><span><b>セドナに空港（商業便）はありません。</b>フェニックスから車2時間が定番です。途中のモンテズマ・キャッスル（断崖の住居跡）に寄れます。<b>ラスベガスから車で行くと約5時間</b></span></div>
+    </div>
+
+    <h3 class="sub">④ セドナ → ロサンゼルス（1/11 夕方）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ③</span>
+        <span class="meta">1/11（月）夕方 ／ 約1時間25分 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">夕方</div>
+          <div class="city">フェニックス（PHX）</div>
+          <div class="detail">レンタカー返却は出発2時間前。給油してから</div>
+        </div>
+        <div class="mid"><div>1h25m</div><div class="line"></div><div class="overnight">着いたら時計 −1時間</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">ロサンゼルス（LAX）</div>
+          <div class="detail">空港そばのホテルで1泊 → 翌朝の帰国便へ</div>
+        </div>
+      </div>
+      <div class="seats"><span>田邊家はこの形（1/11にロスへ戻って空港そばで1泊、1/12 09:40発で帰国）。<b>帰国便の日を各組でずらすのは自由です。</b>フェニックスから直接帰る便もあります</span></div>
+    </div>
+
+    <h3 class="sub">日ごとの流れ（田邊家の予定を基準に）</h3>
+    <p class="section-note">自分の組がどう動くかを決めるときの下敷きです。合わせても、ずらしても大丈夫です。</p>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">1日目</span>
+        <span class="dp-date">1/6（水）</span>
+        <span class="dp-theme">日本発 → 同じ日の朝にロサンゼルス</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>ロサンゼルス着。入国審査に1〜2時間。レンタカーかUberでホテルへ</div></li>
+        <li><span class="t">午後</span><div>時差ぼけ対策で<b>外に出て光を浴びる</b>。ディズニー・サンタモニカ・ショッピングなど軽めに</div></li>
+        <li><span class="t">20時</span><div>眠くても夕方まで起きて、現地時間の20時に寝る。これで翌日から体が合います</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">2日目</span>
+        <span class="dp-date">1/7（木）</span>
+        <span class="dp-theme">ロサンゼルスで1日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">終日</span><div>田邊家はディズニーランド。<b>1月の平日は1年でいちばん空いている時期</b></div></li>
+        <li><span class="t">—</span><div>ほかの行き先：ユニバーサル・スタジオ・ハリウッド／グリフィス天文台／サンタモニカ／アウトレット</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">3日目</span>
+        <span class="dp-date">1/8（金）</span>
+        <span class="dp-theme">朝 ラスベガスへ移動 ／ CES初日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>飛行機で約1時間10分。<b>早朝便が多いので前夜に精算を済ませておく</b></div></li>
+        <li><span class="t">昼</span><div>ホテルへ。チェックインは15〜16時だが荷物は預けられる</div></li>
+        <li><span class="t">午後</span><div>CESに行く人は会場へ。行かない人はストリップ・ショー・アウトレット</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">4日目</span>
+        <span class="dp-date">1/9（土）</span>
+        <span class="dp-theme">ラスベガスで1日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">終日</span><div>CES最終日（行く人）。行かない人はグランドキャニオン日帰りツアー・プール・ショー</div></li>
+        <li><span class="t">夜</span><div><b>全員で集まるなら、この夜がいちばん合わせやすい</b>（翌朝の移動が朝いちでない組も多い）</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">5日目</span>
+        <span class="dp-date">1/10（日）</span>
+        <span class="dp-theme">セドナへ移動（飛行機＋車）</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>ラスベガス発 → フェニックス着（<b>時計を1時間進める</b>）→ レンタカー</div></li>
+        <li><span class="t">昼</span><div>フェニックスからセドナへ車2時間。途中モンテズマ・キャッスルに寄り道（車から15分）</div></li>
+        <li><span class="t">夕</span><div>セドナ着。<b>夕暮れの赤い岩が一番きれいな時間</b>。空気が乾いていて夜は冷えます</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">6日目</span>
+        <span class="dp-date">1/11（月）</span>
+        <span class="dp-theme">セドナ → 夕方ロスへ戻る</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">午前</span><div>セドナ観光（ホーリークロス教会・カセドラルロック・ジープツアー）</div></li>
+        <li><span class="t">15時</span><div>フェニックスへ戻る（車2時間）。レンタカー返却は飛行機の2時間前まで</div></li>
+        <li><span class="t">夜</span><div>ロサンゼルス着。空港そばのホテルへ</div></li>
+      </ul>
+    </article>
+
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">7日目</span>
+        <span class="dp-date">1/12（火）以降</span>
+        <span class="dp-theme">帰国（組ごとに）</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>田邊家は09:40ロス発 → 1/13（水）14:25 成田着</div></li>
+        <li><span class="t">—</span><div><b>ここから先は組ごとに自由。</b>ロスに数日残る、グランドキャニオンへ回る、そのまま帰る、どれでも</div></li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ================= 泊まるところ ================= -->
+  <section id="hotel" role="tabpanel" aria-labelledby="nav-hotel" hidden>
+    <h2>泊まるところ</h2>
+    <p class="section-note">宿は<b>組ごとに自分で予約</b>します（まとめて取ると、あとの精算が面倒になるため）。同じホテルにすると朝晩に自然と会えるので、決めた人は<a href="https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit" target="_blank" rel="noopener">みんなの予定の表</a>に宿の名前を書いてください。</p>
+
+    <div class="alert">
+      <b>ラスベガスだけは今すぐ押さえてください。</b>1/8・1/9 はCESの会期中で、ラスベガスの全市が満室になります（通常の3〜5倍・1泊$500〜1,000超）。<b>無料キャンセル可の条件なら、人数や日程が未定でも仮押さえできます。</b>
+    </div>
+
+    <h3 class="sub">3か所の相場と選び方（1部屋あたり・推測です）</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">ロサンゼルス（1/6・1/7）</div>
+        <div class="value">$180〜350／泊</div>
+        <div class="note">ディズニーに行くならアナハイム（パーク徒歩圏はもう少し高い）。観光メインならダウンタウン・サンタモニカ。1月は閑散期で取りやすい</div>
+      </div>
+      <div class="info-card">
+        <div class="label">ラスベガス（1/8・1/9）</div>
+        <div class="value">$500〜1,000超／泊</div>
+        <div class="note">CES週。ストリップ沿いが便利。<b>別にリゾートフィーが1泊$40〜60</b>かかります（宿泊料に含まれていない追加料金）。駐車場も1日$20〜25</div>
+      </div>
+      <div class="info-card">
+        <div class="label">セドナ（1/10・1/11）</div>
+        <div class="value">$250〜450／泊</div>
+        <div class="note">小さな町で部屋数が少ない。Uptown（お店が並ぶ中心）か West Sedona（安め・車前提）。<b>赤い岩が見える部屋は値段が上がります</b></div>
+      </div>
+      <div class="info-card">
+        <div class="label">ロス空港そば（1/11）</div>
+        <div class="value">$150〜250／泊</div>
+        <div class="note">翌朝の帰国便に備える1泊。<b>空港シャトルが無料のホテル</b>を選ぶと朝が楽（始発の時刻を予約前に確認）</div>
+      </div>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>米国のホテルは「1部屋いくら」。</b>2人でも1人でも同じ値段のことが多いので、親子2人なら1部屋で十分です。<b>4人だと「2クイーンベッド」の部屋</b>（ベッド2つ）を選べば1部屋で泊まれます。</li>
+      <li><b>リゾートフィーとデポジットに注意。</b>ラスベガスは宿泊料のほかに1泊$40〜60のリゾートフィーがかかり、チェックイン時にカードで$50〜100／日のデポジットを押さえられます（使わなければ数日で戻ります）。</li>
+      <li><b>無料キャンセル可で押さえておく。</b>人数や日程が未定でも、キャンセル無料の条件なら先に部屋を確保できます。CES週のラスベガスは<b>待つほど高くなります</b>。</li>
+      <li><b>同じホテルにするかは自由。</b>同じだと朝食やロビーで会えて便利ですが、団体行動はしない前提なので、好きなところに泊まって構いません。</li>
+      <li><b>セドナは夜が暗い。</b>街灯が少なく（星空を守るため）、夜の運転は慣れが必要です。<b>日が暗くなる前に宿に入る日程</b>にしておくと安心です。</li>
+    </ul>
+  </section>
+
+  <!-- ================= みんなの予定 ================= -->
+  <section id="plan" role="tabpanel" aria-labelledby="nav-plan" hidden>
+    <h2>みんなの予定</h2>
+    <p class="section-note">組ごとに自由に動くぶん、<b>「誰がいつどこにいるか」だけ1か所に集めておきます</b>。下の表は<b>全員が見られて、それぞれが書き込めます</b>（スマホのGoogleスプレッドシートのアプリでも、ブラウザでも開けます）。</p>
+
+    <div class="booking">
+      <span>共有の表</span>
+      <span class="code">Googleスプレッドシート</span>
+      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
+    </div>
+    <div style="height:16px"></div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:22px">
+      <a href="https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit" target="_blank" rel="noopener" style="display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-size:14px; font-weight:700; border-radius:6px; padding:12px 22px">表をひらく</a>
+      <button type="button" id="copy-sheet" style="background:var(--panel); color:var(--accent); border:1px solid var(--accent); border-radius:6px; padding:11px 18px; font-size:13px; font-family:inherit; cursor:pointer">リンクをコピー</button>
+      <span id="copy-done" style="font-size:12px; color:var(--forest); display:none">コピーしました</span>
+    </div>
+
+    <h3 class="sub">2つのタブがあります</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">みんなの予定</div>
+        <div class="value">便・宿・連絡先</div>
+        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
+      </div>
+      <div class="info-card">
+        <div class="label">この日ここに行く</div>
+        <div class="value">日ごとの行き先</div>
+        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行。<b>同じところに行く組がいたら合流できます</b></div>
+      </div>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
+      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
+      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
+      <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
+      <li><b>毎晩、翌日の行き先を1行。</b>誘い合わせはここから。来ない日があっても気にしない、が約束です。</li>
+    </ul>
+  </section>
+
+  <!-- ================= 見どころ ================= -->
+  <section id="spots" role="tabpanel" aria-labelledby="nav-spots" hidden>
+    <h2>見どころ</h2>
+    <p class="section-note">同じところに行くなら合流しやすいように、3か所の定番をまとめました。<b>お子さん連れでも回れるもの</b>を中心にしています。</p>
+
+    <h3 class="sub">ロサンゼルス（1/6・1/7）</h3>
+    <figure class="photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sleeping_Beauty_Castle_(19648733039).jpg?width=960" alt="ディズニーランドの眠れる森の美女の城" width="960" height="720" loading="lazy">
+      <figcaption>眠れる森の美女の城（アナハイム） — 1月の平日は1年でいちばん空いている時期</figcaption>
+    </figure>
+
+    <div class="resto">
+      <div class="r-name">ディズニーランド・リゾート（アナハイム）<span class="r-book">要予約</span></div>
+      <p>パーク2つ（ディズニーランド／カリフォルニア・アドベンチャー）。<b>チケットは日付指定で、公式サイトで先に買う形</b>。1月の平日は空いていて、人気の乗り物も並ばずに乗れます。公式アプリを入れておくと待ち時間と注文が楽。｜<a href="https://maps.google.com/?q=Disneyland+Resort+Anaheim" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ユニバーサル・スタジオ・ハリウッド</div>
+      <p>ハリウッドの撮影所を回るスタジオツアーが本家ならでは。マリオのエリアもあります。ダウンタウンから車30分。｜<a href="https://maps.google.com/?q=Universal+Studios+Hollywood" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">グリフィス天文台</div>
+      <p>入場無料。丘の上からロサンゼルスの街とハリウッドサインが見えます。夕方から夜景の時間がいちばんきれい。駐車場が混むので早めに。｜<a href="https://maps.google.com/?q=Griffith+Observatory" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">サンタモニカ・ピア</div>
+      <p>海に突き出した桟橋の遊園地。ルート66の終点。1月でも日中は20℃近くまで上がるので歩きやすい。｜<a href="https://maps.google.com/?q=Santa+Monica+Pier" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">ラスベガス（1/8・1/9）</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sphere_-_Las_Vegas_(53685825749).jpg?width=720" alt="ラスベガスの球体型施設スフィア" width="720" height="540" loading="lazy">
+        <figcaption>Sphere — 外側全面が映像になる球体</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Freemont_Street,_Las_Vegas_(39492075460).jpg?width=720" alt="フリーモントストリートの天井の電飾" width="720" height="540" loading="lazy">
+        <figcaption>フリーモントストリート — 天井一面が電飾のアーケード</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ストリップ（大通り）の夜歩き</div>
+      <p>ベラージオの噴水ショー（無料・15〜30分おき）、ホテルの中を通り抜けながら歩けます。<b>1月の夜は3〜5℃まで下がる</b>ので上着を。端から端まで歩くと6kmあるので、無料のモノレールやUberを使うと楽。｜<a href="https://maps.google.com/?q=Bellagio+Fountains+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">グランドキャニオン 日帰りツアー<span class="r-book">要予約</span></div>
+      <p>ラスベガス発のバスツアーで1日（朝6時台出発・夜8時ごろ帰着）。<b>ヘリコプターや小型機の遊覧もあり</b>。CESに行かない人の1/9の過ごし方としていちばん人気。冬は雪が残るので防寒を。｜<a href="https://maps.google.com/?q=Grand+Canyon+West" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ショー（シルク・ドゥ・ソレイユなど）<span class="r-book">要予約</span></div>
+      <p>言葉が分からなくても楽しめるのでお子さんにも。<b>CES週は値段が上がり席も埋まる</b>ので、行くなら11月のうちに。｜<a href="https://maps.google.com/?q=Cirque+du+Soleil+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ハイローラー（大観覧車）</div>
+      <p>1周30分・高さ167m。昼は砂漠の山並み、夜はストリップの夜景。待たずに乗れます。｜<a href="https://maps.google.com/?q=High+Roller+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">セドナ（1/10・1/11）</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cathedral_Rock,_Sedona_(46131198634).jpg?width=720" alt="セドナのカセドラルロック" width="720" height="540" loading="lazy">
+        <figcaption>カセドラルロック — セドナを代表する赤い岩</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pink_Jeep_2025.jpg?width=720" alt="セドナのジープツアーの車" width="720" height="540" loading="lazy">
+        <figcaption>ジープツアー — 岩場をそのまま登っていく</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ホーリークロス教会（Chapel of the Holy Cross）</div>
+      <p>岩の間に建つ小さな教会。入場無料・駐車場あり。<b>車を降りて5分で着く</b>ので、歩くのが大変な人でも行けます。｜<a href="https://maps.google.com/?q=Chapel+of+the+Holy+Cross+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ジープツアー<span class="r-book">要予約</span></div>
+      <p>赤い岩場を四輪駆動で登る2時間ほどのツアー。<b>セドナでいちばん人気</b>で、冬でも週末は埋まります。小さなお子さんは年齢制限があるので予約時に確認を。｜<a href="https://maps.google.com/?q=Pink+Jeep+Tours+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ベルロック／カセドラルロック</div>
+      <p>車を停めてすぐ見える岩。<b>登らなくても下から見るだけで十分きれい</b>。登る場合は歩きやすい靴で（砂と岩で滑ります）。｜<a href="https://maps.google.com/?q=Bell+Rock+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">トラケパケ（Tlaquepaque）</div>
+      <p>メキシコの村のような造りのお店の集まり。お土産と食事が一度に済みます。雨や寒い日でも歩けるのでここが便利。｜<a href="https://maps.google.com/?q=Tlaquepaque+Arts+and+Shopping+Village+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">モンテズマ・キャッスル（移動のついでに）</div>
+      <p>フェニックスからセドナへ向かう途中、高速から15分。断崖に作られた800年前の住居跡。入場$10ほど・30分で見られます。｜<a href="https://maps.google.com/?q=Montezuma+Castle+National+Monument" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <div class="maplinks">
+      <a href="https://maps.google.com/?q=Anaheim+California" target="_blank" rel="noopener">アナハイム</a>
+      <a href="https://maps.google.com/?q=Las+Vegas+Strip" target="_blank" rel="noopener">ラスベガス・ストリップ</a>
+      <a href="https://maps.google.com/?q=Sedona+Arizona" target="_blank" rel="noopener">セドナ</a>
+      <a href="https://maps.google.com/?q=Phoenix+Sky+Harbor+International+Airport" target="_blank" rel="noopener">フェニックス空港</a>
+      <a href="https://maps.google.com/?q=Los+Angeles+International+Airport" target="_blank" rel="noopener">ロサンゼルス空港</a>
+    </div>
+  </section>
+
+  <!-- ================= CESに行く人へ ================= -->
+  <section id="ces" role="tabpanel" aria-labelledby="nav-ces" hidden>
+    <h2>CESに行く人へ</h2>
+    <p class="section-note">ラスベガスに泊まる1/8・1/9 は、世界最大のテクノロジー見本市「CES 2027」の会期中です（<b>会期は1月6日〜9日</b>・2026年10月25日にCES公式サイトで確認）。行く人だけ読んでください。</p>
+
+    <figure class="photo">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Las_Vegas_Convention_Center_entrance,_CES2013.jpg?width=960" alt="ラスベガス・コンベンションセンターのCES入口" width="960" height="720" loading="lazy">
+      <figcaption>ラスベガス・コンベンションセンター — CESの主会場</figcaption>
+    </figure>
+
+    <div class="alert">
+      <b>18歳未満は入場できません。</b>CESは業界関係者限定の見本市で、家族の同伴も認められていません（当日の例外もなし）。<b>お子さんは会場に入れない</b>ので、ラスベガスの2日間は「大人がCES・お子さんは別行動」になります。お子さん連れの組は、グランドキャニオン日帰りツアーやショー、プールなどに充てるのがおすすめです。
+    </div>
+
+    <h3 class="sub">登録（行くと決めたら先に）</h3>
+    <ul class="tip-list">
+      <li><b>11/30までなら1人 $149、12/1から $349</b>になります（2026年9月時点の公式表示。申し込む前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">CES公式サイト</a>で必ず確認してください）。</li>
+      <li><b>業界に属していることの証明が必要です。</b>会社のサイト・名刺・LinkedInなどを登録時に出します。1人ずつ、自分の会社の名前で登録してください（人の分を代わりに登録するのは難しい形です）。</li>
+      <li><b>バッジは事前に受け取れます。</b>郵送・空港や主要ホテルの窓口・会場受け取りのどれか。<b>会場受け取りは初日の朝に行列ができる</b>ので、1/7の夜までに受け取れると初日がまるごと使えます。</li>
+      <li><b>公式アプリを入れてバッジを登録。</b>会場の地図とセッションの予約がここからできます。</li>
+    </ul>
+
+    <h3 class="sub">会場は3か所に分かれています</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">コンベンションセンター（LVCC）</div>
+        <div class="value">車・家電・AI</div>
+        <div class="note">最大の会場。West Hall が車とモビリティ。ここだけで1日かかります</div>
+      </div>
+      <div class="info-card">
+        <div class="label">ベネチアン・エキスポ</div>
+        <div class="value">スタートアップ</div>
+        <div class="note">新しい会社が集まるエリア（Eureka Park）。<b>初日の午前がいちばん収穫が大きい</b></div>
+      </div>
+      <div class="info-card">
+        <div class="label">その他（ホテル会場）</div>
+        <div class="value">講演・商談</div>
+        <div class="note">基調講演や招待制の会議。<b>会場間は無料シャトルで20〜40分</b>（渋滞するとそれ以上）</div>
+      </div>
+    </div>
+
+    <h3 class="sub">損をしないための段取り</h3>
+    <ul class="tip-list">
+      <li><b>見たい分野を2つまでに絞る。</b>全部は回れません。1日歩いて1万5千歩、会場間の移動で30分ずつ消えます。</li>
+      <li><b>会いたい企業には11〜12月にメールでアポを入れる。</b>「日本の○○の会社で、△△を検討している」と1行書くだけで担当者が時間を取ってくれます。当日の飛び込みとは話の深さがまったく違います。</li>
+      <li><b>名刺は1日20〜30枚。</b>英語面は必須。もらった名刺の裏に「何の会社か・何を話したか」をその場で書く。帰国後には思い出せません。</li>
+      <li><b>写真は「ブースの看板」と「製品」をセットで。</b>製品だけ撮ると、あとで何の会社か分からなくなります。</li>
+      <li><b>会場のWi-Fiは繋がりません。</b>人が多すぎるため。eSIMなど自前の回線を用意してください。</li>
+      <li><b>飲み物と軽く食べるものを持ち込む。</b>会場の食事は行列で、席も空いていません。</li>
+      <li><b>その日の夜に「持ち帰り1つ」をメモ。</b>記憶は翌日には薄れます。同じ日に行った人と話すだけでも残ります。</li>
+    </ul>
+
+    <p class="section-note">田邊（克重）さんがCESにいるのは<b>1/8と1/9の2日間</b>です。一緒に回りたい人は、この2日に合わせてください。</p>
+  </section>
+
+  <!-- ================= 現地情報・持ち物 ================= -->
+  <section id="info" role="tabpanel" aria-labelledby="nav-info" hidden>
+    <h2>現地情報・持ち物</h2>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">時差</div>
+        <div class="value">ロス −17時間</div>
+        <div class="note">日本の夕方に出ると同じ日の朝に着きます。<b>アリゾナ（セドナ）は1時間進んで −16時間</b>。1/10にフェニックス着で+1時間、1/11にロスへ戻って−1時間</div>
+      </div>
+      <div class="info-card">
+        <div class="label">気温（1月）</div>
+        <div class="value">ロス 9〜20℃</div>
+        <div class="note">ラスベガス 3〜14℃／<b>セドナ −3〜13℃（朝は氷点下）</b>。昼と朝晩の差が大きいので、脱ぎ着できる服装で</div>
+      </div>
+      <div class="info-card">
+        <div class="label">お金</div>
+        <div class="value">カードでほぼ全部</div>
+        <div class="note">現金は$100ほどあれば十分（チップと駐車場用に$1札を多めに）。<b>「日本円で払うか」と聞かれたら必ずドルを選ぶ</b></div>
+      </div>
+      <div class="info-card">
+        <div class="label">チップ</div>
+        <div class="value">飲食18〜20%</div>
+        <div class="note">端末に18／20／22%の画面が出るので選ぶだけ。ホテルの清掃は1泊$3〜5、荷物1個$2。ファストフードは不要</div>
+      </div>
+      <div class="info-card">
+        <div class="label">通信</div>
+        <div class="value">eSIMが安くて楽</div>
+        <div class="note">Ubigi・Airaloなどで1週間$10前後。<b>ホテルのWi-Fiは有料のことがある</b>（リゾートフィーに含まれる場合も）</div>
+      </div>
+      <div class="info-card">
+        <div class="label">電源</div>
+        <div class="value">変換プラグ不要</div>
+        <div class="note">日本と同じ形（A型）。電圧は120Vで、日本の100V用の機器はほぼそのまま使えます。ドライヤーなど熱を出すものだけ要注意</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <b>保険に入らずに行かないこと。</b>米国の医療費は日本と桁が違います（盲腸の手術で数百万円、救急車も有料）。クレジットカード付帯で足りるか（補償額・<b>お子さんが対象に入るか</b>・持病の扱い）を、組ごとに出発前に必ず確認してください。
+    </div>
+
+    <h3 class="sub">運転するなら</h3>
+    <ul class="tip-list">
+      <li><b>国際運転免許証を持っていく。</b>警察署か運転免許センターで即日・2,350円。日本の免許証も一緒に携帯します。</li>
+      <li><b>チャイルドシートは法律で必要な場合があります。</b>カリフォルニア・アリゾナは<b>8歳未満または身長145cm未満</b>が対象。レンタカー会社で1日$10〜15ほどで借りられます。<b>借りるときに年齢と身長を伝えて確認してください</b>（州ごとに決まりが違います）。</li>
+      <li><b>右側通行。</b>慣れるまでは右折・左折のたびに「右側」と声に出すと間違えません。<b>赤信号でも右折できます</b>（止まって安全確認してから。禁止の標識がある場所を除く）。</li>
+      <li><b>ガソリンは自分で入れます。</b>カードを機械に差して給油。たまに郵便番号を聞かれるので、その場合はレジで現金払いにすると通ります。</li>
+      <li><b>返却前に満タンにする。</b>給油せずに返すと割高で請求されます。空港の手前にガソリンスタンドがあります。</li>
+      <li><b>セドナの夜道は暗い。</b>街灯がほとんどなく（星空を守るため）、野生動物も出ます。日が暗くなる前に宿に入る日程が安心です。</li>
+    </ul>
+
+    <div class="tabs" role="tablist" aria-label="持ち物">
+      <button role="tab" id="tab-adult" aria-selected="true" aria-controls="panel-adult">持ち物（大人）</button>
+      <button role="tab" id="tab-kids" aria-selected="false" aria-controls="panel-kids">お子さん連れ</button>
+      <button role="tab" id="tab-tips" aria-selected="false" aria-controls="panel-tips">豆知識</button>
+    </div>
+
+    <div class="tabpanel" id="panel-adult" role="tabpanel" aria-labelledby="tab-adult">
+      <div class="checklist">
+        <div class="cat">これがないと困る</div>
+        <label><input type="checkbox" id="p-passport" data-k="p-passport"><span>パスポート（残り有効期間を確認済み）</span></label>
+        <label><input type="checkbox" id="p-esta" data-k="p-esta"><span>ESTAの承認画面（スクショ・紙も1部）</span></label>
+        <label><input type="checkbox" id="p-ticket" data-k="p-ticket"><span>航空券とホテルの予約控え（スマホと紙）</span></label>
+        <label><input type="checkbox" id="p-hoken" data-k="p-hoken"><span>保険証券（証券番号と緊急連絡先。紙でも）</span></label>
+        <label><input type="checkbox" id="p-card" data-k="p-card"><span>クレジットカード2枚（1枚は別の場所に。1枚が止まったとき用）</span></label>
+        <label><input type="checkbox" id="p-cash" data-k="p-cash"><span>現金$100ほど（$1札を10枚以上。チップと駐車場で使います）</span></label>
+        <label><input type="checkbox" id="p-license" data-k="p-license"><span>運転する人：国際運転免許証＋日本の免許証</span></label>
+        <div class="cat">電子機器</div>
+        <label><input type="checkbox" id="p-batt" data-k="p-batt"><span>モバイルバッテリー（<b>預け荷物に入れられません</b>＝機内持込へ）</span></label>
+        <label><input type="checkbox" id="p-charger" data-k="p-charger"><span>充電器・ケーブル（USBの口が多いタップが1つあると家族で取り合わない）</span></label>
+        <label><input type="checkbox" id="p-sim" data-k="p-sim"><span>eSIMの設定（出発前に入れておく。現地では設定しにくい）</span></label>
+        <div class="cat">服・体</div>
+        <label><input type="checkbox" id="p-coat" data-k="p-coat"><span>上着（<b>セドナの朝は氷点下</b>。薄いダウンが1枚あると全部に対応できます）</span></label>
+        <label><input type="checkbox" id="p-shoes" data-k="p-shoes"><span>歩ける靴（1日1万歩を超えます。新しい靴は避ける）</span></label>
+        <label><input type="checkbox" id="p-cream" data-k="p-cream"><span>リップ・保湿クリーム・目薬（<b>砂漠なので想像以上に乾きます</b>）</span></label>
+        <label><input type="checkbox" id="p-med" data-k="p-med"><span>常備薬（風邪薬・胃薬・酔い止め・絆創膏）。現地の薬は強いものが多い</span></label>
+        <label><input type="checkbox" id="p-sun" data-k="p-sun"><span>サングラス（冬でも日差しが強く、運転中はまぶしい）</span></label>
+        <div class="cat">あると助かる</div>
+        <label><input type="checkbox" id="p-bottle" data-k="p-bottle"><span>水筒（空港の給水機で入れられます。ペットボトルを毎回買うより安い）</span></label>
+        <label><input type="checkbox" id="p-bag" data-k="p-bag"><span>折りたためるエコバッグ（買い物袋が有料・もらえない店もあります）</span></label>
+        <label><input type="checkbox" id="p-snack" data-k="p-snack"><span>日本のお菓子やカップ麺（移動の合間と、味に飽きたとき用）</span></label>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="panel-kids" role="tabpanel" aria-labelledby="tab-kids" hidden>
+      <div class="checklist">
+        <div class="cat">手続き</div>
+        <label><input type="checkbox" id="k-passport" data-k="k-passport"><span><b>お子さんのパスポートは有効期間5年</b>。残り期間を必ず確認（親と切れる時期が違います）</span></label>
+        <label><input type="checkbox" id="k-esta" data-k="k-esta"><span>ESTAは<b>赤ちゃんでも1人1件必要</b>（$40.27）</span></label>
+        <label><input type="checkbox" id="k-hoken" data-k="k-hoken"><span>保険の対象にお子さんが入っているか確認（カード付帯は家族が対象外のことがあります）</span></label>
+        <label><input type="checkbox" id="k-seat" data-k="k-seat"><span>飛行機の座席を隣同士に（事前に座席指定を。あとからだと離れます）</span></label>
+        <div class="cat">移動と車</div>
+        <label><input type="checkbox" id="k-carseat" data-k="k-carseat"><span><b>チャイルドシート</b>（8歳未満または身長145cm未満が対象の州あり）。レンタカーで借りるか持参か決める</span></label>
+        <label><input type="checkbox" id="k-tablet" data-k="k-tablet"><span>タブレット＋動画をダウンロード（機内10時間・車2時間の備え）。イヤホンも</span></label>
+        <label><input type="checkbox" id="k-sick" data-k="k-sick"><span>酔い止め（セドナへの山道とジープツアーで効きます）</span></label>
+        <div class="cat">現地で</div>
+        <label><input type="checkbox" id="k-pace" data-k="k-pace"><span><b>1日1つだけ大きな予定</b>にする。詰めると必ず誰かが潰れます</span></label>
+        <label><input type="checkbox" id="k-ces" data-k="k-ces"><span><b>CESには入れません</b>（18歳未満は入場不可）。1/8・1/9 の別の過ごし方を決めておく</span></label>
+        <label><input type="checkbox" id="k-lost" data-k="k-lost"><span>はぐれたときの決めごと（集合場所を毎回決める・連絡先を書いた紙をポケットに）</span></label>
+        <label><input type="checkbox" id="k-water" data-k="k-water"><span>水とおやつを常に持つ（乾燥していて、気づかないうちに水分が減ります）</span></label>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="panel-tips" role="tabpanel" aria-labelledby="tab-tips" hidden>
+      <ul class="tip-list">
+        <li><b>ESTAは公式サイトだけ。</b>検索の上位に代行の偽サイトが出ます。本物は esta.cbp.dhs.gov（$40.27）。承認画面はスクショを残してください。</li>
+        <li><b>時差ぼけは到着日に決まる。</b>朝に着くので、眠くても夕方まで起きて現地の20時に寝る。これで翌日から体が合います。お子さんは意外と早く慣れます。</li>
+        <li><b>アリゾナだけ時計が1時間進む。</b>夏時間を使わない州なので、冬はロスより1時間先。スマホは自動で変わりますが、待ち合わせの時刻を言うときは「どっちの時間？」を確認。</li>
+        <li><b>入国審査で聞かれるのは3つ。</b>「目的（観光／会議）」「どこに泊まるか」「何日いるか」。ホテルの名前をすぐ言えるようにしておけば終わります。</li>
+        <li><b>水は買うより入れる。</b>空港にもホテルにも給水機があります。砂漠なので1日2リットルは飲みます。</li>
+        <li><b>チップは端末で選ぶだけ。</b>18／20／22%が出るので押すだけ。<b>領収書はチップを含んだ総額のもの</b>をもらってください。</li>
+        <li><b>ラスベガスのリゾートフィーは別会計。</b>予約画面の金額に入っていないことが多く、チェックアウトで1泊$40〜60が足されます。驚かないように。</li>
+        <li><b>買い物の消費税は州ごとに違う。</b>表示価格に税が足されます（ネバダ約8%・カリフォルニア約10%・アリゾナ約9%）。表示より高くなるのは普通のことです。</li>
+      </ul>
+    </div>
+  </section>
+</main>
+<script>
+  (function () {
+    var KEY = "usa-group-2027-checklist";
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+    var boxes = document.querySelectorAll(".checklist input[type=checkbox]");
+    var todoBoxes = document.querySelectorAll("#todo .checklist input[type=checkbox]");
+    var prog = document.getElementById("cd-prog");
+    function updateProgress() {
+      if (!prog) return;
+      var done = 0;
+      todoBoxes.forEach(function (b) { if (b.checked) done++; });
+      prog.textContent = "やること " + done + " / " + todoBoxes.length + " 件 完了";
+    }
+    boxes.forEach(function (box) {
+      if (saved[box.dataset.k]) box.checked = true;
+      box.addEventListener("change", function () {
+        saved[box.dataset.k] = box.checked;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+        updateProgress();
+      });
+    });
+    updateProgress();
+
+    var cdDays = document.getElementById("cd-days");
+    if (cdDays) {
+      var dep = new Date(2027, 0, 6);
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var diff = Math.round((dep - today) / 86400000);
+      cdDays.textContent = diff > 0 ? diff : 0;
+    }
+
+    document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+      var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+      var isTopNav = list.classList.contains("top-tabs");
+      function selectTab(tab, moveFocus) {
+        tabs.forEach(function (t) {
+          var selected = t === tab;
+          t.setAttribute("aria-selected", selected ? "true" : "false");
+          document.getElementById(t.getAttribute("aria-controls")).hidden = !selected;
+        });
+        if (moveFocus) tab.focus();
+        if (isTopNav && list.getBoundingClientRect().top <= 0) {
+          list.scrollIntoView({ block: "start" });
+        }
+      }
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener("click", function () { selectTab(tab, false); });
+        tab.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowRight") selectTab(tabs[(i + 1) % tabs.length], true);
+          if (e.key === "ArrowLeft") selectTab(tabs[(i - 1 + tabs.length) % tabs.length], true);
+        });
+      });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var btn = document.getElementById("copy-sheet");
+    if (!btn) return;
+    var url = "https://docs.google.com/spreadsheets/d/1CYwL3WRQCbR3tyXUQVrznaZY6IPkjXf45-n5K_xxJVg/edit";
+    var done = document.getElementById("copy-done");
+    function shown() {
+      if (!done) return;
+      done.style.display = "inline";
+      setTimeout(function () { done.style.display = "none"; }, 2000);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = url;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); shown(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    btn.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(shown, fallback);
+      } else {
+        fallback();
+      }
+    });
+  })();
+</script>
