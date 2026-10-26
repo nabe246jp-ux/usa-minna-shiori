@@ -198,6 +198,34 @@
   .tip-list li { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; padding: 13px 18px; font-size: 14px; line-height: 1.8; }
   .tip-list li b { color: var(--accent); }
 
+  /* ---- 合わせる4回 ---- */
+  .sync { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); padding: 24px 30px; margin-bottom: 20px; }
+  .sync-head { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif; font-size: 17px; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 16px; }
+  .sync-list { list-style: none; margin: 0; padding: 0; }
+  .sync-list li { display: grid; grid-template-columns: 86px 1fr; gap: 2px 16px; padding: 14px 0; border-top: 1px dashed var(--panel-edge); }
+  .sync-list li:first-child { border-top: none; padding-top: 0; }
+  .s-when { grid-row: span 2; font-weight: 700; color: var(--accent); font-size: 13px; font-variant-numeric: tabular-nums; text-align: right; padding-top: 4px; }
+  .s-what { font-size: 16px; font-weight: 700; line-height: 1.6; }
+  .s-how { font-size: 12px; color: var(--sub); line-height: 1.75; }
+  .sync-foot { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--panel-edge); font-size: 13px; line-height: 1.85; }
+  .sync-foot b { color: var(--forest); }
+
+  /* ---- みんなの予定の表 ---- */
+  .scroll-hint { font-size: 12px; color: var(--sub); margin: 0 0 10px; }
+  .whotable { margin: 0 -24px 24px; padding: 0 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .whotable table { border-collapse: separate; border-spacing: 0; min-width: 880px; font-size: 13px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); }
+  .whotable th, .whotable td { padding: 12px 14px; text-align: left; vertical-align: top; line-height: 1.7; border-bottom: 1px solid var(--panel-edge); }
+  .whotable thead th { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; white-space: nowrap; background: var(--accent-soft); }
+  .whotable tbody th { font-weight: 700; white-space: nowrap; position: sticky; left: 0; background: var(--panel); box-shadow: 1px 0 0 var(--panel-edge); }
+  .whotable tbody tr:last-child th, .whotable tbody tr:last-child td { border-bottom: none; }
+  .whotable .ppl { display: block; font-size: 11px; font-weight: 400; color: var(--sub); }
+  .whotable td.na { color: var(--sub); }
+
+  @media (max-width: 480px) {
+    .sync { padding: 20px 18px; }
+    .sync-list li { grid-template-columns: 72px 1fr; gap: 2px 12px; }
+  }
+
   footer { margin-top: 64px; text-align: center; color: var(--sub); font-size: 11px; line-height: 2; }
   footer a { color: inherit; }
 
@@ -224,7 +252,7 @@
     <div class="eyebrow">LOS ANGELES / LAS VEGAS / SEDONA 2027</div>
     <h1><span style="white-space:nowrap">ロサンゼルス</span><br><span style="white-space:nowrap">ラスベガス</span><br><span style="white-space:nowrap">セドナ</span></h1>
     <div class="dates serif">2027年1月6日（水）— 1月12日（火）／ 5組 11人</div>
-    <div class="concept serif">— 同じ道を、それぞれのペースで —</div>
+    <div class="concept serif">— CES 2027 へ。同じ道を、それぞれのペースで —</div>
     <svg class="wave" width="120" height="16" viewBox="0 0 120 16" aria-hidden="true">
       <path d="M0 8 Q15 0 30 8 T60 8 T90 8 T120 8" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
     </svg>
@@ -234,26 +262,39 @@
   </header>
 
   <nav class="top-tabs" role="tablist" aria-label="しおりのセクション">
-    <button role="tab" id="nav-members" aria-selected="true" aria-controls="members">みんなのこと</button>
-    <button role="tab" id="nav-p-iwata" aria-selected="false" aria-controls="p-iwata">岩田さん</button>
-    <button role="tab" id="nav-p-tanabe" aria-selected="false" aria-controls="p-tanabe">田邊家</button>
-    <button role="tab" id="nav-p-ishihara" aria-selected="false" aria-controls="p-ishihara">石原さん</button>
-    <button role="tab" id="nav-p-kawano" aria-selected="false" aria-controls="p-kawano">川野さん</button>
-    <button role="tab" id="nav-p-takuhei" aria-selected="false" aria-controls="p-takuhei">たくへいさん</button>
-    <button role="tab" id="nav-route" aria-selected="false" aria-controls="route">道順</button>
-    <button role="tab" id="nav-hotel" aria-selected="false" aria-controls="hotel">泊まるところ</button>
-    <button role="tab" id="nav-spots" aria-selected="false" aria-controls="spots">見どころ</button>
-    <button role="tab" id="nav-ces" aria-selected="false" aria-controls="ces">CESに行く人へ</button>
+    <button role="tab" id="nav-start" aria-selected="true" aria-controls="start">はじめに</button>
+    <button role="tab" id="nav-ces" aria-selected="false" aria-controls="ces">CES 2027</button>
+    <button role="tab" id="nav-la" aria-selected="false" aria-controls="la">ロサンゼルス</button>
+    <button role="tab" id="nav-lv" aria-selected="false" aria-controls="lv">ラスベガス</button>
+    <button role="tab" id="nav-sedona" aria-selected="false" aria-controls="sedona">セドナ</button>
+    <button role="tab" id="nav-plan" aria-selected="false" aria-controls="plan">みんなの予定</button>
     <button role="tab" id="nav-info" aria-selected="false" aria-controls="info">現地情報・持ち物</button>
   </nav>
 
-  <!-- ================= みんなのこと ================= -->
-  <section id="members" role="tabpanel" aria-labelledby="nav-members">
-    <h2>みんなのこと</h2>
-    <p class="section-note">2027年1月に、ロサンゼルス → ラスベガス → セドナ を同じ時期に回る5組・合わせて11人のためのしおりです。<b>上のタブから自分の組を開くと、その組の予定とやることが出ます。</b></p>
+  <!-- ================= はじめに ================= -->
+  <section id="start" role="tabpanel" aria-labelledby="nav-start">
+    <h2>はじめに</h2>
+    <p class="section-note">5組11人で、ロサンゼルス → ラスベガス → セドナ を回ります。目的は<b>CES 2027</b>（1/8・1/9のラスベガス）。<b>日程を合わせるのは下の4回だけで、あとはそれぞれ好きに動く旅です。</b></p>
 
-    <div class="alert">
-      便・宿・どこを見るかは、組ごとに決めます。決まったことと「この日ここに行くつもり」を<b>みんなの予定の表</b>に書いておくと、お互いの動きが分かります（表のリンクはLINEのグループに貼ってあります）。
+    <div class="sync">
+      <div class="sync-head">合わせるのは、この4回だけ</div>
+      <ol class="sync-list">
+        <li><span class="s-when">1/6 水</span><span class="s-what">ロサンゼルスに着く</span><span class="s-how">便は組ごと。着く日だけ全員同じ（日本を昼〜夕に出ると、同じ日の朝に着きます）</span></li>
+        <li><span class="s-when">1/8 金 朝</span><span class="s-what">ロサンゼルス → ラスベガス</span><span class="s-how">飛行機1時間10分（車なら約4時間）。この日からラスベガス泊</span></li>
+        <li><span class="s-when">1/10 日 朝</span><span class="s-what">ラスベガス → セドナ</span><span class="s-how">フェニックスまで飛行機1時間5分＋車2時間。着いたら時計を1時間進めます</span></li>
+        <li><span class="s-when">1/11 月 夕</span><span class="s-what">セドナ → ロサンゼルス</span><span class="s-how">フェニックスまで車2時間＋飛行機1時間25分。時計は1時間戻します</span></li>
+      </ol>
+      <div class="sync-foot"><b>この4回以外は、組ごとに自由に動きます。</b>便・宿・レンタカーは各組が自分で予約して、自分で払います。同じ便・同じ宿にする必要はありません。帰国日（1/12以降）も組ごとで、延泊するのも自由です。</div>
+    </div>
+
+    <div class="countdown">
+      <div><span class="days" id="cd-days">—</span><span class="unit">日</span></div>
+      <div class="cd-note">1月6日（ロサンゼルスに着く日）まで</div>
+    </div>
+
+    <h3 class="sub">この旅のメイン：CES 2027</h3>
+    <div class="alert" style="border-left-color: var(--forest)">
+      <b style="color: var(--forest)">1/8・1/9 のラスベガスは、CES 2027 の会期中です。</b>世界最大のテクノロジー見本市で、この旅の目的です。<b>登録は11/30までなら$149、12/1から$349</b>に上がります（2026年9月時点の公式表示）。<b>18歳未満は入場できません</b>ので、お子さんがいる組はこの2日を別行動にしてください。回り方・会場・段取りは上の「CES 2027」のタブに全部書いてあります。
     </div>
 
     <h3 class="sub">参加する5組</h3>
@@ -290,31 +331,54 @@
       </div>
     </div>
 
-    <h3 class="sub">共通の予定（みんな同じ日に動きます）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
+
+    <div class="alert">
+      <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガスの全市が満室になります。<b>値段も通常の3〜5倍</b>（1泊$500〜1,000超）。ここだけは、ほかより先に押さえてください。
     </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
+
+    <h3 class="sub">宿の取り方（共通）</h3>
+    <ul class="tip-list">
+      <li><b>米国のホテルは「1部屋いくら」。</b>2人でも1人でも同じ値段のことが多いので、親子2人なら1部屋で十分です。<b>4人だと「2クイーンベッド」の部屋</b>（ベッド2つ）を選べば1部屋で泊まれます。</li>
+      <li><b>リゾートフィーとデポジットに注意。</b>ラスベガスは宿泊料のほかに1泊$40〜60のリゾートフィーがかかり、チェックイン時にカードで$50〜100／日のデポジットを押さえられます（使わなければ数日で戻ります）。</li>
+      <li><b>無料キャンセル可で押さえておく。</b>人数や日程が未定でも、キャンセル無料の条件なら先に部屋を確保できます。CES週のラスベガスは<b>待つほど高くなります</b>。</li>
+      <li><b>セドナは夜が暗い。</b>街灯が少なく（星空を守るため）、夜の運転は慣れが必要です。<b>日が暗くなる前に宿に入る日程</b>にしておくと安心です。</li>
+    </ul>
+
+    <div data-group="all">
+      <h3 class="sub">やること</h3>
+      <p class="section-note">チェックはこの端末に保存されます（他の人には見えません）。<b class="cd-prog">—</b></p>
+    <div class="checklist">
+      <div class="cat">今すぐ（宿と便）</div>
+      <label><input type="checkbox" id="g-hotel-lv" data-k="g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="g-hotel-sedona" data-k="g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
+      <label><input type="checkbox" id="g-air" data-k="g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
+      <label><input type="checkbox" id="g-hotel-la" data-k="g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
+      <label><input type="checkbox" id="g-air-dom" data-k="g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
+
+      <div class="cat">11月中</div>
+      <label><input type="checkbox" id="g-esta" data-k="g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
+      <label><input type="checkbox" id="g-passport" data-k="g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
+      <label><input type="checkbox" id="g-hoken" data-k="g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
+      <label><input type="checkbox" id="g-car" data-k="g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
+      <label><input type="checkbox" id="g-license" data-k="g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
+      <label><input type="checkbox" id="g-ces" data-k="g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは上の「CES 2027」のタブ）</span></label>
+
+      <div class="cat">12月中</div>
+      <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="g-line" data-k="g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
+      <label><input type="checkbox" id="g-sim" data-k="g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
+      <label><input type="checkbox" id="g-card" data-k="g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
+      <label><input type="checkbox" id="g-clothes" data-k="g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
+
+      <div class="cat">出発の週</div>
+      <label><input type="checkbox" id="g-vjw" data-k="g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
+      <label><input type="checkbox" id="g-pack" data-k="g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
+      <label><input type="checkbox" id="g-copy" data-k="g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
+
+      <div class="cat">現地で</div>
+      <label><input type="checkbox" id="g-arrive" data-k="g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
+      <label><input type="checkbox" id="g-plan-daily" data-k="g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
+    </div>
 
     <h3 class="sub">決めておきたい約束</h3>
     <ul class="tip-list">
@@ -324,1066 +388,11 @@
       <li><b>写真はあとでまとめて共有。</b>帰国後にアルバムを1つ作って、各組が入れる形に（旅行中は各自好きに撮る）。</li>
     </ul>
 
-    <div class="countdown">
-      <div><span class="days" id="cd-days">—</span><span class="unit">日</span></div>
-      <div class="cd-note">1月6日（ロサンゼルス集合の日）まで</div>
-    </div>
-
-    <div class="alert">
-      <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガスの全市が満室になります。<b>値段も通常の3〜5倍</b>（1泊$500〜1,000超）。ここだけは、ほかより先に押さえてください。
-    </div>
-
-    <h3 class="sub">書き込む表</h3>
-    <div class="booking">
-      <span>共有の表</span>
-      <span class="code">Googleスプレッドシート</span>
-      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
-    </div>
-    <div style="height:16px"></div>
-
-    <div class="alert">
-      <b>表のリンクはLINEのグループに貼ってあります。</b>このしおりは誰でも見られるページなので、表のリンクはここには載せていません（リンクがそのまま出ていると、知らない人にも書き込めてしまうため）。見つからないときは幹事に聞いてください。
-    </div>
-
-    <h3 class="sub">2つのタブがあります</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">みんなの予定</div>
-        <div class="value">便・宿・連絡先</div>
-        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
-      </div>
-      <div class="info-card">
-        <div class="label">この日ここに行く</div>
-        <div class="value">日ごとの行き先</div>
-        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行書きます</div>
-      </div>
-    </div>
-
-    <ul class="tip-list">
-      <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
-      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
-      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
-      <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
-      <li><b>毎晩、翌日の行き先を1行。</b>決まっていない日は空けたままで構いません。</li>
-    </ul>
   </section>
 
-  <!-- ================= 岩田さん ================= -->
-  <section id="p-iwata" role="tabpanel" aria-labelledby="nav-p-iwata" data-group="iwata" hidden>
-    <h2>岩田さん</h2>
-    <p class="section-note">2名（親子で）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
-
-    <h3 class="sub">共通の予定（全員同じ）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
-    </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
-
-    <h3 class="sub">この組の予定</h3>
-    <div class="info-grid">
-      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-iwata-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-iwata-la">未定</div><div class="note">1/6・1/7</div></div>
-      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-iwata-lv">未定</div><div class="note">1/8・1/9</div></div>
-      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-iwata-sedona">未定</div><div class="note">1/10・1/11</div></div>
-      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-iwata-back">未定</div><div class="note">1/12 以降</div></div>
-      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-iwata-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-      <div class="info-card"><div class="label">CES</div><div class="value" id="v-iwata-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-iwata-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-    </div>
-
-    <h3 class="sub">やること</h3>
-    <p class="section-note"><b class="cd-prog">—</b></p>
-    <div class="checklist">
-      <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="iwata-g-hotel-lv" data-k="iwata-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="iwata-g-hotel-sedona" data-k="iwata-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="iwata-g-air" data-k="iwata-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="iwata-g-hotel-la" data-k="iwata-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="iwata-g-air-dom" data-k="iwata-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
-
-      <div class="cat">11月中</div>
-      <label><input type="checkbox" id="iwata-g-esta" data-k="iwata-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="iwata-g-passport" data-k="iwata-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="iwata-g-hoken" data-k="iwata-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="iwata-g-car" data-k="iwata-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="iwata-g-license" data-k="iwata-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="iwata-g-ces" data-k="iwata-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
-
-      <div class="cat">12月中</div>
-      <label><input type="checkbox" id="iwata-g-sheet" data-k="iwata-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="iwata-g-line" data-k="iwata-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="iwata-g-sim" data-k="iwata-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="iwata-g-card" data-k="iwata-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="iwata-g-clothes" data-k="iwata-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
-
-      <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="iwata-g-vjw" data-k="iwata-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="iwata-g-pack" data-k="iwata-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="iwata-g-copy" data-k="iwata-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
-
-      <div class="cat">現地で</div>
-      <label><input type="checkbox" id="iwata-g-arrive" data-k="iwata-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="iwata-g-plan-daily" data-k="iwata-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
-  </section>
-
-  <!-- ================= 田邊家 ================= -->
-  <section id="p-tanabe" role="tabpanel" aria-labelledby="nav-p-tanabe" data-group="tanabe" hidden>
-    <h2>田邊家</h2>
-    <p class="section-note">4名（1/8・1/9 は田邊さんがCESへ）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
-
-    <h3 class="sub">共通の予定（全員同じ）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
-    </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
-
-    <h3 class="sub">この組の予定</h3>
-    <div class="info-grid">
-      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-tanabe-air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-tanabe-la">アナハイム（1/6・1/7）</div><div class="note">1/6・1/7</div></div>
-      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-tanabe-lv">1/8・1/9</div><div class="note">1/8・1/9</div></div>
-      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-tanabe-sedona">1/10・1/11</div><div class="note">1/10・1/11</div></div>
-      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-tanabe-back">1/12 09:40 ロス発 → 1/13 14:25 成田着</div><div class="note">1/12 以降</div></div>
-      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-tanabe-car">セドナで（PHXで借りてPHXで返す）</div><div class="note">セドナは車がないと動けません</div></div>
-      <div class="info-card"><div class="label">CES</div><div class="value" id="v-tanabe-ces">田邊さんのみ 1/8・1/9</div><div class="note">18歳未満は入場できません</div></div>
-      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-tanabe-free">ディズニー2日 → CES2日 → セドナ2日</div><div class="note">やりたいこと・困っていること</div></div>
-    </div>
-
-    <h3 class="sub">やること</h3>
-    <p class="section-note"><b class="cd-prog">—</b></p>
-    <div class="checklist">
-      <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="tanabe-g-hotel-lv" data-k="tanabe-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="tanabe-g-hotel-sedona" data-k="tanabe-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="tanabe-g-air" data-k="tanabe-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="tanabe-g-hotel-la" data-k="tanabe-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="tanabe-g-air-dom" data-k="tanabe-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
-
-      <div class="cat">11月中</div>
-      <label><input type="checkbox" id="tanabe-g-esta" data-k="tanabe-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="tanabe-g-passport" data-k="tanabe-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="tanabe-g-hoken" data-k="tanabe-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="tanabe-g-car" data-k="tanabe-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="tanabe-g-license" data-k="tanabe-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="tanabe-g-ces" data-k="tanabe-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
-
-      <div class="cat">12月中</div>
-      <label><input type="checkbox" id="tanabe-g-sheet" data-k="tanabe-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="tanabe-g-line" data-k="tanabe-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="tanabe-g-sim" data-k="tanabe-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="tanabe-g-card" data-k="tanabe-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="tanabe-g-clothes" data-k="tanabe-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
-
-      <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="tanabe-g-vjw" data-k="tanabe-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="tanabe-g-pack" data-k="tanabe-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="tanabe-g-copy" data-k="tanabe-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
-
-      <div class="cat">現地で</div>
-      <label><input type="checkbox" id="tanabe-g-arrive" data-k="tanabe-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="tanabe-g-plan-daily" data-k="tanabe-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
-  </section>
-
-  <!-- ================= 石原さん ================= -->
-  <section id="p-ishihara" role="tabpanel" aria-labelledby="nav-p-ishihara" data-group="ishihara" hidden>
-    <h2>石原さん</h2>
-    <p class="section-note">2名（親子で）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
-
-    <h3 class="sub">共通の予定（全員同じ）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
-    </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
-
-    <h3 class="sub">この組の予定</h3>
-    <div class="info-grid">
-      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-ishihara-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-ishihara-la">未定</div><div class="note">1/6・1/7</div></div>
-      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-ishihara-lv">未定</div><div class="note">1/8・1/9</div></div>
-      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-ishihara-sedona">未定</div><div class="note">1/10・1/11</div></div>
-      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-ishihara-back">未定</div><div class="note">1/12 以降</div></div>
-      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-ishihara-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-      <div class="info-card"><div class="label">CES</div><div class="value" id="v-ishihara-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-ishihara-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-    </div>
-
-    <h3 class="sub">やること</h3>
-    <p class="section-note"><b class="cd-prog">—</b></p>
-    <div class="checklist">
-      <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="ishihara-g-hotel-lv" data-k="ishihara-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="ishihara-g-hotel-sedona" data-k="ishihara-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="ishihara-g-air" data-k="ishihara-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="ishihara-g-hotel-la" data-k="ishihara-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="ishihara-g-air-dom" data-k="ishihara-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
-
-      <div class="cat">11月中</div>
-      <label><input type="checkbox" id="ishihara-g-esta" data-k="ishihara-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="ishihara-g-passport" data-k="ishihara-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="ishihara-g-hoken" data-k="ishihara-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="ishihara-g-car" data-k="ishihara-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="ishihara-g-license" data-k="ishihara-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="ishihara-g-ces" data-k="ishihara-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
-
-      <div class="cat">12月中</div>
-      <label><input type="checkbox" id="ishihara-g-sheet" data-k="ishihara-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="ishihara-g-line" data-k="ishihara-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="ishihara-g-sim" data-k="ishihara-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="ishihara-g-card" data-k="ishihara-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="ishihara-g-clothes" data-k="ishihara-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
-
-      <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="ishihara-g-vjw" data-k="ishihara-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="ishihara-g-pack" data-k="ishihara-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="ishihara-g-copy" data-k="ishihara-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
-
-      <div class="cat">現地で</div>
-      <label><input type="checkbox" id="ishihara-g-arrive" data-k="ishihara-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="ishihara-g-plan-daily" data-k="ishihara-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
-  </section>
-
-  <!-- ================= 川野さん ================= -->
-  <section id="p-kawano" role="tabpanel" aria-labelledby="nav-p-kawano" data-group="kawano" hidden>
-    <h2>川野さん</h2>
-    <p class="section-note">2名（社員の方と）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
-
-    <h3 class="sub">共通の予定（全員同じ）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
-    </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
-
-    <h3 class="sub">この組の予定</h3>
-    <div class="info-grid">
-      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-kawano-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-kawano-la">未定</div><div class="note">1/6・1/7</div></div>
-      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-kawano-lv">未定</div><div class="note">1/8・1/9</div></div>
-      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-kawano-sedona">未定</div><div class="note">1/10・1/11</div></div>
-      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-kawano-back">未定</div><div class="note">1/12 以降</div></div>
-      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-kawano-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-      <div class="info-card"><div class="label">CES</div><div class="value" id="v-kawano-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-kawano-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-    </div>
-
-    <h3 class="sub">やること</h3>
-    <p class="section-note"><b class="cd-prog">—</b></p>
-    <div class="checklist">
-      <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="kawano-g-hotel-lv" data-k="kawano-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="kawano-g-hotel-sedona" data-k="kawano-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="kawano-g-air" data-k="kawano-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="kawano-g-hotel-la" data-k="kawano-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="kawano-g-air-dom" data-k="kawano-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
-
-      <div class="cat">11月中</div>
-      <label><input type="checkbox" id="kawano-g-esta" data-k="kawano-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="kawano-g-passport" data-k="kawano-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="kawano-g-hoken" data-k="kawano-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="kawano-g-car" data-k="kawano-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="kawano-g-license" data-k="kawano-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="kawano-g-ces" data-k="kawano-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
-
-      <div class="cat">12月中</div>
-      <label><input type="checkbox" id="kawano-g-sheet" data-k="kawano-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="kawano-g-line" data-k="kawano-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="kawano-g-sim" data-k="kawano-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="kawano-g-card" data-k="kawano-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="kawano-g-clothes" data-k="kawano-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
-
-      <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="kawano-g-vjw" data-k="kawano-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="kawano-g-pack" data-k="kawano-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="kawano-g-copy" data-k="kawano-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
-
-      <div class="cat">現地で</div>
-      <label><input type="checkbox" id="kawano-g-arrive" data-k="kawano-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="kawano-g-plan-daily" data-k="kawano-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
-  </section>
-
-  <!-- ================= たくへいさん ================= -->
-  <section id="p-takuhei" role="tabpanel" aria-labelledby="nav-p-takuhei" data-group="takuhei" hidden>
-    <h2>たくへいさん</h2>
-    <p class="section-note">1名（—）。<b>予定は共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。やることのチェックはこの端末に保存されます（他の人には見えません）。</p>
-
-    <h3 class="sub">共通の予定（全員同じ）</h3>
-    <div class="drive-times">
-      <span>1/6 ロサンゼルス着</span>
-      <span>1/8 ラスベガスへ</span>
-      <span>1/10 セドナへ</span>
-      <span>1/11 夕方 ロスへ戻る</span>
-      <span>1/12 帰国</span>
-    </div>
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">共通</span>
-        <span class="dp-date">1/6（水）〜1/12（火）</span>
-        <span class="dp-theme">ロサンゼルス → ラスベガス → セドナ → ロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">1/6 水</span><div><b>ロサンゼルスに着く日。</b>便は組ごとですが、着くのはこの日で全員同じです（日本を昼〜夕に出ると、同じ日の朝に着きます）</div></li>
-        <li><span class="t">1/7 木</span><div>ロサンゼルスで過ごす日。どこへ行くかは組ごとに自由</div></li>
-        <li><span class="t">1/8 金</span><div><b>朝、ロサンゼルス → ラスベガスへ移動。</b>飛行機で1時間10分（車なら約4時間）。この日からラスベガス泊</div></li>
-        <li><span class="t">1/9 土</span><div>ラスベガスで過ごす日。大人はCES（18歳未満は入場できないので、お子さんは別行動）</div></li>
-        <li><span class="t">1/10 日</span><div><b>朝、ラスベガス → セドナへ移動。</b>飛行機でフェニックスまで1時間5分 → レンタカーで2時間。<b>着いたら時計を1時間進めます</b>。この日からセドナ泊</div></li>
-        <li><span class="t">1/11 月</span><div><b>夕方、セドナを出てロサンゼルスへ戻る。</b>フェニックスまで車2時間 → 飛行機1時間25分。<b>時計は1時間戻します</b>。空港そばで1泊</div></li>
-        <li><span class="t">1/12 火</span><div><b>ロサンゼルスから帰国。</b>ここから先は組ごと。日をずらして延泊するのも自由です</div></li>
-      </ul>
-    </article>
-    <p class="section-note"><b>動く日（1/8・1/10・1/11）はみんな同じ日です。</b>ただし便と宿は組ごとに取るので、同じ便に乗る必要はありません。レンタカーを返すのは出発の2時間前、給油してから。</p>
-
-    <h3 class="sub">この組の予定</h3>
-    <div class="info-grid">
-      <div class="info-card"><div class="label">行きの便</div><div class="value" id="v-takuhei-air">未定</div><div class="note">1/6 にロサンゼルス着が基本</div></div>
-      <div class="info-card"><div class="label">ロスの宿</div><div class="value" id="v-takuhei-la">未定</div><div class="note">1/6・1/7</div></div>
-      <div class="info-card"><div class="label">ラスベガスの宿</div><div class="value" id="v-takuhei-lv">未定</div><div class="note">1/8・1/9</div></div>
-      <div class="info-card"><div class="label">セドナの宿</div><div class="value" id="v-takuhei-sedona">未定</div><div class="note">1/10・1/11</div></div>
-      <div class="info-card"><div class="label">帰りの便</div><div class="value" id="v-takuhei-back">未定</div><div class="note">1/12 以降</div></div>
-      <div class="info-card"><div class="label">レンタカー</div><div class="value" id="v-takuhei-car">未定</div><div class="note">セドナは車がないと動けません</div></div>
-      <div class="info-card"><div class="label">CES</div><div class="value" id="v-takuhei-ces">未定</div><div class="note">18歳未満は入場できません</div></div>
-      <div class="info-card"><div class="label">ひとこと</div><div class="value" id="v-takuhei-free">未定</div><div class="note">やりたいこと・困っていること</div></div>
-    </div>
-
-    <h3 class="sub">やること</h3>
-    <p class="section-note"><b class="cd-prog">—</b></p>
-    <div class="checklist">
-      <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="takuhei-g-hotel-lv" data-k="takuhei-g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
-      <label><input type="checkbox" id="takuhei-g-hotel-sedona" data-k="takuhei-g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
-      <label><input type="checkbox" id="takuhei-g-air" data-k="takuhei-g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
-      <label><input type="checkbox" id="takuhei-g-hotel-la" data-k="takuhei-g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
-      <label><input type="checkbox" id="takuhei-g-air-dom" data-k="takuhei-g-air-dom"><em class="due">10月中</em><span>米国内の移動2本（<b>ロス→ラスベガス 1/8</b>／<b>ラスベガス→フェニックス 1/10</b>）。どちらも飛行機で約1時間。車だとロス→ラスベガスは4時間、ラスベガス→セドナは5時間</span></label>
-
-      <div class="cat">11月中</div>
-      <label><input type="checkbox" id="takuhei-g-esta" data-k="takuhei-g-esta"><em class="due">11月中</em><span><b>ESTA</b>を人数分（<a href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a> <b>公式だけ</b>・1人 $40.27）。検索の上位に偽の代行サイトが出ます。<b>お子さんも1人ずつ必要</b>。有効2年</span></label>
-      <label><input type="checkbox" id="takuhei-g-passport" data-k="takuhei-g-passport"><em class="due">11月中</em><span>パスポートの残り有効期間を確認。切れそうなら作り直し（受け取りまで1〜2週間）。<b>お子さんのパスポートは有効期間が5年</b>なので特に注意</span></label>
-      <label><input type="checkbox" id="takuhei-g-hoken" data-k="takuhei-g-hoken"><em class="due">11月中</em><span>海外旅行保険。<b>米国の医療費は日本と桁が違います</b>（盲腸の手術で数百万円）。クレジットカード付帯で足りるか、補償額と家族の扱いを確認</span></label>
-      <label><input type="checkbox" id="takuhei-g-car" data-k="takuhei-g-car"><em class="due">11月中</em><span><b>レンタカー（セドナ用）</b>。フェニックス空港で借りて、セドナまで車2時間。セドナは車がないと動けません。<b>お子さんの年齢によってはチャイルドシートが法律で必要</b>（カリフォルニア・アリゾナは8歳未満または身長145cm未満。借りるとき係員に年齢と身長を伝える）</span></label>
-      <label><input type="checkbox" id="takuhei-g-license" data-k="takuhei-g-license"><em class="due">11月中</em><span>運転する人は<b>国際運転免許証</b>を警察署か運転免許センターで（即日・2,350円）。日本の免許証も一緒に持参</span></label>
-      <label><input type="checkbox" id="takuhei-g-ces" data-k="takuhei-g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは「CESに行く人へ」）</span></label>
-
-      <div class="cat">12月中</div>
-      <label><input type="checkbox" id="takuhei-g-sheet" data-k="takuhei-g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
-      <label><input type="checkbox" id="takuhei-g-line" data-k="takuhei-g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
-      <label><input type="checkbox" id="takuhei-g-sim" data-k="takuhei-g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
-      <label><input type="checkbox" id="takuhei-g-card" data-k="takuhei-g-card"><em class="due">12月中</em><span>クレジットカードの海外利用設定と限度額。<b>ホテルのデポジットで数万円分が一時的に押さえられます</b></span></label>
-      <label><input type="checkbox" id="takuhei-g-clothes" data-k="takuhei-g-clothes"><em class="due">12月中</em><span>防寒の準備。<b>セドナの1月は朝が氷点下</b>・ラスベガスも朝晩3〜5℃。昼は20℃近くなるので脱ぎ着できる形に</span></label>
-
-      <div class="cat">出発の週</div>
-      <label><input type="checkbox" id="takuhei-g-vjw" data-k="takuhei-g-vjw"><em class="due">〜1/5</em><span>Visit Japan Web に帰国の税関申告を登録（任意。成田・羽田が早く済む）</span></label>
-      <label><input type="checkbox" id="takuhei-g-pack" data-k="takuhei-g-pack"><em class="due">〜1/5</em><span>荷造り（「現地情報・持ち物」タブを見ながら）。<b>モバイルバッテリーは預け荷物に入れられません</b>＝機内持込へ</span></label>
-      <label><input type="checkbox" id="takuhei-g-copy" data-k="takuhei-g-copy"><em class="due">〜1/5</em><span>パスポートの顔写真ページ・ESTA承認・保険証券を<b>スマホに画像で保存</b>（紙も1部。失くしたときに必要）</span></label>
-
-      <div class="cat">現地で</div>
-      <label><input type="checkbox" id="takuhei-g-arrive" data-k="takuhei-g-arrive"><em class="due">着いたら</em><span>泊まっている宿の名前を<b>表</b>に書く（決まっていなかった組も）</span></label>
-      <label><input type="checkbox" id="takuhei-g-plan-daily" data-k="takuhei-g-plan-daily"><em class="due">毎晩</em><span>翌日の行き先を表に1行書く</span></label>    </div>
-  </section>
-
-  <!-- ================= 道順 ================= -->
-  <section id="route" role="tabpanel" aria-labelledby="nav-route" hidden>
-    <h2>道順</h2>
-    <p class="section-note">ロス・ラスベガス・セドナの順に回ります。<b>便と宿は組ごとに取る</b>ので、下の日付は目安として使ってください。</p>
-
-    <div class="drive-times">
-      <span>ロス→ラスベガス 飛行機1h10m（車なら4h）</span>
-      <span>ラスベガス→フェニックス 飛行機1h05m</span>
-      <span>フェニックス→セドナ 車2h（185km）</span>
-      <span>セドナ→グランドキャニオン 車2h</span>
-      <span>フェニックス→ロス 飛行機1h25m</span>
-    </div>
-
-    <h3 class="sub">① 日本 → ロサンゼルス（1/6・各組で）</h3>
-    <div class="flight">
-      <div class="flight-head">
-        <span class="flight-no">国際線</span>
-        <span class="meta">1/6（水）／ 約10時間 ／ <span class="status todo">各組で予約</span></span>
-      </div>
-      <div class="route">
-        <div class="pt dep">
-          <div class="time">昼〜夕</div>
-          <div class="city">東京（成田・羽田）</div>
-          <div class="detail">カウンターは出発3時間前から</div>
-        </div>
-        <div class="mid"><div>約10h</div><div class="line"></div><div class="overnight">日付をまたがない</div></div>
-        <div class="pt arr">
-          <div class="time">同じ日の朝</div>
-          <div class="city">ロサンゼルス（LAX）</div>
-          <div class="detail">入国審査に1〜2時間</div>
-        </div>
-      </div>
-      <div class="seats"><span><b>時差は−17時間。</b>日本の夕方に出ると、同じ日の朝にロスに着きます。到着日が1日まるごと使えるので、午後から動けます。田邊家はZIPAIR（成田14:45発 → ロス07:40着）</span></div>
-    </div>
-
-    <h3 class="sub">② ロサンゼルス → ラスベガス（1/8）</h3>
-    <div class="flight">
-      <div class="flight-head">
-        <span class="flight-no">米国内 ①</span>
-        <span class="meta">1/8（金）朝 ／ 約1時間10分 ／ <span class="status todo">各組で予約</span></span>
-      </div>
-      <div class="route">
-        <div class="pt dep">
-          <div class="time">朝</div>
-          <div class="city">ロサンゼルス（LAX／SNA）</div>
-          <div class="detail">アナハイムに泊まるならSNA（車20分）が近い</div>
-        </div>
-        <div class="mid"><div>1h10m</div><div class="line"></div><div>&nbsp;</div></div>
-        <div class="pt arr">
-          <div class="time">—</div>
-          <div class="city">ラスベガス（LAS）</div>
-          <div class="detail">空港からストリップまで車15分</div>
-        </div>
-      </div>
-      <div class="seats"><span>直行便：Southwest ／ Spirit ／ Frontier ／ Delta など。<b>車で行くと約4時間</b>（砂漠の一本道。景色は良いが、CES週は渋滞する）</span></div>
-    </div>
-
-    <h3 class="sub">③ ラスベガス → セドナ（1/10）</h3>
-    <div class="flight">
-      <div class="flight-head">
-        <span class="flight-no">米国内 ②</span>
-        <span class="meta">1/10（日）朝 ／ 飛行機1h05m ＋ 車2h ／ <span class="status todo">各組で予約</span></span>
-      </div>
-      <div class="route">
-        <div class="pt dep">
-          <div class="time">朝</div>
-          <div class="city">ラスベガス（LAS）</div>
-          <div class="detail">9時前後の便だとセドナに昼過ぎ着</div>
-        </div>
-        <div class="mid"><div>1h05m</div><div class="line"></div><div class="overnight">着いたら時計 +1時間</div></div>
-        <div class="pt arr">
-          <div class="time">—</div>
-          <div class="city">フェニックス（PHX）</div>
-          <div class="detail">空港でレンタカー → セドナまで車2時間</div>
-        </div>
-      </div>
-      <div class="seats"><span><b>セドナに空港（商業便）はありません。</b>フェニックスから車2時間が定番です。途中のモンテズマ・キャッスル（断崖の住居跡）に寄れます。<b>ラスベガスから車で行くと約5時間</b></span></div>
-    </div>
-
-    <h3 class="sub">④ セドナ → ロサンゼルス（1/11 夕方）</h3>
-    <div class="flight">
-      <div class="flight-head">
-        <span class="flight-no">米国内 ③</span>
-        <span class="meta">1/11（月）夕方 ／ 約1時間25分 ／ <span class="status todo">各組で予約</span></span>
-      </div>
-      <div class="route">
-        <div class="pt dep">
-          <div class="time">夕方</div>
-          <div class="city">フェニックス（PHX）</div>
-          <div class="detail">レンタカー返却は出発2時間前。給油してから</div>
-        </div>
-        <div class="mid"><div>1h25m</div><div class="line"></div><div class="overnight">着いたら時計 −1時間</div></div>
-        <div class="pt arr">
-          <div class="time">—</div>
-          <div class="city">ロサンゼルス（LAX）</div>
-          <div class="detail">空港そばのホテルで1泊 → 翌朝の帰国便へ</div>
-        </div>
-      </div>
-      <div class="seats"><span>田邊家はこの形（1/11にロスへ戻って空港そばで1泊、1/12 09:40発で帰国）。<b>帰国便の日を各組でずらすのは自由です。</b>フェニックスから直接帰る便もあります</span></div>
-    </div>
-
-    <h3 class="sub">日ごとの流れ（田邊家の予定を基準に）</h3>
-    <p class="section-note">自分の組がどう動くかを決めるときの下敷きです。合わせても、ずらしても大丈夫です。</p>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">1日目</span>
-        <span class="dp-date">1/6（水）</span>
-        <span class="dp-theme">日本発 → 同じ日の朝にロサンゼルス</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">朝</span><div>ロサンゼルス着。入国審査に1〜2時間。レンタカーかUberでホテルへ</div></li>
-        <li><span class="t">午後</span><div>時差ぼけ対策で<b>外に出て光を浴びる</b>。ディズニー・サンタモニカ・ショッピングなど軽めに</div></li>
-        <li><span class="t">20時</span><div>眠くても夕方まで起きて、現地時間の20時に寝る。これで翌日から体が合います</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">2日目</span>
-        <span class="dp-date">1/7（木）</span>
-        <span class="dp-theme">ロサンゼルスで1日</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">終日</span><div>田邊家はディズニーランド。<b>1月の平日は1年でいちばん空いている時期</b></div></li>
-        <li><span class="t">—</span><div>ほかの行き先：ユニバーサル・スタジオ・ハリウッド／グリフィス天文台／サンタモニカ／アウトレット</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">3日目</span>
-        <span class="dp-date">1/8（金）</span>
-        <span class="dp-theme">朝 ラスベガスへ移動 ／ CES初日</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">朝</span><div>飛行機で約1時間10分。<b>早朝便が多いので前夜に精算を済ませておく</b></div></li>
-        <li><span class="t">昼</span><div>ホテルへ。チェックインは15〜16時だが荷物は預けられる</div></li>
-        <li><span class="t">午後</span><div>CESに行く人は会場へ。行かない人はストリップ・ショー・アウトレット</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">4日目</span>
-        <span class="dp-date">1/9（土）</span>
-        <span class="dp-theme">ラスベガスで1日</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">終日</span><div>CES最終日（行く人）。行かない人はグランドキャニオン日帰りツアー・プール・ショー</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">5日目</span>
-        <span class="dp-date">1/10（日）</span>
-        <span class="dp-theme">セドナへ移動（飛行機＋車）</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">朝</span><div>ラスベガス発 → フェニックス着（<b>時計を1時間進める</b>）→ レンタカー</div></li>
-        <li><span class="t">昼</span><div>フェニックスからセドナへ車2時間。途中モンテズマ・キャッスルに寄り道（車から15分）</div></li>
-        <li><span class="t">夕</span><div>セドナ着。<b>夕暮れの赤い岩が一番きれいな時間</b>。空気が乾いていて夜は冷えます</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">6日目</span>
-        <span class="dp-date">1/11（月）</span>
-        <span class="dp-theme">セドナ → 夕方ロスへ戻る</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">午前</span><div>セドナ観光（ホーリークロス教会・カセドラルロック・ジープツアー）</div></li>
-        <li><span class="t">15時</span><div>フェニックスへ戻る（車2時間）。レンタカー返却は飛行機の2時間前まで</div></li>
-        <li><span class="t">夜</span><div>ロサンゼルス着。空港そばのホテルへ</div></li>
-      </ul>
-    </article>
-
-    <article class="dayplan">
-      <div class="dp-head">
-        <span class="dp-num">7日目</span>
-        <span class="dp-date">1/12（火）以降</span>
-        <span class="dp-theme">帰国（組ごとに）</span>
-      </div>
-      <ul class="timeline">
-        <li><span class="t">朝</span><div>田邊家は09:40ロス発 → 1/13（水）14:25 成田着</div></li>
-        <li><span class="t">—</span><div>1/12以降は組ごとに。ロスに数日残る、グランドキャニオンへ回る、そのまま帰る、どれでも</div></li>
-      </ul>
-    </article>
-  </section>
-
-  <!-- ================= 泊まるところ ================= -->
-  <section id="hotel" role="tabpanel" aria-labelledby="nav-hotel" hidden>
-    <h2>泊まるところ</h2>
-    <p class="section-note">宿は<b>組ごとに自分で予約</b>します（まとめて取ると、あとの精算が面倒になるため）。決まったら<b>みんなの予定の表</b>に宿の名前を書いてください。</p>
-
-    <div class="alert">
-      <b>ラスベガスだけは今すぐ押さえてください。</b>1/8・1/9 はCESの会期中で、ラスベガスの全市が満室になります（通常の3〜5倍・1泊$500〜1,000超）。<b>無料キャンセル可の条件なら、人数や日程が未定でも仮押さえできます。</b>
-    </div>
-
-    <h3 class="sub">3か所の相場と選び方（1部屋あたり・推測です）</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">ロサンゼルス（1/6・1/7）</div>
-        <div class="value">$180〜350／泊</div>
-        <div class="note">ディズニーに行くならアナハイム（パーク徒歩圏はもう少し高い）。観光メインならダウンタウン・サンタモニカ。1月は閑散期で取りやすい</div>
-      </div>
-      <div class="info-card">
-        <div class="label">ラスベガス（1/8・1/9）</div>
-        <div class="value">$500〜1,000超／泊</div>
-        <div class="note">CES週。ストリップ沿いが便利。<b>別にリゾートフィーが1泊$40〜60</b>かかります（宿泊料に含まれていない追加料金）。駐車場も1日$20〜25</div>
-      </div>
-      <div class="info-card">
-        <div class="label">セドナ（1/10・1/11）</div>
-        <div class="value">$250〜450／泊</div>
-        <div class="note">小さな町で部屋数が少ない。Uptown（お店が並ぶ中心）か West Sedona（安め・車前提）。<b>赤い岩が見える部屋は値段が上がります</b></div>
-      </div>
-      <div class="info-card">
-        <div class="label">ロス空港そば（1/11）</div>
-        <div class="value">$150〜250／泊</div>
-        <div class="note">翌朝の帰国便に備える1泊。<b>空港シャトルが無料のホテル</b>を選ぶと朝が楽（始発の時刻を予約前に確認）</div>
-      </div>
-    </div>
-
-    <ul class="tip-list">
-      <li><b>米国のホテルは「1部屋いくら」。</b>2人でも1人でも同じ値段のことが多いので、親子2人なら1部屋で十分です。<b>4人だと「2クイーンベッド」の部屋</b>（ベッド2つ）を選べば1部屋で泊まれます。</li>
-      <li><b>リゾートフィーとデポジットに注意。</b>ラスベガスは宿泊料のほかに1泊$40〜60のリゾートフィーがかかり、チェックイン時にカードで$50〜100／日のデポジットを押さえられます（使わなければ数日で戻ります）。</li>
-      <li><b>無料キャンセル可で押さえておく。</b>人数や日程が未定でも、キャンセル無料の条件なら先に部屋を確保できます。CES週のラスベガスは<b>待つほど高くなります</b>。</li>
-      <li><b>セドナは夜が暗い。</b>街灯が少なく（星空を守るため）、夜の運転は慣れが必要です。<b>日が暗くなる前に宿に入る日程</b>にしておくと安心です。</li>
-    </ul>
-  </section>
-
-  <!-- ================= 見どころ ================= -->
-  <section id="spots" role="tabpanel" aria-labelledby="nav-spots" hidden>
-    <h2>見どころ</h2>
-    <p class="section-note">3か所それぞれの回り方をまとめました。<b>料金と所要時間は2026年10月時点の目安（推測です）</b>。行く前に公式サイトで確かめてください。</p>
-
-    <div class="tabs" role="tablist" aria-label="見どころ">
-      <button role="tab" id="tab-sla" aria-selected="true" aria-controls="panel-sla">ロサンゼルス</button>
-      <button role="tab" id="tab-slv" aria-selected="false" aria-controls="panel-slv">ラスベガス</button>
-      <button role="tab" id="tab-ssedona" aria-selected="false" aria-controls="panel-ssedona">セドナ</button>
-    </div>
-
-    <!-- ロサンゼルス -->
-    <div class="tabpanel" id="panel-sla" role="tabpanel" aria-labelledby="tab-sla">
-      <figure class="photo">
-        <img src="img/la-hollywood.jpg" alt="丘の上のハリウッドサイン" width="900" height="460" loading="lazy">
-        <figcaption>ハリウッドサイン — 丘の上。グリフィス天文台からよく見えます</figcaption>
-      </figure>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="label">街の形</div>
-          <div class="value">とにかく広い</div>
-          <div class="note">端から端まで車で1時間以上。電車はほとんど使えません。<b>Uber／Lyftかレンタカー</b>が前提です</div>
-        </div>
-        <div class="info-card">
-          <div class="label">1月の気候</div>
-          <div class="value">9〜20℃・晴れ</div>
-          <div class="note">日中は上着なしでも歩けます。朝晩は冷えるので薄手の上着を1枚</div>
-        </div>
-        <div class="info-card">
-          <div class="label">移動のお金</div>
-          <div class="value">Uber $20〜50</div>
-          <div class="note">空港→アナハイムで$70前後。<b>7人乗りのUber XL</b>なら荷物が多い家族でも1台で済みます</div>
-        </div>
-        <div class="info-card">
-          <div class="label">気をつける場所</div>
-          <div class="value">夜のダウンタウン</div>
-          <div class="note">ハリウッド大通りの東側・スキッドロウ周辺は夜に歩かない。<b>車の中に荷物を置いたままにしない</b>（置き引きが多い）</div>
-        </div>
-      </div>
-
-      <h3 class="sub">テーマパーク</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/la-disneyland.jpg" alt="ディズニーランドの眠れる森の美女の城" width="900" height="675" loading="lazy">
-          <figcaption>ディズニーランド（アナハイム） — 1月の平日は1年でいちばん空く時期</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/la-universal.jpg" alt="ユニバーサル・スタジオ・ハリウッドの入口" width="900" height="673" loading="lazy">
-          <figcaption>ユニバーサル・スタジオ・ハリウッド — 半日でも回れる大きさ</figcaption>
-        </figure>
-      </div>
-
-      <div class="resto">
-        <div class="r-name">ディズニーランド・リゾート（アナハイム）<span class="r-book">日付指定</span></div>
-        <p><b>所要：1パーク1日／2パークなら2日。</b>ディズニーランドと、隣のカリフォルニア・アドベンチャーの2つ。チケットは<b>日付を指定して公式サイトで先に買う形</b>（当日券は売り切れることがあります）。1日券は$110〜210ほどで、空いている日ほど安くなります。<b>1月の平日は1年で最も空く時期</b>で、人気の乗り物でも20〜40分で乗れます。公式アプリを入れると待ち時間・食事の注文・有料の優先乗車（Lightning Lane、1人1日$30前後）が使えます。｜<a href="https://maps.google.com/?q=Disneyland+Resort+Anaheim" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ユニバーサル・スタジオ・ハリウッド</div>
-        <p><b>所要：半日〜1日。</b>本物の撮影所をトラムで回る「スタジオツアー」はここだけ。スーパー・ニンテンドー・ワールドとハリー・ポッターのエリアもあります。ディズニーより小さいので<b>半日でも回れます</b>。1日券$109前後。ダウンタウンから車30分。｜<a href="https://maps.google.com/?q=Universal+Studios+Hollywood" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">街と景色</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/la-griffith.jpg" alt="グリフィス天文台の建物" width="900" height="600" loading="lazy">
-          <figcaption>グリフィス天文台 — 夕方に着いて夜景まで粘るのが一番きれい</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/la-santamonica.jpg" alt="サンタモニカのビーチと桟橋" width="900" height="526" loading="lazy">
-          <figcaption>サンタモニカ・ピア — ルート66の終点。1月でも昼は20℃近く</figcaption>
-        </figure>
-      </div>
-      <figure class="photo">
-        <img src="img/la-getty.png" alt="ゲッティ・センターの建物と庭園" width="900" height="450" loading="lazy">
-        <figcaption>ゲッティ・センター — 丘の上の美術館。入場無料、無料のケーブルカーで登ります</figcaption>
-      </figure>
-
-      <div class="resto">
-        <div class="r-name">グリフィス天文台</div>
-        <p><b>所要：1〜2時間・入場無料。</b>丘の上から街の全景とハリウッドサインが見えます。<b>夕方に着いて、暗くなる夜景まで粘るのが一番きれい</b>。駐車場は有料（1時間$10前後）でとても混むので、少し下に停めて歩く人も多いです。中のプラネタリウムだけ有料（$10前後）。｜<a href="https://maps.google.com/?q=Griffith+Observatory" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">サンタモニカ・ピア／ベニスビーチ</div>
-        <p><b>所要：2〜3時間・無料。</b>海に突き出た桟橋に小さな遊園地（観覧車$10前後）。ルート66の終点の看板が記念写真の定番です。隣のベニスビーチまで海沿いを自転車で30分。<b>1月でも昼は20℃近く</b>なので歩きやすい。｜<a href="https://maps.google.com/?q=Santa+Monica+Pier" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ハリウッド（チャイニーズ・シアター周辺）</div>
-        <p><b>所要：1〜2時間・無料。</b>歩道に星が並ぶウォーク・オブ・フェイムと、手形のある劇場前。<b>見るだけなら1時間で十分</b>です。着ぐるみの人に写真を撮られるとチップを求められるので、撮らないなら目を合わせないこと。｜<a href="https://maps.google.com/?q=TCL+Chinese+Theatre" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ゲッティ・センター</div>
-        <p><b>所要：2〜3時間・入場無料（駐車$25前後）。</b>丘の上の美術館。建物と庭と景色が目当てでも行く価値があります。モネやゴッホもあります。<b>無料のケーブルカーで登ります</b>。｜<a href="https://maps.google.com/?q=Getty+Center" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">買い物と食事</h3>
-      <div class="resto">
-        <div class="r-name">シタデル・アウトレット</div>
-        <p>ダウンタウンから車15分。ロス市内でいちばん行きやすいアウトレット。<b>1月は年明けのセール中</b>。｜<a href="https://maps.google.com/?q=Citadel+Outlets" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">イン・アンド・アウト・バーガー</div>
-        <p>カリフォルニアだけのハンバーガー店。$10前後で食べられて、空港の近くにもあります。<b>到着日の最初の食事はここ、という人が多い</b>定番です。｜<a href="https://maps.google.com/?q=In-N-Out+Burger+Los+Angeles" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">グランド・セントラル・マーケット</div>
-        <p>ダウンタウンの屋内市場。タコス・寿司・中華・カフェが並んでいて、<b>バラバラに好きなものを買って同じ席で食べられます</b>。人数が多いときに便利。｜<a href="https://maps.google.com/?q=Grand+Central+Market+Los+Angeles" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <ul class="tip-list">
-        <li><b>1日に大きな予定は1つ。</b>移動に時間がかかるので、「ディズニー1日」「ユニバ＋天文台」くらいが現実的です。</li>
-        <li><b>駐車場は有料が普通。</b>テーマパーク$35前後、街中$10〜30。停める前に料金表を見てください。</li>
-        <li><b>ガソリンはカリフォルニアが一番高い。</b>ラスベガスやアリゾナのほうが安いので、レンタカーの返却前の給油は空港の手前で。</li>
-      </ul>
-    </div>
-
-    <!-- ラスベガス -->
-    <div class="tabpanel" id="panel-slv" role="tabpanel" aria-labelledby="tab-slv" hidden>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/lv-sphere.jpg" alt="ラスベガスの球体型施設スフィア" width="720" height="540" loading="lazy">
-          <figcaption>Sphere — 外側全面が映像になる球体</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/lv-fremont.jpg" alt="フリーモントストリートの天井の電飾" width="720" height="540" loading="lazy">
-          <figcaption>フリーモントストリート — 天井一面が電飾のアーケード</figcaption>
-        </figure>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="label">街の形</div>
-          <div class="value">6kmの一本道</div>
-          <div class="note">「ストリップ」という大通りに大型ホテルが並びます。<b>隣のホテルまで歩くと15〜20分</b>（建物が大きいので見た目よりずっと遠い）</div>
-        </div>
-        <div class="info-card">
-          <div class="label">移動</div>
-          <div class="value">モノレール／Uber</div>
-          <div class="note">モノレール1回$6前後・1日券$15前後。ホテル間の無料トラムもあります。<b>CES週はUberが高騰し、待ちも長い</b></div>
-        </div>
-        <div class="info-card">
-          <div class="label">お子さん</div>
-          <div class="value">カジノは通るだけ</div>
-          <div class="note"><b>18歳未満はカジノの中で立ち止まれません</b>（通り抜けは可）。ホテルのロビーからエレベーターへは通れるので心配は要りません</div>
-        </div>
-        <div class="info-card">
-          <div class="label">1月の夜</div>
-          <div class="value">3〜5℃</div>
-          <div class="note">昼は14℃でも、夜の外歩きは寒い。<b>噴水やイルミを見るなら上着は必須</b></div>
-        </div>
-      </div>
-
-      <h3 class="sub">歩いて見るもの（ほとんど無料）</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/lv-bellagio.jpg" alt="ベラージオの噴水" width="900" height="643" loading="lazy">
-          <figcaption>ベラージオの噴水 — 夜は15分おき、音楽に合わせて上がります</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/lv-venetian.jpg" alt="ベネチアンの屋内運河とゴンドラ" width="900" height="675" loading="lazy">
-          <figcaption>ベネチアン — 屋内に運河。天井が空に見えるように描かれています</figcaption>
-        </figure>
-      </div>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/lv-highroller.jpg" alt="大観覧車ハイローラー" width="900" height="600" loading="lazy">
-          <figcaption>ハイローラー — 高さ167mの大観覧車。1周30分</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/lv-strip.jpg" alt="夜のラスベガス・ストリップ" width="900" height="590" loading="lazy">
-          <figcaption>ストリップの夜景 — 端から端まで6km。歩くと見た目より遠い</figcaption>
-        </figure>
-      </div>
-
-      <div class="resto">
-        <div class="r-name">ベラージオの噴水</div>
-        <p><b>無料・1回5分。</b>午後から夜まで15〜30分おき（夜は15分おき）。音楽に合わせて水が上がります。<b>ラスベガスで最初に見るならここ</b>。向かいの歩道橋の上からが見やすい。｜<a href="https://maps.google.com/?q=Bellagio+Fountains+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ベネチアンの運河</div>
-        <p><b>無料（ゴンドラは$40前後）。</b>ホテルの中が昼間の空の天井になっていて、運河が流れています。<b>CESのスタートアップ会場（Eureka Park）もこのホテル</b>なので、見学ついでに寄れます。｜<a href="https://maps.google.com/?q=The+Venetian+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">Sphere（スフィア）</div>
-        <p><b>外から見るだけなら無料。</b>高さ112mの球体で、外側全面が巨大な映像になります。中のショーは$100前後から。<b>CES期間は企業の広告が流れるので外観だけでも見もの</b>。｜<a href="https://maps.google.com/?q=Sphere+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ハイローラー（大観覧車）</div>
-        <p><b>1周30分・$25前後。</b>高さ167m。昼は砂漠と山、夜はストリップの夜景。待ち時間はほぼありません。｜<a href="https://maps.google.com/?q=High+Roller+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">フリーモント・ストリート（ダウンタウン）</div>
-        <p><b>無料・所要2時間（ストリップから車15分）。</b>アーケードの天井一面が映像になる古い繁華街。<b>頭上を滑るジップライン（$30前後）</b>が人気。ストリップより安い店が多いので食事にも向きます。｜<a href="https://maps.google.com/?q=Fremont+Street+Experience" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">1日使う（CESに行かない日に）</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/lv-grandcanyon.jpg" alt="グランドキャニオンの谷" width="900" height="596" loading="lazy">
-          <figcaption>グランドキャニオン — バスツアーで往復14時間、飛行機なら半日</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/lv-hooverdam.jpg" alt="フーバーダム" width="900" height="598" loading="lazy">
-          <figcaption>フーバーダム — 車40分。見学だけなら2〜3時間</figcaption>
-        </figure>
-      </div>
-      <figure class="photo">
-        <img src="img/lv-redrock.jpg" alt="レッドロック・キャニオンの赤い岩山" width="900" height="597" loading="lazy">
-        <figcaption>レッドロック・キャニオン — 車30分。1本道を車で回れるので、小さなお子さんでも大丈夫</figcaption>
-      </figure>
-
-      <div class="resto">
-        <div class="r-name">グランドキャニオン 日帰りツアー<span class="r-book">要予約</span></div>
-        <p><b>所要：丸1日（朝6〜7時出発・夜8時前後帰着）・$120〜250前後。</b>近いほうの「ウェスト」は車2.5時間、本家の「サウスリム」は車4.5時間。<b>お子さん連れならウェスト、景色で選ぶならサウスリム</b>。ヘリコプターや小型機の遊覧（$300〜500前後）もあります。<b>1月は雪が残り氷点下</b>なので防寒を。｜<a href="https://maps.google.com/?q=Grand+Canyon+West" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">フーバーダム</div>
-        <p><b>所要：半日・車45分。</b>巨大なダムと橋。見学ツアーは$15〜30前後。グランドキャニオンまでは行けないけれど半日空いた、という日に。｜<a href="https://maps.google.com/?q=Hoover+Dam" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">レッドロック・キャニオン</div>
-        <p><b>所要：半日・車30分・$20前後／台。</b>車で一周できる赤い岩の景勝地。<b>セドナまで行かなくても赤い岩が見られます</b>。入場は時間予約制のことがあるので公式で確認を。｜<a href="https://maps.google.com/?q=Red+Rock+Canyon+National+Conservation+Area" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">お子さん向け</h3>
-      <div class="resto">
-        <div class="r-name">アドベンチャードーム（Circus Circus）</div>
-        <p><b>室内の遊園地・乗り放題$50前後。</b>ガラス屋根の下にジェットコースターや観覧車。寒い日・大人がCESの日の過ごし方に。｜<a href="https://maps.google.com/?q=Adventuredome+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">シャークリーフ水族館（Mandalay Bay）</div>
-        <p><b>所要1〜2時間・$35前後。</b>サメのトンネルがあります。ストリップの南端。｜<a href="https://maps.google.com/?q=Shark+Reef+Aquarium" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">M&amp;M'S ワールド／コカ・コーラストア</div>
-        <p><b>無料で入れます。</b>4階建てのお菓子の店。お土産を買うならここでまとめて。隣同士なので一度に回れます。｜<a href="https://maps.google.com/?q=M%26M%27s+World+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">ショーと食事</h3>
-      <div class="resto">
-        <div class="r-name">シルク・ドゥ・ソレイユ<span class="r-book">要予約</span></div>
-        <p><b>1人$80〜200前後・90分。</b>「O（水のショー）」「KA」「Mystère」「Michael Jackson ONE」など常設が何本もあります。<b>言葉が分からなくても楽しめる</b>のでお子さんにも。<b>CES週は値段が上がり席も埋まる</b>ので、行くなら11月のうちに。｜<a href="https://maps.google.com/?q=Cirque+du+Soleil+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ビュッフェ（Bacchanal など）<span class="r-book">要予約</span></div>
-        <p><b>1人$70〜90前後。</b>ラスベガス名物。<b>人数が多いときはビュッフェがいちばん楽</b>（好きなものを各自で取れる）。並ぶので予約を。｜<a href="https://maps.google.com/?q=Bacchanal+Buffet+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <ul class="tip-list">
-        <li><b>CES週は何もかも高い。</b>ホテルは通常の3〜5倍、ショーもレストランも値上がりします。予約は早いほど安い。</li>
-        <li><b>リゾートフィーと駐車代は別。</b>1泊$40〜60のリゾートフィーがチェックアウト時に足され、駐車場も1日$20〜25かかります。</li>
-        <li><b>歩く距離を甘く見ない。</b>ホテル1軒が端から端まで500mあります。1日1万5千歩は普通。履き慣れた靴で。</li>
-        <li><b>水は部屋に持ち込む。</b>ホテルの置き水は有料のことが多い（1本$6など）。コンビニかドラッグストアでまとめ買いを。</li>
-      </ul>
-    </div>
-
-    <!-- セドナ -->
-    <div class="tabpanel" id="panel-ssedona" role="tabpanel" aria-labelledby="tab-ssedona" hidden>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/sd-cathedral.jpg" alt="セドナのカセドラルロック" width="720" height="540" loading="lazy">
-          <figcaption>カセドラルロック — セドナを代表する赤い岩</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/sd-jeep.jpg" alt="セドナのジープツアーの車" width="720" height="540" loading="lazy">
-          <figcaption>ジープツアー — 岩場をそのまま登っていく</figcaption>
-        </figure>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="label">街の形</div>
-          <div class="value">小さな町・車が必要</div>
-          <div class="note">人口1万人ほど。<b>お店が並ぶUptownと、安い宿が多いWest Sedona</b>に分かれています。歩いて回れるのはUptownだけ</div>
-        </div>
-        <div class="info-card">
-          <div class="label">1月の気候</div>
-          <div class="value">−3〜13℃</div>
-          <div class="note">標高1,350m。<b>朝は氷点下で、たまに雪</b>。昼は日差しで暖かい。日没は17:40ごろ</div>
-        </div>
-        <div class="info-card">
-          <div class="label">駐車</div>
-          <div class="value">Red Rock Pass</div>
-          <div class="note">自然の中の駐車場は<b>1日$5前後のパス</b>が要ります。売り場の機械か店で買えます（教会・町なかは不要）</div>
-        </div>
-        <div class="info-card">
-          <div class="label">行き方</div>
-          <div class="value">フェニックスから車2時間</div>
-          <div class="note">セドナに空港（商業便）はありません。<b>途中のモンテズマ・キャッスルに寄れます</b></div>
-        </div>
-      </div>
-
-      <h3 class="sub">車を降りてすぐ見られるもの</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/sd-chapel.jpg" alt="岩に建つホーリークロス教会" width="900" height="600" loading="lazy">
-          <figcaption>ホーリークロス教会 — 岩にはめ込むように建つ教会。入場無料</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/sd-bellrock.jpg" alt="セドナのベルロック" width="900" height="573" loading="lazy">
-          <figcaption>ベルロック — 駐車場から5分歩くだけで目の前に</figcaption>
-        </figure>
-      </div>
-
-      <div class="resto">
-        <div class="r-name">ホーリークロス教会（Chapel of the Holy Cross）</div>
-        <p><b>所要30分・入場無料。</b>岩の間に建てられた小さな教会。<b>駐車場から坂を5分</b>なので、歩くのが大変な人でも行けます。中から谷が見渡せます。朝のうちが空いています。｜<a href="https://maps.google.com/?q=Chapel+of+the+Holy+Cross+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">エアポート・メサ（夕日）</div>
-        <p><b>所要1時間・駐車$3前後。</b>町を見下ろす高台。<b>セドナで夕日を見るならここ</b>。日没の30分前には着いておくこと（駐車場が小さくすぐ埋まります）。｜<a href="https://maps.google.com/?q=Airport+Mesa+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ベルロック</div>
-        <p><b>所要30分〜・駐車にRed Rock Pass。</b>鐘の形の岩。<b>登らず下から見るだけでも十分きれい</b>。少しだけ登ると町と岩の両方が見えます。｜<a href="https://maps.google.com/?q=Bell+Rock+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">カセドラルロック（展望だけなら）</div>
-        <p>セドナを代表する岩。<b>登るのは急な岩場で片道1時間・かなりきつい</b>ので、お子さん連れは<b>Red Rock Crossing（川越しに岩を見る場所）</b>から眺めるのがおすすめです（駐車$12前後）。｜<a href="https://maps.google.com/?q=Red+Rock+Crossing+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">体験する</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/sd-devilsbridge.jpg" alt="セドナのデビルズブリッジ（岩の橋）" width="900" height="675" loading="lazy">
-          <figcaption>デビルズブリッジ — 岩の橋。往復2〜3時間の歩き</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/sd-oakcreek.jpg" alt="オーク・クリーク・キャニオンの渓谷" width="900" height="675" loading="lazy">
-          <figcaption>オーク・クリーク・キャニオン — 渓谷ぞいのドライブ</figcaption>
-        </figure>
-      </div>
-
-      <div class="resto">
-        <div class="r-name">ジープツアー<span class="r-book">要予約</span></div>
-        <p><b>所要2時間・1人$120前後。</b>四輪駆動で岩場をそのまま登っていきます。<b>セドナでいちばん人気</b>で、冬でも週末は埋まります。小さなお子さんには年齢・身長の制限があるので予約時に確認を。寒いので手袋と帽子を。｜<a href="https://maps.google.com/?q=Pink+Jeep+Tours+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">デビルズブリッジ（岩の橋）</div>
-        <p><b>往復2〜3時間の山歩き。</b>写真で有名な岩の橋。<b>普通の車では入口まで行けません</b>（悪路）。歩く距離が長いので、体力に自信がある人だけ。｜<a href="https://maps.google.com/?q=Devils+Bridge+Trail+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">オーク・クリーク・キャニオン（ドライブ）</div>
-        <p><b>所要1〜2時間・無料。</b>セドナから北へ渓谷沿いの道。途中の展望台で停まりながら走ります。<b>フラッグスタッフ（車45分）へ抜ける道</b>でもあります。冬は路面の凍結に注意。｜<a href="https://maps.google.com/?q=Oak+Creek+Canyon+Scenic+Drive" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">買い物と食事</h3>
-      <div class="resto">
-        <div class="r-name">トラケパケ（Tlaquepaque）</div>
-        <p><b>所要1〜2時間。</b>メキシコの村のような造りのお店の集まり。<b>お土産と食事が一度に済みます</b>。寒い日や雨の日でも歩けるので、予定が崩れたときの受け皿に。｜<a href="https://maps.google.com/?q=Tlaquepaque+Arts+and+Shopping+Village+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">Uptown（中心の通り）</div>
-        <p>土産物屋とレストランが並ぶ数百mの通り。<b>セドナで唯一、歩いて回れる場所</b>です。ジープツアーの受付もここに集まっています。｜<a href="https://maps.google.com/?q=Uptown+Sedona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <h3 class="sub">足を伸ばすなら</h3>
-      <div class="photo-pair">
-        <figure class="photo">
-          <img src="img/sd-montezuma.jpg" alt="断崖の住居跡モンテズマ・キャッスル" width="900" height="531" loading="lazy">
-          <figcaption>モンテズマ・キャッスル — 断崖の住居跡。車45分、フェニックスからの道中にあります</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="img/sd-jerome.jpg" alt="山の斜面の町ジェローム" width="900" height="600" loading="lazy">
-          <figcaption>ジェローム — 山の斜面にはりつく元・鉱山町。車1時間</figcaption>
-        </figure>
-      </div>
-
-      <div class="resto">
-        <div class="r-name">モンテズマ・キャッスル（車45分）</div>
-        <p><b>所要30分・$10前後。</b>断崖に作られた800年前の住居跡。<b>フェニックスからセドナへ向かう途中、高速から15分</b>なので、移動日に寄るのが効率的です。｜<a href="https://maps.google.com/?q=Montezuma+Castle+National+Monument" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">ジェローム（車1時間）</div>
-        <p>山の斜面に張り付いた元鉱山町。<b>ゴーストタウンと呼ばれる古い町並み</b>が残っていて、今は小さなお店とワイナリーが入っています。｜<a href="https://maps.google.com/?q=Jerome+Arizona" target="_blank" rel="noopener">地図</a></p>
-      </div>
-      <div class="resto">
-        <div class="r-name">グランドキャニオン サウスリム（車2時間）</div>
-        <p><b>日帰りなら丸1日。</b>セドナから北へ2時間。<b>ラスベガスから行くより近い</b>ので、セドナ滞在を1日延ばして行く手もあります。1月は雪と氷点下。入園$35／台（7日間有効）。｜<a href="https://maps.google.com/?q=Grand+Canyon+South+Rim" target="_blank" rel="noopener">地図</a></p>
-      </div>
-
-      <ul class="tip-list">
-        <li><b>夜は本当に暗い。</b>星空を守るため街灯がほとんどありません。野生動物も出るので、<b>暗くなる前に宿へ戻る予定</b>にしてください。</li>
-        <li><b>乾燥と標高。</b>標高1,350mで空気が乾いています。水をこまめに飲み、リップと保湿を。普段より疲れやすく感じます。</li>
-        <li><b>岩は滑ります。</b>砂が浮いた赤い岩は、スニーカーでも滑ります。革靴やサンダルでは登らないこと。</li>
-        <li><b>ガソリンは町で入れておく。</b>セドナを出ると次のスタンドまで距離があります。フェニックスへ戻る前に満タンに。</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ================= CESに行く人へ ================= -->
+  <!-- ================= CES 2027 ================= -->
   <section id="ces" role="tabpanel" aria-labelledby="nav-ces" hidden>
-    <h2>CESに行く人へ</h2>
+    <h2>CES 2027</h2>
     <p class="section-note">ラスベガスに泊まる1/8・1/9 は、世界最大のテクノロジー見本市「CES 2027」の会期中です（<b>会期は1月6日〜9日</b>・2026年10月25日にCES公式サイトで確認）。行く人だけ読んでください。</p>
 
     <figure class="photo">
@@ -1392,7 +401,7 @@
     </figure>
 
     <div class="alert">
-      <b>18歳未満は入場できません。</b>CESは業界関係者限定の見本市で、家族の同伴も認められていません（当日の例外もなし）。<b>お子さんは会場に入れない</b>ので、1/8・1/9 は「大人がCES／お子さんは別行動」になります。お子さん連れの組は、グランドキャニオン日帰りツアー・アドベンチャードーム・水族館などに充ててください（「見どころ」のラスベガスのタブ）。
+      <b>18歳未満は入場できません。</b>CESは業界関係者限定の見本市で、家族の同伴も認められていません（当日の例外もなし）。<b>お子さんは会場に入れない</b>ので、1/8・1/9 は「大人がCES／お子さんは別行動」になります。お子さん連れの組は、グランドキャニオン日帰りツアー・アドベンチャードーム・水族館などに充ててください（上の「ラスベガス」のタブ）。
     </div>
 
     <h3 class="sub">どれくらいの規模か</h3>
@@ -1508,6 +517,663 @@
     </ul>
 
     <p class="section-note">田邊さんがCESにいるのは<b>1/8と1/9の2日間</b>です。一緒に回りたい人は、この2日に合わせてください。</p>
+  </section>
+
+  <!-- ================= ロサンゼルス ================= -->
+  <section id="la" role="tabpanel" aria-labelledby="nav-la" hidden>
+    <h2>ロサンゼルス</h2>
+    <p class="section-note"><b>1/6（水）・1/7（木）</b>の2日間と、帰る前の<b>1/11（月）の夜</b>。どこへ行くかは組ごとに自由です。料金と所要時間は2026年10月時点の目安（推測です）。行く前に公式サイトで確かめてください。</p>
+
+    <figure class="photo">
+      <img src="img/la-hollywood.jpg" alt="丘の上のハリウッドサイン" width="900" height="460" loading="lazy">
+      <figcaption>ハリウッドサイン — 丘の上。グリフィス天文台からよく見えます</figcaption>
+    </figure>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">街の形</div>
+        <div class="value">とにかく広い</div>
+        <div class="note">端から端まで車で1時間以上。電車はほとんど使えません。<b>Uber／Lyftかレンタカー</b>が前提です</div>
+      </div>
+      <div class="info-card">
+        <div class="label">1月の気候</div>
+        <div class="value">9〜20℃・晴れ</div>
+        <div class="note">日中は上着なしでも歩けます。朝晩は冷えるので薄手の上着を1枚</div>
+      </div>
+      <div class="info-card">
+        <div class="label">移動のお金</div>
+        <div class="value">Uber $20〜50</div>
+        <div class="note">空港→アナハイムで$70前後。<b>7人乗りのUber XL</b>なら荷物が多い家族でも1台で済みます</div>
+      </div>
+      <div class="info-card">
+        <div class="label">気をつける場所</div>
+        <div class="value">夜のダウンタウン</div>
+        <div class="note">ハリウッド大通りの東側・スキッドロウ周辺は夜に歩かない。<b>車の中に荷物を置いたままにしない</b>（置き引きが多い）</div>
+      </div>
+    </div>
+
+    <h3 class="sub">行き方（日本から）</h3>
+    <h3 class="sub">① 日本 → ロサンゼルス（1/6・各組で）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">国際線</span>
+        <span class="meta">1/6（水）／ 約10時間 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">昼〜夕</div>
+          <div class="city">東京（成田・羽田）</div>
+          <div class="detail">カウンターは出発3時間前から</div>
+        </div>
+        <div class="mid"><div>約10h</div><div class="line"></div><div class="overnight">日付をまたがない</div></div>
+        <div class="pt arr">
+          <div class="time">同じ日の朝</div>
+          <div class="city">ロサンゼルス（LAX）</div>
+          <div class="detail">入国審査に1〜2時間</div>
+        </div>
+      </div>
+      <div class="seats"><span><b>時差は−17時間。</b>日本の夕方に出ると、同じ日の朝にロスに着きます。到着日が1日まるごと使えるので、午後から動けます。田邊家はZIPAIR（成田14:45発 → ロス07:40着）</span></div>
+    </div>
+
+    <h3 class="sub">泊まるところ</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">ロサンゼルス（1/6・1/7）</div>
+        <div class="value">$180〜350／泊</div>
+        <div class="note">ディズニーに行くならアナハイム（パーク徒歩圏はもう少し高い）。観光メインならダウンタウン・サンタモニカ。1月は閑散期で取りやすい</div>
+      </div>
+      <div class="info-card">
+        <div class="label">ロス空港そば（1/11）</div>
+        <div class="value">$150〜250／泊</div>
+        <div class="note">翌朝の帰国便に備える1泊。<b>空港シャトルが無料のホテル</b>を選ぶと朝が楽（始発の時刻を予約前に確認）</div>
+      </div>
+    </div>
+
+    <h3 class="sub">テーマパーク</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/la-disneyland.jpg" alt="ディズニーランドの眠れる森の美女の城" width="900" height="675" loading="lazy">
+        <figcaption>ディズニーランド（アナハイム） — 1月の平日は1年でいちばん空く時期</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/la-universal.jpg" alt="ユニバーサル・スタジオ・ハリウッドの入口" width="900" height="673" loading="lazy">
+        <figcaption>ユニバーサル・スタジオ・ハリウッド — 半日でも回れる大きさ</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ディズニーランド・リゾート（アナハイム）<span class="r-book">日付指定</span></div>
+      <p><b>所要：1パーク1日／2パークなら2日。</b>ディズニーランドと、隣のカリフォルニア・アドベンチャーの2つ。チケットは<b>日付を指定して公式サイトで先に買う形</b>（当日券は売り切れることがあります）。1日券は$110〜210ほどで、空いている日ほど安くなります。<b>1月の平日は1年で最も空く時期</b>で、人気の乗り物でも20〜40分で乗れます。公式アプリを入れると待ち時間・食事の注文・有料の優先乗車（Lightning Lane、1人1日$30前後）が使えます。｜<a href="https://maps.google.com/?q=Disneyland+Resort+Anaheim" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ユニバーサル・スタジオ・ハリウッド</div>
+      <p><b>所要：半日〜1日。</b>本物の撮影所をトラムで回る「スタジオツアー」はここだけ。スーパー・ニンテンドー・ワールドとハリー・ポッターのエリアもあります。ディズニーより小さいので<b>半日でも回れます</b>。1日券$109前後。ダウンタウンから車30分。｜<a href="https://maps.google.com/?q=Universal+Studios+Hollywood" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">街と景色</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/la-griffith.jpg" alt="グリフィス天文台の建物" width="900" height="600" loading="lazy">
+        <figcaption>グリフィス天文台 — 夕方に着いて夜景まで粘るのが一番きれい</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/la-santamonica.jpg" alt="サンタモニカのビーチと桟橋" width="900" height="526" loading="lazy">
+        <figcaption>サンタモニカ・ピア — ルート66の終点。1月でも昼は20℃近く</figcaption>
+      </figure>
+    </div>
+    <figure class="photo">
+      <img src="img/la-getty.png" alt="ゲッティ・センターの建物と庭園" width="900" height="450" loading="lazy">
+      <figcaption>ゲッティ・センター — 丘の上の美術館。入場無料、無料のケーブルカーで登ります</figcaption>
+    </figure>
+
+    <div class="resto">
+      <div class="r-name">グリフィス天文台</div>
+      <p><b>所要：1〜2時間・入場無料。</b>丘の上から街の全景とハリウッドサインが見えます。<b>夕方に着いて、暗くなる夜景まで粘るのが一番きれい</b>。駐車場は有料（1時間$10前後）でとても混むので、少し下に停めて歩く人も多いです。中のプラネタリウムだけ有料（$10前後）。｜<a href="https://maps.google.com/?q=Griffith+Observatory" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">サンタモニカ・ピア／ベニスビーチ</div>
+      <p><b>所要：2〜3時間・無料。</b>海に突き出た桟橋に小さな遊園地（観覧車$10前後）。ルート66の終点の看板が記念写真の定番です。隣のベニスビーチまで海沿いを自転車で30分。<b>1月でも昼は20℃近く</b>なので歩きやすい。｜<a href="https://maps.google.com/?q=Santa+Monica+Pier" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ハリウッド（チャイニーズ・シアター周辺）</div>
+      <p><b>所要：1〜2時間・無料。</b>歩道に星が並ぶウォーク・オブ・フェイムと、手形のある劇場前。<b>見るだけなら1時間で十分</b>です。着ぐるみの人に写真を撮られるとチップを求められるので、撮らないなら目を合わせないこと。｜<a href="https://maps.google.com/?q=TCL+Chinese+Theatre" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ゲッティ・センター</div>
+      <p><b>所要：2〜3時間・入場無料（駐車$25前後）。</b>丘の上の美術館。建物と庭と景色が目当てでも行く価値があります。モネやゴッホもあります。<b>無料のケーブルカーで登ります</b>。｜<a href="https://maps.google.com/?q=Getty+Center" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">買い物と食事</h3>
+    <div class="resto">
+      <div class="r-name">シタデル・アウトレット</div>
+      <p>ダウンタウンから車15分。ロス市内でいちばん行きやすいアウトレット。<b>1月は年明けのセール中</b>。｜<a href="https://maps.google.com/?q=Citadel+Outlets" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">イン・アンド・アウト・バーガー</div>
+      <p>カリフォルニアだけのハンバーガー店。$10前後で食べられて、空港の近くにもあります。<b>到着日の最初の食事はここ、という人が多い</b>定番です。｜<a href="https://maps.google.com/?q=In-N-Out+Burger+Los+Angeles" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">グランド・セントラル・マーケット</div>
+      <p>ダウンタウンの屋内市場。タコス・寿司・中華・カフェが並んでいて、<b>バラバラに好きなものを買って同じ席で食べられます</b>。人数が多いときに便利。｜<a href="https://maps.google.com/?q=Grand+Central+Market+Los+Angeles" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>1日に大きな予定は1つ。</b>移動に時間がかかるので、「ディズニー1日」「ユニバ＋天文台」くらいが現実的です。</li>
+      <li><b>駐車場は有料が普通。</b>テーマパーク$35前後、街中$10〜30。停める前に料金表を見てください。</li>
+      <li><b>ガソリンはカリフォルニアが一番高い。</b>ラスベガスやアリゾナのほうが安いので、レンタカーの返却前の給油は空港の手前で。</li>
+    </ul>
+    <h3 class="sub">この街での流れ（例）</h3>
+    <p class="section-note">自分の組の動きを決めるときの下敷きです。合わせても、ずらしても大丈夫です。</p>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">1日目</span>
+        <span class="dp-date">1/6（水）</span>
+        <span class="dp-theme">日本発 → 同じ日の朝にロサンゼルス</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>ロサンゼルス着。入国審査に1〜2時間。レンタカーかUberでホテルへ</div></li>
+        <li><span class="t">午後</span><div>時差ぼけ対策で<b>外に出て光を浴びる</b>。ディズニー・サンタモニカ・ショッピングなど軽めに</div></li>
+        <li><span class="t">20時</span><div>眠くても夕方まで起きて、現地時間の20時に寝る。これで翌日から体が合います</div></li>
+      </ul>
+    </article>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">2日目</span>
+        <span class="dp-date">1/7（木）</span>
+        <span class="dp-theme">ロサンゼルスで1日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">終日</span><div>田邊家はディズニーランド。<b>1月の平日は1年でいちばん空いている時期</b></div></li>
+        <li><span class="t">—</span><div>ほかの行き先：ユニバーサル・スタジオ・ハリウッド／グリフィス天文台／サンタモニカ／アウトレット</div></li>
+      </ul>
+    </article>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">7日目</span>
+        <span class="dp-date">1/12（火）以降</span>
+        <span class="dp-theme">帰国（組ごとに）</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>田邊家は09:40ロス発 → 1/13（水）14:25 成田着</div></li>
+        <li><span class="t">—</span><div>1/12以降は組ごとに。ロスに数日残る、グランドキャニオンへ回る、そのまま帰る、どれでも</div></li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ================= ラスベガス ================= -->
+  <section id="lv" role="tabpanel" aria-labelledby="nav-lv" hidden>
+    <h2>ラスベガス</h2>
+    <p class="section-note"><b>1/8（金）・1/9（土）</b>の2日間。<b>CESの会期中</b>なので、大人はCES、お子さんは別行動になります（18歳未満は入場できません）。料金と所要時間は2026年10月時点の目安（推測です）。行く前に公式サイトで確かめてください。</p>
+
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/lv-sphere.jpg" alt="ラスベガスの球体型施設スフィア" width="720" height="540" loading="lazy">
+        <figcaption>Sphere — 外側全面が映像になる球体</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/lv-fremont.jpg" alt="フリーモントストリートの天井の電飾" width="720" height="540" loading="lazy">
+        <figcaption>フリーモントストリート — 天井一面が電飾のアーケード</figcaption>
+      </figure>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">街の形</div>
+        <div class="value">6kmの一本道</div>
+        <div class="note">「ストリップ」という大通りに大型ホテルが並びます。<b>隣のホテルまで歩くと15〜20分</b>（建物が大きいので見た目よりずっと遠い）</div>
+      </div>
+      <div class="info-card">
+        <div class="label">移動</div>
+        <div class="value">モノレール／Uber</div>
+        <div class="note">モノレール1回$6前後・1日券$15前後。ホテル間の無料トラムもあります。<b>CES週はUberが高騰し、待ちも長い</b></div>
+      </div>
+      <div class="info-card">
+        <div class="label">お子さん</div>
+        <div class="value">カジノは通るだけ</div>
+        <div class="note"><b>18歳未満はカジノの中で立ち止まれません</b>（通り抜けは可）。ホテルのロビーからエレベーターへは通れるので心配は要りません</div>
+      </div>
+      <div class="info-card">
+        <div class="label">1月の夜</div>
+        <div class="value">3〜5℃</div>
+        <div class="note">昼は14℃でも、夜の外歩きは寒い。<b>噴水やイルミを見るなら上着は必須</b></div>
+      </div>
+    </div>
+
+    <h3 class="sub">行き方（ロサンゼルスから）</h3>
+    <h3 class="sub">② ロサンゼルス → ラスベガス（1/8）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ①</span>
+        <span class="meta">1/8（金）朝 ／ 約1時間10分 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">朝</div>
+          <div class="city">ロサンゼルス（LAX／SNA）</div>
+          <div class="detail">アナハイムに泊まるならSNA（車20分）が近い</div>
+        </div>
+        <div class="mid"><div>1h10m</div><div class="line"></div><div>&nbsp;</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">ラスベガス（LAS）</div>
+          <div class="detail">空港からストリップまで車15分</div>
+        </div>
+      </div>
+      <div class="seats"><span>直行便：Southwest ／ Spirit ／ Frontier ／ Delta など。<b>車で行くと約4時間</b>（砂漠の一本道。景色は良いが、CES週は渋滞する）</span></div>
+    </div>
+
+    <h3 class="sub">泊まるところ</h3>
+    <div class="alert">
+      <b>ラスベガスだけは今すぐ押さえてください。</b>1/8・1/9 はCESの会期中で、ラスベガスの全市が満室になります（通常の3〜5倍・1泊$500〜1,000超）。<b>無料キャンセル可の条件なら、人数や日程が未定でも仮押さえできます。</b>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">ラスベガス（1/8・1/9）</div>
+        <div class="value">$500〜1,000超／泊</div>
+        <div class="note">CES週。ストリップ沿いが便利。<b>別にリゾートフィーが1泊$40〜60</b>かかります（宿泊料に含まれていない追加料金）。駐車場も1日$20〜25</div>
+      </div>
+    </div>
+
+    <h3 class="sub">歩いて見るもの（ほとんど無料）</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/lv-bellagio.jpg" alt="ベラージオの噴水" width="900" height="643" loading="lazy">
+        <figcaption>ベラージオの噴水 — 夜は15分おき、音楽に合わせて上がります</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/lv-venetian.jpg" alt="ベネチアンの屋内運河とゴンドラ" width="900" height="675" loading="lazy">
+        <figcaption>ベネチアン — 屋内に運河。天井が空に見えるように描かれています</figcaption>
+      </figure>
+    </div>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/lv-highroller.jpg" alt="大観覧車ハイローラー" width="900" height="600" loading="lazy">
+        <figcaption>ハイローラー — 高さ167mの大観覧車。1周30分</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/lv-strip.jpg" alt="夜のラスベガス・ストリップ" width="900" height="590" loading="lazy">
+        <figcaption>ストリップの夜景 — 端から端まで6km。歩くと見た目より遠い</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ベラージオの噴水</div>
+      <p><b>無料・1回5分。</b>午後から夜まで15〜30分おき（夜は15分おき）。音楽に合わせて水が上がります。<b>ラスベガスで最初に見るならここ</b>。向かいの歩道橋の上からが見やすい。｜<a href="https://maps.google.com/?q=Bellagio+Fountains+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ベネチアンの運河</div>
+      <p><b>無料（ゴンドラは$40前後）。</b>ホテルの中が昼間の空の天井になっていて、運河が流れています。<b>CESのスタートアップ会場（Eureka Park）もこのホテル</b>なので、見学ついでに寄れます。｜<a href="https://maps.google.com/?q=The+Venetian+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">Sphere（スフィア）</div>
+      <p><b>外から見るだけなら無料。</b>高さ112mの球体で、外側全面が巨大な映像になります。中のショーは$100前後から。<b>CES期間は企業の広告が流れるので外観だけでも見もの</b>。｜<a href="https://maps.google.com/?q=Sphere+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ハイローラー（大観覧車）</div>
+      <p><b>1周30分・$25前後。</b>高さ167m。昼は砂漠と山、夜はストリップの夜景。待ち時間はほぼありません。｜<a href="https://maps.google.com/?q=High+Roller+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">フリーモント・ストリート（ダウンタウン）</div>
+      <p><b>無料・所要2時間（ストリップから車15分）。</b>アーケードの天井一面が映像になる古い繁華街。<b>頭上を滑るジップライン（$30前後）</b>が人気。ストリップより安い店が多いので食事にも向きます。｜<a href="https://maps.google.com/?q=Fremont+Street+Experience" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">1日使う（CESに行かない日に）</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/lv-grandcanyon.jpg" alt="グランドキャニオンの谷" width="900" height="596" loading="lazy">
+        <figcaption>グランドキャニオン — バスツアーで往復14時間、飛行機なら半日</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/lv-hooverdam.jpg" alt="フーバーダム" width="900" height="598" loading="lazy">
+        <figcaption>フーバーダム — 車40分。見学だけなら2〜3時間</figcaption>
+      </figure>
+    </div>
+    <figure class="photo">
+      <img src="img/lv-redrock.jpg" alt="レッドロック・キャニオンの赤い岩山" width="900" height="597" loading="lazy">
+      <figcaption>レッドロック・キャニオン — 車30分。1本道を車で回れるので、小さなお子さんでも大丈夫</figcaption>
+    </figure>
+
+    <div class="resto">
+      <div class="r-name">グランドキャニオン 日帰りツアー<span class="r-book">要予約</span></div>
+      <p><b>所要：丸1日（朝6〜7時出発・夜8時前後帰着）・$120〜250前後。</b>近いほうの「ウェスト」は車2.5時間、本家の「サウスリム」は車4.5時間。<b>お子さん連れならウェスト、景色で選ぶならサウスリム</b>。ヘリコプターや小型機の遊覧（$300〜500前後）もあります。<b>1月は雪が残り氷点下</b>なので防寒を。｜<a href="https://maps.google.com/?q=Grand+Canyon+West" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">フーバーダム</div>
+      <p><b>所要：半日・車45分。</b>巨大なダムと橋。見学ツアーは$15〜30前後。グランドキャニオンまでは行けないけれど半日空いた、という日に。｜<a href="https://maps.google.com/?q=Hoover+Dam" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">レッドロック・キャニオン</div>
+      <p><b>所要：半日・車30分・$20前後／台。</b>車で一周できる赤い岩の景勝地。<b>セドナまで行かなくても赤い岩が見られます</b>。入場は時間予約制のことがあるので公式で確認を。｜<a href="https://maps.google.com/?q=Red+Rock+Canyon+National+Conservation+Area" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">お子さん向け</h3>
+    <div class="resto">
+      <div class="r-name">アドベンチャードーム（Circus Circus）</div>
+      <p><b>室内の遊園地・乗り放題$50前後。</b>ガラス屋根の下にジェットコースターや観覧車。寒い日・大人がCESの日の過ごし方に。｜<a href="https://maps.google.com/?q=Adventuredome+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">シャークリーフ水族館（Mandalay Bay）</div>
+      <p><b>所要1〜2時間・$35前後。</b>サメのトンネルがあります。ストリップの南端。｜<a href="https://maps.google.com/?q=Shark+Reef+Aquarium" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">M&amp;M'S ワールド／コカ・コーラストア</div>
+      <p><b>無料で入れます。</b>4階建てのお菓子の店。お土産を買うならここでまとめて。隣同士なので一度に回れます。｜<a href="https://maps.google.com/?q=M%26M%27s+World+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">ショーと食事</h3>
+    <div class="resto">
+      <div class="r-name">シルク・ドゥ・ソレイユ<span class="r-book">要予約</span></div>
+      <p><b>1人$80〜200前後・90分。</b>「O（水のショー）」「KA」「Mystère」「Michael Jackson ONE」など常設が何本もあります。<b>言葉が分からなくても楽しめる</b>のでお子さんにも。<b>CES週は値段が上がり席も埋まる</b>ので、行くなら11月のうちに。｜<a href="https://maps.google.com/?q=Cirque+du+Soleil+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ビュッフェ（Bacchanal など）<span class="r-book">要予約</span></div>
+      <p><b>1人$70〜90前後。</b>ラスベガス名物。<b>人数が多いときはビュッフェがいちばん楽</b>（好きなものを各自で取れる）。並ぶので予約を。｜<a href="https://maps.google.com/?q=Bacchanal+Buffet+Las+Vegas" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>CES週は何もかも高い。</b>ホテルは通常の3〜5倍、ショーもレストランも値上がりします。予約は早いほど安い。</li>
+      <li><b>リゾートフィーと駐車代は別。</b>1泊$40〜60のリゾートフィーがチェックアウト時に足され、駐車場も1日$20〜25かかります。</li>
+      <li><b>歩く距離を甘く見ない。</b>ホテル1軒が端から端まで500mあります。1日1万5千歩は普通。履き慣れた靴で。</li>
+      <li><b>水は部屋に持ち込む。</b>ホテルの置き水は有料のことが多い（1本$6など）。コンビニかドラッグストアでまとめ買いを。</li>
+    </ul>
+    <h3 class="sub">この街での流れ（例）</h3>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">3日目</span>
+        <span class="dp-date">1/8（金）</span>
+        <span class="dp-theme">朝 ラスベガスへ移動 ／ CES初日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>飛行機で約1時間10分。<b>早朝便が多いので前夜に精算を済ませておく</b></div></li>
+        <li><span class="t">昼</span><div>ホテルへ。チェックインは15〜16時だが荷物は預けられる</div></li>
+        <li><span class="t">午後</span><div>CESに行く人は会場へ。行かない人はストリップ・ショー・アウトレット</div></li>
+      </ul>
+    </article>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">4日目</span>
+        <span class="dp-date">1/9（土）</span>
+        <span class="dp-theme">ラスベガスで1日</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">終日</span><div>CES最終日（行く人）。行かない人はグランドキャニオン日帰りツアー・プール・ショー</div></li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ================= セドナ ================= -->
+  <section id="sedona" role="tabpanel" aria-labelledby="nav-sedona" hidden>
+    <h2>セドナ</h2>
+    <p class="section-note"><b>1/10（日）・1/11（月）</b>の2日間。<b>車がないと動けない町</b>です（レンタカーはフェニックス空港で借ります）。料金と所要時間は2026年10月時点の目安（推測です）。行く前に公式サイトで確かめてください。</p>
+
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/sd-cathedral.jpg" alt="セドナのカセドラルロック" width="720" height="540" loading="lazy">
+        <figcaption>カセドラルロック — セドナを代表する赤い岩</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/sd-jeep.jpg" alt="セドナのジープツアーの車" width="720" height="540" loading="lazy">
+        <figcaption>ジープツアー — 岩場をそのまま登っていく</figcaption>
+      </figure>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">街の形</div>
+        <div class="value">小さな町・車が必要</div>
+        <div class="note">人口1万人ほど。<b>お店が並ぶUptownと、安い宿が多いWest Sedona</b>に分かれています。歩いて回れるのはUptownだけ</div>
+      </div>
+      <div class="info-card">
+        <div class="label">1月の気候</div>
+        <div class="value">−3〜13℃</div>
+        <div class="note">標高1,350m。<b>朝は氷点下で、たまに雪</b>。昼は日差しで暖かい。日没は17:40ごろ</div>
+      </div>
+      <div class="info-card">
+        <div class="label">駐車</div>
+        <div class="value">Red Rock Pass</div>
+        <div class="note">自然の中の駐車場は<b>1日$5前後のパス</b>が要ります。売り場の機械か店で買えます（教会・町なかは不要）</div>
+      </div>
+      <div class="info-card">
+        <div class="label">行き方</div>
+        <div class="value">フェニックスから車2時間</div>
+        <div class="note">セドナに空港（商業便）はありません。<b>途中のモンテズマ・キャッスルに寄れます</b></div>
+      </div>
+    </div>
+
+    <h3 class="sub">行き方（ラスベガスから）</h3>
+    <h3 class="sub">③ ラスベガス → セドナ（1/10）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ②</span>
+        <span class="meta">1/10（日）朝 ／ 飛行機1h05m ＋ 車2h ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">朝</div>
+          <div class="city">ラスベガス（LAS）</div>
+          <div class="detail">9時前後の便だとセドナに昼過ぎ着</div>
+        </div>
+        <div class="mid"><div>1h05m</div><div class="line"></div><div class="overnight">着いたら時計 +1時間</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">フェニックス（PHX）</div>
+          <div class="detail">空港でレンタカー → セドナまで車2時間</div>
+        </div>
+      </div>
+      <div class="seats"><span><b>セドナに空港（商業便）はありません。</b>フェニックスから車2時間が定番です。途中のモンテズマ・キャッスル（断崖の住居跡）に寄れます。<b>ラスベガスから車で行くと約5時間</b></span></div>
+    </div>
+
+    <h3 class="sub">帰り方（1/11 夕方・ロサンゼルスへ戻る）</h3>
+    <h3 class="sub">④ セドナ → ロサンゼルス（1/11 夕方）</h3>
+    <div class="flight">
+      <div class="flight-head">
+        <span class="flight-no">米国内 ③</span>
+        <span class="meta">1/11（月）夕方 ／ 約1時間25分 ／ <span class="status todo">各組で予約</span></span>
+      </div>
+      <div class="route">
+        <div class="pt dep">
+          <div class="time">夕方</div>
+          <div class="city">フェニックス（PHX）</div>
+          <div class="detail">レンタカー返却は出発2時間前。給油してから</div>
+        </div>
+        <div class="mid"><div>1h25m</div><div class="line"></div><div class="overnight">着いたら時計 −1時間</div></div>
+        <div class="pt arr">
+          <div class="time">—</div>
+          <div class="city">ロサンゼルス（LAX）</div>
+          <div class="detail">空港そばのホテルで1泊 → 翌朝の帰国便へ</div>
+        </div>
+      </div>
+      <div class="seats"><span>田邊家はこの形（1/11にロスへ戻って空港そばで1泊、1/12 09:40発で帰国）。<b>帰国便の日を各組でずらすのは自由です。</b>フェニックスから直接帰る便もあります</span></div>
+    </div>
+
+    <h3 class="sub">泊まるところ</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">セドナ（1/10・1/11）</div>
+        <div class="value">$250〜450／泊</div>
+        <div class="note">小さな町で部屋数が少ない。Uptown（お店が並ぶ中心）か West Sedona（安め・車前提）。<b>赤い岩が見える部屋は値段が上がります</b></div>
+      </div>
+    </div>
+
+    <h3 class="sub">車を降りてすぐ見られるもの</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/sd-chapel.jpg" alt="岩に建つホーリークロス教会" width="900" height="600" loading="lazy">
+        <figcaption>ホーリークロス教会 — 岩にはめ込むように建つ教会。入場無料</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/sd-bellrock.jpg" alt="セドナのベルロック" width="900" height="573" loading="lazy">
+        <figcaption>ベルロック — 駐車場から5分歩くだけで目の前に</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ホーリークロス教会（Chapel of the Holy Cross）</div>
+      <p><b>所要30分・入場無料。</b>岩の間に建てられた小さな教会。<b>駐車場から坂を5分</b>なので、歩くのが大変な人でも行けます。中から谷が見渡せます。朝のうちが空いています。｜<a href="https://maps.google.com/?q=Chapel+of+the+Holy+Cross+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">エアポート・メサ（夕日）</div>
+      <p><b>所要1時間・駐車$3前後。</b>町を見下ろす高台。<b>セドナで夕日を見るならここ</b>。日没の30分前には着いておくこと（駐車場が小さくすぐ埋まります）。｜<a href="https://maps.google.com/?q=Airport+Mesa+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ベルロック</div>
+      <p><b>所要30分〜・駐車にRed Rock Pass。</b>鐘の形の岩。<b>登らず下から見るだけでも十分きれい</b>。少しだけ登ると町と岩の両方が見えます。｜<a href="https://maps.google.com/?q=Bell+Rock+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">カセドラルロック（展望だけなら）</div>
+      <p>セドナを代表する岩。<b>登るのは急な岩場で片道1時間・かなりきつい</b>ので、お子さん連れは<b>Red Rock Crossing（川越しに岩を見る場所）</b>から眺めるのがおすすめです（駐車$12前後）。｜<a href="https://maps.google.com/?q=Red+Rock+Crossing+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">体験する</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/sd-devilsbridge.jpg" alt="セドナのデビルズブリッジ（岩の橋）" width="900" height="675" loading="lazy">
+        <figcaption>デビルズブリッジ — 岩の橋。往復2〜3時間の歩き</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/sd-oakcreek.jpg" alt="オーク・クリーク・キャニオンの渓谷" width="900" height="675" loading="lazy">
+        <figcaption>オーク・クリーク・キャニオン — 渓谷ぞいのドライブ</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">ジープツアー<span class="r-book">要予約</span></div>
+      <p><b>所要2時間・1人$120前後。</b>四輪駆動で岩場をそのまま登っていきます。<b>セドナでいちばん人気</b>で、冬でも週末は埋まります。小さなお子さんには年齢・身長の制限があるので予約時に確認を。寒いので手袋と帽子を。｜<a href="https://maps.google.com/?q=Pink+Jeep+Tours+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">デビルズブリッジ（岩の橋）</div>
+      <p><b>往復2〜3時間の山歩き。</b>写真で有名な岩の橋。<b>普通の車では入口まで行けません</b>（悪路）。歩く距離が長いので、体力に自信がある人だけ。｜<a href="https://maps.google.com/?q=Devils+Bridge+Trail+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">オーク・クリーク・キャニオン（ドライブ）</div>
+      <p><b>所要1〜2時間・無料。</b>セドナから北へ渓谷沿いの道。途中の展望台で停まりながら走ります。<b>フラッグスタッフ（車45分）へ抜ける道</b>でもあります。冬は路面の凍結に注意。｜<a href="https://maps.google.com/?q=Oak+Creek+Canyon+Scenic+Drive" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">買い物と食事</h3>
+    <div class="resto">
+      <div class="r-name">トラケパケ（Tlaquepaque）</div>
+      <p><b>所要1〜2時間。</b>メキシコの村のような造りのお店の集まり。<b>お土産と食事が一度に済みます</b>。寒い日や雨の日でも歩けるので、予定が崩れたときの受け皿に。｜<a href="https://maps.google.com/?q=Tlaquepaque+Arts+and+Shopping+Village+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">Uptown（中心の通り）</div>
+      <p>土産物屋とレストランが並ぶ数百mの通り。<b>セドナで唯一、歩いて回れる場所</b>です。ジープツアーの受付もここに集まっています。｜<a href="https://maps.google.com/?q=Uptown+Sedona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <h3 class="sub">足を伸ばすなら</h3>
+    <div class="photo-pair">
+      <figure class="photo">
+        <img src="img/sd-montezuma.jpg" alt="断崖の住居跡モンテズマ・キャッスル" width="900" height="531" loading="lazy">
+        <figcaption>モンテズマ・キャッスル — 断崖の住居跡。車45分、フェニックスからの道中にあります</figcaption>
+      </figure>
+      <figure class="photo">
+        <img src="img/sd-jerome.jpg" alt="山の斜面の町ジェローム" width="900" height="600" loading="lazy">
+        <figcaption>ジェローム — 山の斜面にはりつく元・鉱山町。車1時間</figcaption>
+      </figure>
+    </div>
+
+    <div class="resto">
+      <div class="r-name">モンテズマ・キャッスル（車45分）</div>
+      <p><b>所要30分・$10前後。</b>断崖に作られた800年前の住居跡。<b>フェニックスからセドナへ向かう途中、高速から15分</b>なので、移動日に寄るのが効率的です。｜<a href="https://maps.google.com/?q=Montezuma+Castle+National+Monument" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">ジェローム（車1時間）</div>
+      <p>山の斜面に張り付いた元鉱山町。<b>ゴーストタウンと呼ばれる古い町並み</b>が残っていて、今は小さなお店とワイナリーが入っています。｜<a href="https://maps.google.com/?q=Jerome+Arizona" target="_blank" rel="noopener">地図</a></p>
+    </div>
+    <div class="resto">
+      <div class="r-name">グランドキャニオン サウスリム（車2時間）</div>
+      <p><b>日帰りなら丸1日。</b>セドナから北へ2時間。<b>ラスベガスから行くより近い</b>ので、セドナ滞在を1日延ばして行く手もあります。1月は雪と氷点下。入園$35／台（7日間有効）。｜<a href="https://maps.google.com/?q=Grand+Canyon+South+Rim" target="_blank" rel="noopener">地図</a></p>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>夜は本当に暗い。</b>星空を守るため街灯がほとんどありません。野生動物も出るので、<b>暗くなる前に宿へ戻る予定</b>にしてください。</li>
+      <li><b>乾燥と標高。</b>標高1,350mで空気が乾いています。水をこまめに飲み、リップと保湿を。普段より疲れやすく感じます。</li>
+      <li><b>岩は滑ります。</b>砂が浮いた赤い岩は、スニーカーでも滑ります。革靴やサンダルでは登らないこと。</li>
+      <li><b>ガソリンは町で入れておく。</b>セドナを出ると次のスタンドまで距離があります。フェニックスへ戻る前に満タンに。</li>
+    </ul>
+    <h3 class="sub">この街での流れ（例）</h3>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">5日目</span>
+        <span class="dp-date">1/10（日）</span>
+        <span class="dp-theme">セドナへ移動（飛行機＋車）</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">朝</span><div>ラスベガス発 → フェニックス着（<b>時計を1時間進める</b>）→ レンタカー</div></li>
+        <li><span class="t">昼</span><div>フェニックスからセドナへ車2時間。途中モンテズマ・キャッスルに寄り道（車から15分）</div></li>
+        <li><span class="t">夕</span><div>セドナ着。<b>夕暮れの赤い岩が一番きれいな時間</b>。空気が乾いていて夜は冷えます</div></li>
+      </ul>
+    </article>
+    <article class="dayplan">
+      <div class="dp-head">
+        <span class="dp-num">6日目</span>
+        <span class="dp-date">1/11（月）</span>
+        <span class="dp-theme">セドナ → 夕方ロスへ戻る</span>
+      </div>
+      <ul class="timeline">
+        <li><span class="t">午前</span><div>セドナ観光（ホーリークロス教会・カセドラルロック・ジープツアー）</div></li>
+        <li><span class="t">15時</span><div>フェニックスへ戻る（車2時間）。レンタカー返却は飛行機の2時間前まで</div></li>
+        <li><span class="t">夜</span><div>ロサンゼルス着。空港そばのホテルへ</div></li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- ================= みんなの予定 ================= -->
+  <section id="plan" role="tabpanel" aria-labelledby="nav-plan" hidden>
+    <h2>みんなの予定</h2>
+    <p class="section-note">5組の便・宿・レンタカーを1枚にまとめた表です。<b>共有の表に書くと、ここに出ます</b>（出るまで数分かかります）。同じ宿の組がいれば朝ごはんを一緒に、同じ日にCESなら会場で待ち合わせ、というように<b>合わせたいときだけ合わせられます</b>。</p>
+    <p class="scroll-hint">表は横にスクロールできます（左端の組の名前は固定されます）。</p>
+    <div class="whotable">
+      <table>
+        <thead>
+          <tr><th>組</th><th>行きの便</th><th>ロスの宿</th><th>ラスベガスの宿</th><th>セドナの宿</th><th>帰りの便</th><th>レンタカー</th><th>CES</th><th>ひとこと</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>岩田さん<span class="ppl">2名・親子で</span></th><td id="v-iwata-air" class="na">未定</td><td id="v-iwata-la" class="na">未定</td><td id="v-iwata-lv" class="na">未定</td><td id="v-iwata-sedona" class="na">未定</td><td id="v-iwata-back" class="na">未定</td><td id="v-iwata-car" class="na">未定</td><td id="v-iwata-ces" class="na">未定</td><td id="v-iwata-free" class="na">未定</td></tr>
+          <tr><th>田邊家<span class="ppl">4名</span></th><td id="v-tanabe-air">ZG024 1/6 14:45 成田発 → 07:40 ロス着</td><td id="v-tanabe-la">アナハイム</td><td id="v-tanabe-lv" class="na">未定</td><td id="v-tanabe-sedona" class="na">未定</td><td id="v-tanabe-back">1/12 09:40 ロス発 → 1/13 14:25 成田着</td><td id="v-tanabe-car">セドナで（PHXで借りてPHXで返す）</td><td id="v-tanabe-ces">田邊さんのみ 1/8・1/9</td><td id="v-tanabe-free">ディズニー2日 → CES2日 → セドナ2日</td></tr>
+          <tr><th>石原さん<span class="ppl">2名・親子で</span></th><td id="v-ishihara-air" class="na">未定</td><td id="v-ishihara-la" class="na">未定</td><td id="v-ishihara-lv" class="na">未定</td><td id="v-ishihara-sedona" class="na">未定</td><td id="v-ishihara-back" class="na">未定</td><td id="v-ishihara-car" class="na">未定</td><td id="v-ishihara-ces" class="na">未定</td><td id="v-ishihara-free" class="na">未定</td></tr>
+          <tr><th>川野さん<span class="ppl">2名</span></th><td id="v-kawano-air" class="na">未定</td><td id="v-kawano-la" class="na">未定</td><td id="v-kawano-lv" class="na">未定</td><td id="v-kawano-sedona" class="na">未定</td><td id="v-kawano-back" class="na">未定</td><td id="v-kawano-car" class="na">未定</td><td id="v-kawano-ces" class="na">未定</td><td id="v-kawano-free" class="na">未定</td></tr>
+          <tr><th>たくへいさん<span class="ppl">1名</span></th><td id="v-takuhei-air" class="na">未定</td><td id="v-takuhei-la" class="na">未定</td><td id="v-takuhei-lv" class="na">未定</td><td id="v-takuhei-sedona" class="na">未定</td><td id="v-takuhei-back" class="na">未定</td><td id="v-takuhei-car" class="na">未定</td><td id="v-takuhei-ces" class="na">未定</td><td id="v-takuhei-free" class="na">未定</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">「この日ここに行く」も書けます</h3>
+    <p class="section-note">共有の表のもう1枚のタブに、日ごとの行き先を書く欄があります。「1/7はディズニー」「1/9はグランドキャニオン」のように1行書いておくと、同じ日に同じ所へ行く組が分かります（こちらはこのページには出ないので、表で見てください）。</p>
+
+    <h3 class="sub">書き込む表</h3>
+    <div class="booking">
+      <span>共有の表</span>
+      <span class="code">Googleスプレッドシート</span>
+      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
+    </div>
+    <div style="height:16px"></div>
+
+    <div class="alert">
+      <b>表のリンクはLINEのグループに貼ってあります。</b>このしおりは誰でも見られるページなので、表のリンクはここには載せていません（リンクがそのまま出ていると、知らない人にも書き込めてしまうため）。見つからないときは幹事に聞いてください。
+    </div>
+
+    <h3 class="sub">2つのタブがあります</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="label">みんなの予定</div>
+        <div class="value">便・宿・連絡先</div>
+        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
+      </div>
+      <div class="info-card">
+        <div class="label">この日ここに行く</div>
+        <div class="value">日ごとの行き先</div>
+        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行書きます</div>
+      </div>
+    </div>
+
+    <ul class="tip-list">
+      <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
+      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
+      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
+      <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
+      <li><b>毎晩、翌日の行き先を1行。</b>決まっていない日は空けたままで構いません。</li>
+    </ul>
   </section>
 
   <!-- ================= 現地情報・持ち物 ================= -->
@@ -1749,7 +1415,7 @@
         COLS.forEach(function (c, n) {
           var el = document.getElementById("v-" + key + "-" + c);
           var val = (row[n + 1] || "").trim();
-          if (el && val) el.textContent = val;
+          if (el && val) { el.textContent = val; el.classList.remove("na"); }
         });
       });
     }).catch(function () {});
