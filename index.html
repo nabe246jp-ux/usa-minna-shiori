@@ -424,7 +424,7 @@
       <label><input type="checkbox" id="g-ces" data-k="g-ces"><em class="due key">★11/30(月)</em><span><b>CESに行く人だけ</b>：登録は<b>11/30までなら$149、12/1から$349</b>（2026年9月時点の表示・申込前に<a href="https://www.ces.tech/" target="_blank" rel="noopener">公式</a>で再確認）。<b>18歳未満は入れません</b>（詳しくは上の「CES 2027」のタブ）</span></label>
 
       <div class="cat">12月中</div>
-      <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・米国で使う連絡先）。これがあると「今どこにいる？」を聞かずに済みます</span></label>
+      <label><input type="checkbox" id="g-sheet" data-k="g-sheet"><em class="due">12月上旬</em><span><b><b>みんなの予定の表</b>に自分の組の行を書く</b>（便・宿・レンタカー）。<b>このページのマスを押すと、その場で書けます</b>。これがあると「今どこにいる？」を聞かずに済みます</span></label>
       <label><input type="checkbox" id="g-meshi" data-k="g-meshi"><em class="due">12月上旬</em><span><b>みんなでごはん</b>（1/6 の夜・1/8 の夜）に出るかどうか、LINEのグループで返事する。<b>人数が決まらないとお店が予約できません</b></span></label>
       <label><input type="checkbox" id="g-line" data-k="g-line"><em class="due">12月上旬</em><span>LINEのグループに入る。米国で使う電話番号を共有</span></label>
       <label><input type="checkbox" id="g-sim" data-k="g-sim"><em class="due">12月中</em><span>eSIM（Ubigi／Airalo など）か海外ローミング。地図と連絡に必須。<b>お子さんのスマホの分も</b></span></label>
@@ -1271,36 +1271,11 @@
       </table>
     </div>
 
-    <h3 class="sub">パソコンでまとめて書きたいとき</h3>
-    <div class="booking">
-      <span>共有の表</span>
-      <span class="code">Googleスプレッドシート</span>
-      <span style="color: var(--sub); font-size: 13px;">リンクを知っている人が書き込めます</span>
-    </div>
-    <div style="height:16px"></div>
-
-    <div class="alert">
-      <b>表のリンクはLINEのグループに貼ってあります。</b>このしおりは誰でも見られるページなので、表のリンクはここには載せていません（リンクがそのまま出ていると、知らない人にも書き込めてしまうため）。見つからないときは幹事に聞いてください。
-    </div>
-
-    <h3 class="sub">2つのタブがあります</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">みんなの予定</div>
-        <div class="value">便・宿・連絡先</div>
-        <div class="note">行きと帰りの便、ロス・ラスベガス・セドナで泊まる宿、米国で使う電話番号。自分の組の行だけ書いてください</div>
-      </div>
-      <div class="info-card">
-        <div class="label">この日ここに行く</div>
-        <div class="value">日ごとの行き先</div>
-        <div class="note">「1/7はディズニー」「1/9はグランドキャニオン」のように1行書きます</div>
-      </div>
-    </div>
-
+    <h3 class="sub">書くときのお願い</h3>
     <ul class="tip-list">
       <li><b>空欄のままでも大丈夫。</b>決まったところから少しずつ埋めてください。全部決まってから書く必要はありません。</li>
-      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。間違って消したときは、スプレッドシートの「編集履歴」から戻せます。</li>
-      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>リンクを知っている人なら誰でも読めます。必要なことは、宿の名前と連絡先だけです。</li>
+      <li><b>ほかの組の行は書き換えないでください。</b>見るのは自由です。書いた記録はすべて残るので、間違って消してしまっても幹事が戻せます。</li>
+      <li><b>パスポート番号・生年月日・カード番号・ESTAの番号は書かないでください。</b>このページは誰でも見られます。書いてほしいのは、便名と宿の名前だけです。</li>
       <li><b>着いたら宿の名前を書く。</b>これだけで「今どこ？」のやり取りがなくなります。</li>
       <li><b>毎晩、翌日の行き先を1行。</b>決まっていない日は空けたままで構いません。</li>
     </ul>
@@ -1644,7 +1619,7 @@
         .catch(function () {
           cell.classList.remove("saving");
           canWrite = false;
-          toast("いまは書き込めません。共有の表から書いてください", true);
+          toast("いまは書き込めません。少し時間をおくか、幹事に連絡してください", true);
         });
     }
 
