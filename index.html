@@ -223,6 +223,16 @@
   .whotable tbody tr:last-child th, .whotable tbody tr:last-child td { border-bottom: none; }
   .whotable .ppl { display: block; font-size: 11px; font-weight: 400; color: var(--sub); }
   .whotable td.na { color: var(--sub); }
+  .hoteltable { margin: 0 -24px 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .hoteltable table { border-collapse: separate; border-spacing: 0; min-width: 660px; width: 100%; font-size: 13px; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; box-shadow: var(--shadow); }
+  .hoteltable th, .hoteltable td { padding: 11px 13px; text-align: left; vertical-align: top; line-height: 1.7; border-bottom: 1px solid var(--panel-edge); }
+  .hoteltable thead th { font-size: 11px; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; white-space: nowrap; background: var(--accent-soft); }
+  .hoteltable tbody th { font-weight: 700; }
+  .hoteltable tbody tr:last-child th, .hoteltable tbody tr:last-child td { border-bottom: none; }
+  .hoteltable td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .hoteltable .rv { display: block; font-size: 11px; font-weight: 400; color: var(--sub); }
+  .hoteltable tr.pick th, .hoteltable tr.pick td { background: #F4F9F5; }
+  .hoteltable .tag { display: inline-block; font-size: 10px; font-weight: 400; letter-spacing: 0.08em; border: 1px solid var(--forest); color: var(--forest); border-radius: 3px; padding: 0 6px; margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
   .daytable { scroll-snap-type: x mandatory; }
   .daytable table { min-width: 1738px; }
   .daytable th, .daytable td { padding: 10px 11px; }
@@ -382,7 +392,7 @@
 
 
     <div class="alert">
-      <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガスの全市が満室になります。<b>値段も通常の3〜5倍</b>（1泊$500〜1,000超）。ここだけは、ほかより先に押さえてください。<br><b style="color: var(--forest)">田邊家は「パリス・ラスベガス」を押さえました（1/8・1/9）。</b>同じホテルにすると、朝の集合も夜のごはんも楽になります。くわしくは上の「ラスベガス」のタブ。
+      <b>いちばん急ぐのはラスベガスの宿です。</b>1/8・1/9 は世界最大の見本市（CES）の会期中で、ラスベガス中のホテルが順に埋まっていきます。<b>いまなら2泊で4.5万円から残っています</b>（大人2名・税こみ。2026-10-27 調べ）が、待つほど上がります。ここだけは、ほかより先に押さえてください。<br><b style="color: var(--forest)">田邊家は「パリス・ラスベガス」を押さえました（1/8・1/9）。</b>同じホテルにすると、朝の集合も夜のごはんも楽になります。くわしくは上の「ラスベガス」のタブ。
     </div>
 
     <h3 class="sub">宿の取り方（共通）</h3>
@@ -409,7 +419,7 @@
       <p class="section-note">チェックはこの端末に保存されます（他の人には見えません）。<b class="cd-prog">—</b></p>
     <div class="checklist">
       <div class="cat">今すぐ（宿と便）</div>
-      <label><input type="checkbox" id="g-hotel-lv" data-k="g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で満室・3〜5倍。<b>無料キャンセル可の条件でまず押さえる</b>。ストリップ沿いなら移動が楽</span></label>
+      <label><input type="checkbox" id="g-hotel-lv" data-k="g-hotel-lv"><em class="due urgent">今すぐ</em><span><b>ラスベガスの宿（1/8・1/9）</b>。CES週で埋まっていきます。<b>無料キャンセル可の条件でまず押さえる</b>。<b>モノレールの駅があるホテル</b>だとCES会場が楽（ラスベガスのタブに一覧）</span></label>
       <label><input type="checkbox" id="g-hotel-sedona" data-k="g-hotel-sedona"><em class="due urgent">今すぐ</em><span><b>セドナの宿（1/10・1/11）</b>。小さな町で部屋数が少なく、冬でも週末は埋まる</span></label>
       <label><input type="checkbox" id="g-air" data-k="g-air"><em class="due urgent">今すぐ</em><span><b>行きの便</b>（1/6 にロサンゼルス着が基本）。日本発は成田・羽田から直行便あり。早いほど安い</span></label>
       <label><input type="checkbox" id="g-hotel-la" data-k="g-hotel-la"><em class="due">10月中</em><span>ロスの宿（1/6・1/7）。ディズニーに行くならアナハイム、観光メインならダウンタウンかサンタモニカ</span></label>
@@ -657,19 +667,97 @@
       <div class="seats"><span><b>帰りは行きより1〜2時間長くかかります</b>（向かい風のため。行き約10時間・帰り約11〜12時間）。田邊家は 1/12 09:40 ロス発 → 1/13 14:25 成田着。<b>帰国日を組ごとにずらすのは自由です。</b>ロスに数日残る、フェニックスから直接帰る、どちらもできます</span></div>
     </div>
 
-    <h3 class="sub">泊まるところ</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">ロサンゼルス（1/6・1/7）</div>
-        <div class="value">$180〜350／泊</div>
-        <div class="note">ディズニーに行くならアナハイム（パーク徒歩圏はもう少し高い）。観光メインならダウンタウン・サンタモニカ。1月は閑散期で取りやすい</div>
-      </div>
-      <div class="info-card">
-        <div class="label">ロス空港そば（1/11）</div>
-        <div class="value">$150〜250／泊</div>
-        <div class="note">翌朝の帰国便に備える1泊。<b>空港シャトルが無料のホテル</b>を選ぶと朝が楽（始発の時刻を予約前に確認）</div>
-      </div>
+    <h3 class="sub">泊まるところ①　1/6・1/7 の2泊</h3>
+    <div class="alert">
+      <b>いちばん大事なのは「どのあたりに泊まるか」です。</b>ロサンゼルスは東京23区がまるごと入る広さで、<b>場所を外すと毎日2〜4時間を車の中で過ごすことになります</b>。先にエリアを決めて、そのあと宿を選んでください。
     </div>
+
+    <h3 class="sub">まずエリアを選ぶ</h3>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>エリア</th><th>どんな所</th><th>ディズニーまで</th><th>1/8朝の空港まで</th><th>2泊の目安</th></tr></thead>
+        <tbody>
+          <tr><th>サンタモニカ</th><td>海沿いの観光地。桟橋・遊歩道・買い物通りが全部歩いて回れます。店と食事に困りません</td><td class="num">車1時間25分<span class="rv">夕方の帰りは最大3時間</span></td><td class="num">LAX 20〜30分</td><td class="num">9.7〜24万円</td></tr>
+          <tr><th>ハンティントンビーチ</th><td>長い砂浜とサーフィンの町。人が少なく落ち着いています。海沿いに商店街が1本</td><td class="num">車29分</td><td class="num">SNA 16分<span class="rv">LAX 42分</span></td><td class="num">6.4〜13.6万円</td></tr>
+          <tr><th>アナハイム</th><td>ディズニーの門前町。海はありません。宿が安く、パークまで歩ける所もあります</td><td class="num">徒歩〜車5分</td><td class="num">LAX 1〜1.5時間</td><td class="num">4.6〜11.3万円</td></tr>
+          <tr><th>ダウンタウン</th><td>高層ビル街。美術館や球場はありますが、夜は人が減ります。<b>今回はおすすめしません</b></td><td class="num">車45分〜1.5時間</td><td class="num">LAX 30〜50分</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note">ディズニーまでの時間は、Googleマップで平日の朝8時半発・夕方4時半発を指定して実際に調べた数字です。値段は大人2名・1室・税こみの2泊合計（2026-10-27 Booking.com 調べ）。<b>SNA＝ジョン・ウェイン空港</b>。ラスベガス行きはLAXからでもSNAからでも出ています。</p>
+
+    <h3 class="sub">サンタモニカの候補</h3>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>2泊・税こみ</th><th>部屋・ひとこと</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>ショア ホテル<span class="tag">安い</span></th><td class="num">8.7<span class="rv">1,201件</span></td><td class="num">約97,600円</td><td>クイーン2台。桟橋の真ん前で、4人でも入れる部屋</td></tr>
+          <tr><th>ヒルトン サンタモニカ</th><td class="num">8.4<span class="rv">2,413件</span></td><td class="num">約97,700円</td><td>キングのスイート。海までは歩いて15分ほど</td></tr>
+          <tr><th>ザ ピアサイド</th><td class="num">8.7<span class="rv">2,077件</span></td><td class="num">約102,900円</td><td>キング＋ソファベッド。名前のとおり桟橋のそば</td></tr>
+          <tr><th>ハントリー サンタモニカ ビーチ</th><td class="num">8.9<span class="rv">3,720件</span></td><td class="num">約106,900円</td><td>クイーン2台。最上階のレストランからの眺めが有名</td></tr>
+          <tr><th>シャターズ オン ザ ビーチ</th><td class="num">9.3<span class="rv">410件</span></td><td class="num">約237,100円</td><td>砂浜に建つ最高級ホテル。記念日向き</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">ハンティントンビーチの候補</h3>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>2泊・税こみ</th><th>部屋・ひとこと</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>オーシャン サーフ イン＆スイーツ<span class="tag">安い</span></th><td class="num">8.7<span class="rv">914件</span></td><td class="num">約64,500円</td><td>キング1台。小さな宿で、商店街まで歩けます</td></tr>
+          <tr class="pick"><th>スプリングヒル スイーツ<span class="tag">4人向き</span></th><td class="num">8.9<span class="rv">224件</span></td><td class="num">約70,500円</td><td><b>ベッド3台</b>（クイーン2＋ソファ）・朝食つき。4人の組はここ</td></tr>
+          <tr><th>ウォーターフロント ビーチ リゾート（ヒルトン）</th><td class="num">8.7<span class="rv">359件</span></td><td class="num">約112,300円</td><td>海の目の前のリゾート。プールあり</td></tr>
+          <tr><th>キンプトン ショアブレイク</th><td class="num">8.9<span class="rv">460件</span></td><td class="num">約129,300円</td><td>桟橋のとなり。若い人に人気の作り</td></tr>
+          <tr><th>ハイアット リージェンシー リゾート＆スパ</th><td class="num">8.8<span class="rv">567件</span></td><td class="num">約135,900円</td><td>クイーン2台。プールが充実していて家族向け</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">アナハイムの候補</h3>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>2泊・税こみ</th><th>部屋・ひとこと</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>サンコースト（ヒルトン系）<span class="tag">最安</span></th><td class="num">8.8<span class="rv">401件</span></td><td class="num">約46,800円</td><td>キング1台。きれいで安い</td></tr>
+          <tr><th>ホテル インディゴ アナハイム</th><td class="num">8.7<span class="rv">452件</span></td><td class="num">約62,000円</td><td>クイーン2台。デザインの凝ったホテル</td></tr>
+          <tr class="pick"><th>シェラトン パーク</th><td class="num">8.8<span class="rv">962件</span></td><td class="num">約62,800円</td><td>クイーン2台。<b>パークまで歩けます</b></td></tr>
+          <tr><th>ヒルトン アナハイム</th><td class="num">8.3<span class="rv">1,377件</span></td><td class="num">約64,700円</td><td>大型ホテル。コンベンションセンターのとなり</td></tr>
+          <tr><th>ヒルトン ガーデン イン</th><td class="num">9.0<span class="rv">432件</span></td><td class="num">約65,600円</td><td>クイーン2台・眺望あり。点数が高い</td></tr>
+          <tr><th>ウェスティン アナハイム</th><td class="num">8.9<span class="rv">679件</span></td><td class="num">約112,700円</td><td>新しく、パークの正面。4人でも広い</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">泊まるところ②　1/11 の1泊（帰国の前の夜・空港そば）</h3>
+    <div class="alert">
+      <b>セドナから戻って、翌朝そのまま帰国する夜です。</b>観光はしないので、<b>空港に近いこと</b>と<b>無料の送迎バスがあること</b>だけで選んで大丈夫です。値段もぐっと下がります。
+    </div>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>1泊・税こみ</th><th>空港まで</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>シェラトン ゲートウェイ LA<span class="tag">安い</span></th><td class="num">8.2<span class="rv">3,932件</span></td><td class="num">約25,500円</td><td class="num">1.1km</td></tr>
+          <tr><th>ヒルトン ロサンゼルス エアポート</th><td class="num">8.1<span class="rv">4,765件</span></td><td class="num">約25,500円</td><td class="num">1.9km</td></tr>
+          <tr><th>ハイアット プレイス LAX</th><td class="num">8.2<span class="rv">1,994件</span></td><td class="num">約26,400円</td><td class="num">1.3km</td></tr>
+          <tr><th>ハイアット ハウス LAX</th><td class="num">8.3<span class="rv">2,039件</span></td><td class="num">約26,400円</td><td class="num">1.3km</td></tr>
+          <tr><th>コートヤード LAX</th><td class="num">8.0<span class="rv">1,733件</span></td><td class="num">約29,000円</td><td class="num">0.8km<span class="rv">いちばん近い</span></td></tr>
+          <tr><th>ウェスティン LAX</th><td class="num">8.5<span class="rv">2,039件</span></td><td class="num">約31,500円</td><td class="num">2.6km</td></tr>
+          <tr class="pick"><th>ハイアットリージェンシー LAX<span class="tag">点数高い</span></th><td class="num">8.5<span class="rv">5,931件</span></td><td class="num">約31,900円</td><td class="num">空港のすぐそば</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note">大人2名・1室・税こみの1泊（2026-10-27 Booking.com 調べ）。<b>空港そばのホテルは24時間の無料送迎バスを出しているところが多い</b>ですが、全部ではありません。予約ページで「空港シャトル」の記載と<b>始発の時刻</b>を確かめてください。</p>
+
+    <h3 class="sub">治安と、知っておくと安心なこと</h3>
+    <ul class="tip-list">
+      <li><b>観光地はふつうに歩けます。</b>サンタモニカ、ハンティントンビーチ、ディズニー周辺は夜でも人通りがあります。<b>避けたほうがよいのはダウンタウンの東側</b>（スキッドロウと呼ばれる一帯）で、ここは昼でも近づかないのがふつうです。</li>
+      <li><b>いちばん多いのは車上荒らしです。</b>レンタカーの中に、カバン・買い物袋・上着を<b>見えるところへ置かない</b>。短い時間でも必ずトランクへ。これだけでほとんど防げます。</li>
+      <li><b>暗くなってからの浜辺の駐車場は使わない。</b>日が落ちると人がいなくなります。</li>
+      <li><b>駐車場代が高い。</b>観光地のホテルは駐車場が1日$30〜50別にかかることがあります（サンタモニカはとくに高い）。車を借りる組は、宿を決める前に確かめてください。</li>
+      <li><b>チップ。</b>レストランは会計の18〜20%（伝票に候補が印刷されています）。ホテルの荷物は1個$2〜3、部屋の清掃は1泊$3〜5を枕元に置きます。</li>
+      <li><b>1月のロスは、朝晩10℃前後・昼は19〜20℃。</b>日本の11月くらいです。<b>薄手の上着</b>が1枚あれば足ります。海沿いは風が冷たいので、夕方の散歩には羽織るものを。</li>
+    </ul>
 
     <h3 class="sub">テーマパーク</h3>
     <div class="photo-pair">
@@ -845,7 +933,7 @@
 
     <h3 class="sub">泊まるところ</h3>
     <div class="alert">
-      <b>ラスベガスだけは今すぐ押さえてください。</b>1/8・1/9 はCESの会期中で、ラスベガスの全市が満室になります（通常の3〜5倍・1泊$500〜1,000超）。<b>無料キャンセル可の条件なら、人数や日程が未定でも仮押さえできます。</b>
+      <b>ラスベガスだけは今すぐ押さえてください。</b>1/8・1/9 はCESの会期中で、世界中から10万人以上が集まります。<b>無料キャンセル可の条件なら、人数や日程が決まっていなくても仮押さえできます。</b>まず押さえて、あとから考えるのが正解です。
     </div>
 
     <div class="info-grid">
@@ -856,8 +944,8 @@
       </div>
       <div class="info-card">
         <div class="label">ラスベガス（1/8・1/9）</div>
-        <div class="value">$500〜1,000超／泊</div>
-        <div class="note">CES週。ストリップ沿いが便利。<b>別にリゾートフィーが1泊$40〜60</b>かかります（宿泊料に含まれていない追加料金）。駐車場も1日$20〜25</div>
+        <div class="value">2泊 4.5万〜17万円</div>
+        <div class="note">大人2名・1室・税とリゾート料金こみの2泊合計（2026-10-27 調べ）。<b>安いホテルはまだ残っています。</b>駐車場代だけは別で1日$20〜25</div>
       </div>
     </div>
 
@@ -873,10 +961,50 @@
     </div>
 
     <ul class="tip-list">
-      <li><b>実際にいくらだったか（田邊家・1部屋・2泊）。</b>部屋代 US$1,296 ＋ 税13.4% US$173 ＝ US$1,469。これに<b>リゾート料金が1泊US$55</b>（2泊でUS$110）足されて、<b>合計 US$1,579（約25万円）</b>。朝食つき。<b>前払いなし・支払いは現地でホテルに</b>。これがCES週の相場です。</li>
+      <li><b>実際にいくらだったか（田邊家・1部屋・2泊）。</b>部屋代 US$1,296 ＋ 税13.4% US$173 ＝ US$1,469。これに<b>リゾート料金が1泊US$55</b>（2泊でUS$110）足されて、<b>合計 US$1,579（約25万円）</b>。朝食つき。<b>前払いなし・支払いは現地でホテルに</b>。4人用のスイートなので高めです。2人なら下の表のとおり、もっと安く泊まれます。</li>
       <li><b>無料キャンセルの期限は 2027年1月5日の23:59まで</b>（現地時間）。それを過ぎると1泊分の取消料がかかります。<b>先に押さえて、あとでゆっくり決める</b>ができるということです。</li>
       <li><b>部屋の中の写真は<a href="https://www.caesars.com/paris-las-vegas/rooms" target="_blank" rel="noopener">公式サイトの客室ページ</a>で見られます。</b>ホテルが撮った写真はここに載せられないので、リンクにしています。</li>
       <li><b>エキストラベッドは頼めません。</b>パリスは「ベビーベッド・エキストラベッド利用不可」。3人以上で泊まるなら、<b>ベッドが2つある「2クイーンベッド」の部屋</b>を選ぶか、2部屋に分けてください。</li>
+    </ul>
+
+    <h3 class="sub">ストリップのホテル一覧（1/8・1/9 の2泊）</h3>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>2泊・税こみ</th><th>CES会場への行きやすさ</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>ザ リンク（The LINQ）<span class="tag">最安</span></th><td class="num">7.7<span class="rv">14,438件</span></td><td class="num">約45,300円</td><td><b>モノレールの駅あり。</b>LVCCまで乗り換えなし</td></tr>
+          <tr class="pick"><th>ホースシュー（旧バリーズ）</th><td class="num">7.9<span class="rv">8,041件</span></td><td class="num">約47,200円</td><td><b>モノレールの駅あり</b>（パリスと同じ駅）</td></tr>
+          <tr class="pick"><th>ハラーズ</th><td class="num">7.9<span class="rv">10,355件</span></td><td class="num">約50,700円</td><td><b>モノレールの駅あり</b>（リンクと同じ駅）</td></tr>
+          <tr class="pick"><th>フラミンゴ</th><td class="num">7.8<span class="rv">24,673件</span></td><td class="num">約50,900円</td><td><b>モノレールの駅あり。</b>ストリップのまん中</td></tr>
+          <tr><th>プラネット ハリウッド</th><td class="num">8.1<span class="rv">13,205件</span></td><td class="num">約54,100円</td><td>駅まで歩いて7分ほど</td></tr>
+          <tr><th>パリス<span class="tag">田邊家</span></th><td class="num">8.0<span class="rv">23,174件</span></td><td class="num">約72,000円</td><td><b>モノレールの駅あり</b></td></tr>
+          <tr><th>ラスベガス ヒルトン（リゾーツワールド）</th><td class="num">8.6<span class="rv">7,213件</span></td><td class="num">約105,100円</td><td><b>LVCCの向かい。歩いて会場へ行けます</b></td></tr>
+          <tr><th>ベラージオ</th><td class="num">8.6<span class="rv">9,422件</span></td><td class="num">約113,100円</td><td>噴水の目の前。駅まで歩いて10分</td></tr>
+          <tr><th>コスモポリタン</th><td class="num">8.5<span class="rv">2,318件</span></td><td class="num">約113,100円</td><td>ベラージオのとなり</td></tr>
+          <tr><th>シーザーズ パレス</th><td class="num">7.9<span class="rv">10,216件</span></td><td class="num">約120,400円</td><td><b>モノレールの駅あり</b></td></tr>
+          <tr><th>コンラッド（リゾーツワールド）</th><td class="num">8.5<span class="rv">1,852件</span></td><td class="num">約122,900円</td><td><b>LVCCの向かい</b></td></tr>
+          <tr><th>フォーシーズンズ</th><td class="num">9.2<span class="rv">289件</span></td><td class="num">約175,500円</td><td>南のはし。カジノの音がしない静かなホテル</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note">大人2名・1室、税と<b>リゾート料金をこみ</b>にした2泊の合計（2026-10-27 Booking.com 調べ）。クチコミはBooking.comの点数と件数です。<b>件数が多いほど点数は当てになります</b>。ラスベガスの大型ホテルは点数が7点台でも悪い宿という意味ではなく、部屋数が数千あるので当たり外れが出るためです。</p>
+
+    <h3 class="sub">CES会場へは「モノレール」が効きます</h3>
+    <ul class="tip-list">
+      <li><b>モノレールの駅は7つだけ。</b>MGMグランド／ホースシュー・パリス／フラミンゴ・シーザーズパレス／ハラーズ・リンク／<b>コンベンションセンター（LVCC）</b>／ウェストゲート／サハラ。<b>駅のあるホテルに泊まると、渋滞を避けてまっすぐ会場に着けます。</b>CES週の朝夕はタクシーもUberも30〜60分待つことがあるので、これは大きな差になります。</li>
+      <li><b>リゾーツワールド（ヒルトン／コンラッド）はLVCCの道をはさんで向かい</b>です。歩いて会場に行けるのはここだけで、そのぶん値段も上がります。</li>
+      <li><b>ベネチアン・エキスポも会場の1つ</b>です（「CES 2027」のタブ参照）。ストリップのまん中なので、フラミンゴやリンクからは歩けます。</li>
+      <li><b>CESに行かない人には、モノレールは関係ありません。</b>見どころはストリップ沿いに並んでいるので、歩ける場所かどうかで選んでください。</li>
+    </ul>
+
+    <h3 class="sub">治安と、知っておくと安心なこと</h3>
+    <ul class="tip-list">
+      <li><b>ストリップ沿いは夜中まで明るく、人が絶えません。</b>ただし<b>1本裏の通りに入ると急に人がいなくなります</b>。夜は大通りを歩いてください。</li>
+      <li><b>声をかけてくる人には応じない。</b>着ぐるみとの写真、CDの手渡し、署名集めは、あとからお金を求められます。受け取らない・立ち止まらないのが一番です。</li>
+      <li><b>宿泊料のほかにかかるお金。</b>リゾート料金が1泊$40〜60（上の表はこみの金額です）、駐車場が1日$20〜25（表に入っていません）。</li>
+      <li><b>チェックインでカードに$50〜100／日の枠が押さえられます</b>（デポジット）。使わなければ数日で戻りますが、カードの限度額が小さいと旅の途中で足りなくなることがあります。</li>
+      <li><b>カジノで遊べるのは21歳から。</b>21歳未満はカジノのフロアを通り抜けることはできますが、立ち止まったり見物したりはできません。<b>CESは18歳以上</b>で、これとは別の決まりです。</li>
+      <li><b>1月のラスベガスは砂漠の冬。</b>朝3〜5℃、昼15℃前後。<b>夜は本当に冷えます</b>ので、コートが要ります。空気がとても乾くので、リップクリームと水を。</li>
     </ul>
 
     <h3 class="sub">歩いて見るもの（ほとんど無料）</h3>
@@ -976,7 +1104,7 @@
     </div>
 
     <ul class="tip-list">
-      <li><b>CES週は何もかも高い。</b>ホテルは通常の3〜5倍、ショーもレストランも値上がりします。予約は早いほど安い。</li>
+      <li><b>CES週は何もかも高い。</b>ホテルもショーもレストランも値上がりします。<b>予約は早いほど安い</b>のがはっきり出ます。</li>
       <li><b>リゾートフィーと駐車代は別。</b>1泊$40〜60のリゾートフィーがチェックアウト時に足され、駐車場も1日$20〜25かかります。</li>
       <li><b>歩く距離を甘く見ない。</b>ホテル1軒が端から端まで500mあります。1日1万5千歩は普通。履き慣れた靴で。</li>
       <li><b>水は部屋に持ち込む。</b>ホテルの置き水は有料のことが多い（1本$6など）。コンビニかドラッグストアでまとめ買いを。</li>
@@ -1089,14 +1217,37 @@
       <div class="seats"><span>田邊家はこの形（1/11にロスへ戻って空港そばで1泊、1/12 09:40発で帰国）。<b>帰国便の日を各組でずらすのは自由です。</b>フェニックスから直接帰る便もあります</span></div>
     </div>
 
-    <h3 class="sub">泊まるところ</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="label">セドナ（1/10・1/11）</div>
-        <div class="value">$250〜450／泊</div>
-        <div class="note">小さな町で部屋数が少ない。Uptown（お店が並ぶ中心）か West Sedona（安め・車前提）。<b>赤い岩が見える部屋は値段が上がります</b></div>
-      </div>
+    <h3 class="sub">泊まるところ（1/10 の1泊）</h3>
+    <div class="alert">
+      <b>セドナに泊まるのは1晩だけ</b>です（1/10の夜）。着くのは夕方で<b>赤い岩が見えるのは翌朝</b>。だから「窓から岩が見えるか」で選ぶと、朝カーテンを開けた瞬間に効いてきます。
     </div>
+    <div class="hoteltable">
+      <table>
+        <thead><tr><th>ホテル</th><th>クチコミ</th><th>1泊・税こみ</th><th>場所・ひとこと</th></tr></thead>
+        <tbody>
+          <tr class="pick"><th>ロス アブリガドス（ヒルトン系）<span class="tag">最安</span></th><td class="num">8.4<span class="rv">544件</span></td><td class="num">約22,600円</td><td>町の中心。川沿いの広い敷地</td></tr>
+          <tr class="pick"><th>マッターホルン イン</th><td class="num">8.9<span class="rv">867件</span></td><td class="num">約26,900円</td><td>アップタウン（店の並ぶ通り）の真ん中。<b>歩いて夕飯に行けます</b></td></tr>
+          <tr><th>コートヤード セドナ</th><td class="num">8.3<span class="rv">202件</span></td><td class="num">約28,700円</td><td>ウエストセドナ。新しくて安心だが車が要る</td></tr>
+          <tr><th>レジデンス イン セドナ</th><td class="num">8.5<span class="rv">156件</span></td><td class="num">約30,200円</td><td>キッチン付き・朝食つき</td></tr>
+          <tr class="pick"><th>スカイ ランチ ロッジ<span class="tag">眺め</span></th><td class="num">9.2<span class="rv">2,187件</span></td><td class="num">約32,400円</td><td><b>高台の上。谷を見下ろします。</b>夕日の名所がすぐ隣。夕飯は車で町へ降りるか館内で</td></tr>
+          <tr><th>マウンテン モダン（ヒルトン系）</th><td class="num">8.9<span class="rv">990件</span></td><td class="num">約33,600円</td><td>ウエストセドナ。新しい</td></tr>
+          <tr><th>スカイ ロック（トリビュート）</th><td class="num">8.2<span class="rv">184件</span></td><td class="num">約35,400円</td><td>丘の上。眺めのよい部屋があります</td></tr>
+          <tr><th>アラベラ ホテル セドナ</th><td class="num">8.8<span class="rv">2,257件</span></td><td class="num">約36,300円</td><td>アップタウンの入口。中庭がきれい</td></tr>
+          <tr><th>ザ ワイルド リゾート＆スパ</th><td class="num">9.0<span class="rv">260件</span></td><td class="num">約55,600円</td><td>改装したての高級宿</td></tr>
+          <tr class="pick"><th>アマラ リゾート＆スパ<span class="tag">歩ける</span></th><td class="num">8.7<span class="rv">263件</span></td><td class="num">約66,600円</td><td><b>谷の底。赤い岩を見上げます。</b>50〜100m先に店が3軒。プールからの眺めが有名</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note">大人2名・1室・税こみの1泊（2026-10-27 Booking.com 調べ）。<b>4人の組はベッド2台の部屋を選ぶか、2部屋に分けてください。</b>セドナは「高台から見下ろす」か「谷の底から見上げる」かで、見える景色がまるきり変わります。</p>
+
+    <h3 class="sub">治安と、知っておくと安心なこと</h3>
+    <ul class="tip-list">
+      <li><b>治安の心配はほとんどありません。</b>人口1万人ほどの観光の町です。かわりに<b>夜道が真っ暗</b>で、街灯がほとんどありません（星空を守るための決まりがあるためです）。<b>暗くなる前に宿に入る</b>のが安全です。</li>
+      <li><b>1月のセドナは朝が0℃前後</b>、昼で12〜13℃。標高が約1,300mあり、同じアリゾナでもフェニックス（暖かい）とはまるで違います。<b>手袋と帽子</b>があると朝の散歩が楽しめます。</li>
+      <li><b>部屋数の少ない町です。</b>大きなホテルがなく、よい宿から順に埋まります。1/10は日曜なので週末よりは取りやすいですが、早いほうが安心です。</li>
+      <li><b>食事は早めに。</b>多くの店が21時ごろに閉まります。遅く着く日は、途中で買っておくか、レストランのある宿を選んでください。</li>
+      <li><b>ガソリンは満タンにしてから山に入る。</b>セドナとフェニックスの間はスタンドが少なく、暗くなると探しづらくなります。</li>
+    </ul>
 
     <h3 class="sub">車を降りてすぐ見られるもの</h3>
     <div class="photo-pair">
